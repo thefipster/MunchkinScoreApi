@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api", "TheFipster.Munchkin.Api\TheFipster.Munchkin.Api.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Api.UnitTest", "TheFipster.Munchkin.Api.UnitTest\TheFipster.Munchkin.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.UnitTest", "TheFipster.Munchkin.Api.UnitTest\TheFipster.Munchkin.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine", "TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj", "{1D4C87C9-DF8D-43DC-876F-9D713ADC58B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine.UnitTest", "TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameEngine.UnitTest.csproj", "{EF42658E-E513-4C90-B1A6-EAA976EFE810}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{F8075974-55AF-47A2-A9D4-C751A94E3D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8075974-55AF-47A2-A9D4-C751A94E3D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8075974-55AF-47A2-A9D4-C751A94E3D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4C87C9-DF8D-43DC-876F-9D713ADC58B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D4C87C9-DF8D-43DC-876F-9D713ADC58B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D4C87C9-DF8D-43DC-876F-9D713ADC58B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4C87C9-DF8D-43DC-876F-9D713ADC58B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
