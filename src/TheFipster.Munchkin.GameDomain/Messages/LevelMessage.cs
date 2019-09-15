@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheFipster.Munchkin.GameEngine.Messages
+namespace TheFipster.Munchkin.GameDomain.Messages
 {
     public abstract class LevelMessage : GameMessage
     {

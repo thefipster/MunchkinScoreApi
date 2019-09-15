@@ -1,7 +1,6 @@
 ﻿using System;
-using TheFipster.Munchkin.GameEngine.Model;
 
-namespace TheFipster.Munchkin.GameEngine.Messages
+namespace TheFipster.Munchkin.GameDomain.Messages
 {
     public class GameStartMessage : GameMessage
     {

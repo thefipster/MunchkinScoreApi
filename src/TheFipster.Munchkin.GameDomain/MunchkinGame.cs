@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
-namespace TheFipster.Munchkin.GameEngine
+namespace TheFipster.Munchkin.GameDomain
 {
     public class MunchkinGame
     {

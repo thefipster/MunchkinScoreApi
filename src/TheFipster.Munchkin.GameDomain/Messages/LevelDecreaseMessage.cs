@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
-using TheFipster.Munchkin.GameEngine.Exceptions;
-using TheFipster.Munchkin.GameEngine.Model;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 
-namespace TheFipster.Munchkin.GameEngine.Messages
+namespace TheFipster.Munchkin.GameDomain.Messages
 {
-    public class LevelIncreaseMessage : LevelMessage
+    public class LevelDecreaseMessage : LevelMessage
     {
-        public LevelIncreaseMessage() { }
+        public LevelDecreaseMessage() { }
 
-        public LevelIncreaseMessage(Guid playerId, int levelChange, string reason = null)
+        public LevelDecreaseMessage(Guid playerId, int levelChange, string reason = null)
         {
             PlayerId = playerId;
             Delta = levelChange;
@@ -21,7 +20,7 @@ namespace TheFipster.Munchkin.GameEngine.Messages
             if (!state.Players.Any(player => player.Id == PlayerId))
                 throw new UnknownPlayerException(PlayerId);
 
-            state.Players.First(p => p.Id == PlayerId).Level += Delta;
+            state.Players.First(p => p.Id == PlayerId).Level -= Delta;
         }
 
         public override void Undo(GameState state)
@@ -29,7 +28,7 @@ namespace TheFipster.Munchkin.GameEngine.Messages
             if (!state.Players.Any(player => player.Id == PlayerId))
                 throw new UnknownPlayerException(PlayerId);
 
-            state.Players.First(p => p.Id == PlayerId).Level -= Delta;
+            state.Players.First(p => p.Id == PlayerId).Level += Delta;
         }
     }
 }

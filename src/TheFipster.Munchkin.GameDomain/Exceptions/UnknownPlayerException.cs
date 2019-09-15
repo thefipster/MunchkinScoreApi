@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheFipster.Munchkin.GameEngine.Exceptions
+namespace TheFipster.Munchkin.GameDomain.Exceptions
 {
     public class UnknownPlayerException : Exception
     {

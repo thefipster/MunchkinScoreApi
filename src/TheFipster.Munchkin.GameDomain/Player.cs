@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TheFipster.Munchkin.GameEngine.Model
+namespace TheFipster.Munchkin.GameDomain
 {
     public class Player
     {
