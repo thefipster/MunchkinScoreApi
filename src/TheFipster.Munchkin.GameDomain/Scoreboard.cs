@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.GameDomain
 {
-    public class GameState
+    public class Scoreboard
     {
-        public GameState()
+        public Scoreboard()
         {
             Dungeons = new List<string>();
-            Players = new List<Player>();
+            Heroes = new List<Hero>();
         }
 
         public DateTime? Begin { get; set; }
         public DateTime? End { get; set; }
         public ICollection<string> Dungeons { get; set; }
-        public ICollection<Player> Players { get; set; }
+        public ICollection<Hero> Heroes { get; set; }
     }
 }

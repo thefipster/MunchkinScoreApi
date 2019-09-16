@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
+    <ProjectReference Include="..\src\TheFipster.Munchkin.Persistance\TheFipster.Munchkin.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

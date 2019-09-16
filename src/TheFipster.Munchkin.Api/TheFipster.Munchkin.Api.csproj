@@ -12,6 +12,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheFipster.Munchkin.GameDomain
+namespace TheFipster.Munchkin.GameDomain.Basics
 {
     public static class Genders
     {
