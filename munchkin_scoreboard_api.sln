@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api", "TheFipster.Munchkin.Api\TheFipster.Munchkin.Api.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api", "src\TheFipster.Munchkin.Api\TheFipster.Munchkin.Api.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.UnitTest", "TheFipster.Munchkin.Api.UnitTest\TheFipster.Munchkin.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.UnitTest", "src\TheFipster.Munchkin.Api.UnitTest\TheFipster.Munchkin.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain.UnitTest", "TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameDomain.UnitTest.csproj", "{EF42658E-E513-4C90-B1A6-EAA976EFE810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameDomain.UnitTest.csproj", "{EF42658E-E513-4C90-B1A6-EAA976EFE810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.LiteStorage", "TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj", "{E581D781-2418-4926-8AB1-3737F82699FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.LiteStorage", "src\TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj", "{E581D781-2418-4926-8AB1-3737F82699FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Persistance", "TheFipster.Munchkin.Persistance\TheFipster.Munchkin.Persistance.csproj", "{BB920407-D470-44A3-A152-DBAFF18F61F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Persistance", "src\TheFipster.Munchkin.Persistance\TheFipster.Munchkin.Persistance.csproj", "{BB920407-D470-44A3-A152-DBAFF18F61F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameDomain", "TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameDomain", "src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

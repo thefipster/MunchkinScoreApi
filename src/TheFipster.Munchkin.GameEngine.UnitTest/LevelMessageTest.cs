@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TheFipster.Munchkin.GameEngine.Exceptions;
-using TheFipster.Munchkin.GameEngine.Messages;
+using TheFipster.Munchkin.GameDomain.Exceptions;
+using TheFipster.Munchkin.GameDomain.Messages;
 using Xunit;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest
+namespace TheFipster.Munchkin.GameDomain.UnitTest
 {
     public class LevelMessageTest
     {

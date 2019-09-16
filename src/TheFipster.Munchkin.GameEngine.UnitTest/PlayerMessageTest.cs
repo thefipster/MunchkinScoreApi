@@ -1,8 +1,8 @@
-using TheFipster.Munchkin.GameEngine.Messages;
-using TheFipster.Munchkin.GameEngine.Model;
+
+using TheFipster.Munchkin.GameDomain.Messages;
 using Xunit;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest
+namespace TheFipster.Munchkin.GameDomain.UnitTest
 {
     public class PlayerMessageTest
     {

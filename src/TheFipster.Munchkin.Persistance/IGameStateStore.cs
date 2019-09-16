@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using TheFipster.Munchkin.GameDomain;
 
 namespace TheFipster.Munchkin.Persistance
 {
-    interface IGameStateStore
+    public interface IGameStateStore
     {
+        void Add(Guid gameId, GameState state);
+
+        GameState Get(Guid gameId);
     }
 }

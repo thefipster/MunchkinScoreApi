@@ -1,8 +1,8 @@
 ﻿using System;
-using TheFipster.Munchkin.GameEngine.Exceptions;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using Xunit;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest
+namespace TheFipster.Munchkin.GameDomain.UnitTest
 {
     public class MunchkinGameTest
     {

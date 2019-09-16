@@ -1,8 +1,7 @@
 ﻿using System;
-using TheFipster.Munchkin.GameEngine.Model;
 using Xunit;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest
+namespace TheFipster.Munchkin.GameDomain.UnitTest
 {
     public class PlayerTest
     {
