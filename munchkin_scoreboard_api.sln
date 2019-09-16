@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameDomain.UnitTest.csproj", "{EF42658E-E513-4C90-B1A6-EAA976EFE810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.LiteStorage", "src\TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj", "{E581D781-2418-4926-8AB1-3737F82699FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.LiteStorage", "src\TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj", "{E581D781-2418-4926-8AB1-3737F82699FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Persistance", "src\TheFipster.Munchkin.Persistance\TheFipster.Munchkin.Persistance.csproj", "{BB920407-D470-44A3-A152-DBAFF18F61F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Persistance", "src\TheFipster.Munchkin.Persistance\TheFipster.Munchkin.Persistance.csproj", "{BB920407-D470-44A3-A152-DBAFF18F61F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameDomain", "src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain", "src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameEngine", "TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj", "{871018DA-F647-433B-BE07-B4C251E51087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D462C383-28D2-4818-9B81-C5C85BC44EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D462C383-28D2-4818-9B81-C5C85BC44EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D462C383-28D2-4818-9B81-C5C85BC44EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871018DA-F647-433B-BE07-B4C251E51087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871018DA-F647-433B-BE07-B4C251E51087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871018DA-F647-433B-BE07-B4C251E51087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871018DA-F647-433B-BE07-B4C251E51087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

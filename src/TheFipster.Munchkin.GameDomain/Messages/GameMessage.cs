@@ -6,9 +6,5 @@ namespace TheFipster.Munchkin.GameDomain.Messages
     {
         public Guid Id { get; set; }
         public DateTime Timestamp { get; set; }
-
-        public abstract void ApplyTo(GameState state);
-
-        public abstract void Undo(GameState state);
     }
 }
