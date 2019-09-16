@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
+using TheFipster.Munchkin.Api.Binders;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.LiteStorage;
@@ -23,7 +24,10 @@ namespace TheFipster.Munchkin.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => 
+                options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider())
+
+            ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSingleton<IRepository<Game>>(new Repository<Game>());
             services.AddSingleton<IActionFactory>(new PrimitiveActionFactory());

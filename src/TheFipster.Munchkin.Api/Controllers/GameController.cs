@@ -26,7 +26,7 @@ namespace TheFipster.Munchkin.Api.Controllers
         }
 
         [HttpPost("append")]
-        public ActionResult AddMessage(GameMessage message)
+        public ActionResult AddMessage([FromBody] GameMessage message)
         {
             var score = _quest.AddMessage(message);
             return Ok(score);
