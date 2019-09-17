@@ -22,13 +22,12 @@ namespace TheFipster.Munchkin.Api.Extensions
             return services;
         }
 
-        private static void addGoogleProvider(AuthenticationBuilder authBuilder)
-        {
+        private static void addGoogleProvider(AuthenticationBuilder authBuilder) =>
             authBuilder.AddGoogle("Google", options =>
             {
                 options.CallbackPath = new PathString("/google-callback");
-                options.ClientId = "PUT_YOUR_CLIENT_ID_HERE";
-                options.ClientSecret = "PUT_YOUR_CLIENT_SECRET_HERE";
+                options.ClientId = "390759120229-s7elaibviimip01p8kgsbee4i4td8inh.apps.googleusercontent.com";
+                options.ClientSecret = "-ux0M7KqDRAP05ASIwfx5jt3";
                 options.Events = new OAuthEvents
                 {
                     OnRemoteFailure = (RemoteFailureContext context) =>
@@ -39,30 +38,26 @@ namespace TheFipster.Munchkin.Api.Extensions
                     }
                 };
             });
-        }
 
-        private static AuthenticationBuilder addAuthentication(IServiceCollection services) => services.AddAuthentication(options =>
-        {
-            options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
-        });
+        private static AuthenticationBuilder addAuthentication(IServiceCollection services) => 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
+            });
 
-        private static void addIdentity(IServiceCollection services)
-        {
+        private static void addIdentity(IServiceCollection services) =>
             services
                 .AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
-        }
 
-        private static void addAuthStore(IServiceCollection services)
-        { 
+        private static void addAuthStore(IServiceCollection services) =>
             services.AddDbContext<IdentityDbContext>(
-                options => options
-                    .UseSqlite(
-                        "Data Source=users.sqlite",
-                        sqliteOptions => sqliteOptions
-                            .MigrationsAssembly("TheFipster.Munchkin.Api")));
-        }
+                options => getSqliteOptions(options));
+
+        private static DbContextOptionsBuilder getSqliteOptions(DbContextOptionsBuilder options) =>
+            options.UseSqlite(
+                "Data Source=users.sqlite",
+                sqliteOptions => sqliteOptions.MigrationsAssembly("TheFipster.Munchkin.Api"));
     }
 }
-    

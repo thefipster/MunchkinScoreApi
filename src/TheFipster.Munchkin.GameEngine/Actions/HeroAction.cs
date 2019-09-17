@@ -40,14 +40,14 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public void Validate()
         {
-            if (Message.Modifier == Modifier.Add && playerAlreadyExists())
+            if (Message.Modifier == Modifier.Add && playerExists())
                 throw new InvalidActionException("The hero is already part of the game.");
 
-            if (Message.Modifier == Modifier.Remove && !playerAlreadyExists())
+            if (Message.Modifier == Modifier.Remove && !playerExists())
                 throw new InvalidActionException("The hero isn't even in the game.");
         }
 
-        private bool playerAlreadyExists() =>
+        private bool playerExists() =>
             Board.Heroes.Any(x => x.Player.Id == Message.Hero.Player.Id);
 
         private Scoreboard addPlayer()

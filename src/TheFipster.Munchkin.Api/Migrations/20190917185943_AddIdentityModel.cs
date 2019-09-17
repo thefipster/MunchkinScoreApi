@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TheFipster.Munchkin.Api.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AddIdentityModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

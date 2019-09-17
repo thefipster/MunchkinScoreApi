@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Messages;
 
@@ -8,8 +9,6 @@ namespace TheFipster.Munchkin.Api.Controllers
     [ApiController]
     public class GameController : ControllerBase
     {
-        private const string GameIdHeaderName = "Game-ID";
-
         private readonly IQuest _quest;
 
         public GameController(IQuest quest)
@@ -17,6 +16,7 @@ namespace TheFipster.Munchkin.Api.Controllers
             _quest = quest;
         }
 
+        [Authorize]
         [HttpGet("new")]
         public ActionResult NewGame()
         {
@@ -25,6 +25,7 @@ namespace TheFipster.Munchkin.Api.Controllers
             return Created(url, gameId);
         }
 
+        [Authorize]
         [HttpPost("append")]
         public ActionResult AddMessage([FromBody] GameMessage message)
         {

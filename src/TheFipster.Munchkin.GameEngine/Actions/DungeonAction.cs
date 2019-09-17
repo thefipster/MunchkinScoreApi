@@ -39,29 +39,25 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public void Validate()
         {
-            if (Message.Modifier == Modifier.Add && dungeonAlreadyExists())
+            if (Message.Modifier == Modifier.Add && dungeonExists())
                 throw new InvalidActionException("You are already in this dungeon.");
 
-            if (Message.Modifier == Modifier.Remove && !dungeonAlreadyExists())
+            if (Message.Modifier == Modifier.Remove && !dungeonExists())
                 throw new InvalidActionException("Can't leave a dungeon that you have not entered.");
         }
 
-        private bool dungeonAlreadyExists() =>
+        private bool dungeonExists() =>
             Board.Dungeons.Contains(Message.Dungeon);
 
         private Scoreboard addDungeon()
         {
-            if (!Board.Dungeons.Contains(Message.Dungeon))
-                Board.Dungeons.Add(Message.Dungeon);
-
+            Board.Dungeons.Add(Message.Dungeon);
             return Board;
         }
 
         private Scoreboard removeDungeon()
         {
-            if (!Board.Dungeons.Contains(Message.Dungeon))
-                Board.Dungeons.Remove(Message.Dungeon);
-
+            Board.Dungeons.Remove(Message.Dungeon);
             return Board;
         }
     }

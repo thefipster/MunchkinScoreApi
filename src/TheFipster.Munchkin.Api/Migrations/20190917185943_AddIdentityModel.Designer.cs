@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TheFipster.Munchkin.Api.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20180908215300_Initial")]
-    partial class Initial
+    [Migration("20190917185943_AddIdentityModel")]
+    partial class AddIdentityModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
