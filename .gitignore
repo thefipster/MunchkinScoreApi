@@ -8,3 +8,6 @@ obj/
 # Data files
 *.litedb
 *.sqlite
+
+# Coverage Reports
+coverage.cobertura.xml
