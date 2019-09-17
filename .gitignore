@@ -4,3 +4,7 @@ obj/
 
 # IDE Metadata
 .vs/
+
+# Data files
+*.litedb
+*.sqlite
