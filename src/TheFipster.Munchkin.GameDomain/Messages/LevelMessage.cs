@@ -2,7 +2,7 @@
 
 namespace TheFipster.Munchkin.GameDomain.Messages
 {
-    public abstract class LevelMessage : GameMessage
+    public class LevelMessage : GameMessage
     {
         public int Delta { get; set; }
         public Guid PlayerId { get; set; }

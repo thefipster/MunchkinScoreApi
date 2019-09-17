@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using TheFipster.Munchkin.Api.Binders;
+using TheFipster.Munchkin.Api.Middlewares;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.LiteStorage;
@@ -46,6 +47,7 @@ namespace TheFipster.Munchkin.Api
                 app.UseHsts();
             }
 
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj" />
   </ItemGroup>

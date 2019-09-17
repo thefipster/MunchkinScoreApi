@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api", "src\TheFipster.Munchkin.Api\TheFipster.Munchkin.Api.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.UnitTest", "src\TheFipster.Munchkin.Api.UnitTest\TheFipster.Munchkin.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameDomain.UnitTest.csproj", "{EF42658E-E513-4C90-B1A6-EAA976EFE810}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.LiteStorage", "src\TheFipster.Munchkin.LiteStorage\TheFipster.Munchkin.LiteStorage.csproj", "{E581D781-2418-4926-8AB1-3737F82699FA}"
 EndProject
@@ -15,7 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Persist
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain", "src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameEngine", "TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj", "{871018DA-F647-433B-BE07-B4C251E51087}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFFE2E29-F8FF-47FC-B58C-78FE06F5565F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.travis.yml = .travis.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain.UnitTest", "src\TheFipster.Munchkin.GameDomain.UnitTest\TheFipster.Munchkin.GameDomain.UnitTest.csproj", "{D00B7C80-7F79-4224-8741-C1C70EEE21BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine", "src\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj", "{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +38,6 @@ Global
 		{F8075974-55AF-47A2-A9D4-C751A94E3D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8075974-55AF-47A2-A9D4-C751A94E3D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8075974-55AF-47A2-A9D4-C751A94E3D6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF42658E-E513-4C90-B1A6-EAA976EFE810}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E581D781-2418-4926-8AB1-3737F82699FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E581D781-2418-4926-8AB1-3737F82699FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E581D781-2418-4926-8AB1-3737F82699FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +50,14 @@ Global
 		{D462C383-28D2-4818-9B81-C5C85BC44EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D462C383-28D2-4818-9B81-C5C85BC44EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D462C383-28D2-4818-9B81-C5C85BC44EFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{871018DA-F647-433B-BE07-B4C251E51087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{871018DA-F647-433B-BE07-B4C251E51087}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{871018DA-F647-433B-BE07-B4C251E51087}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{871018DA-F647-433B-BE07-B4C251E51087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D00B7C80-7F79-4224-8741-C1C70EEE21BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D00B7C80-7F79-4224-8741-C1C70EEE21BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D00B7C80-7F79-4224-8741-C1C70EEE21BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D00B7C80-7F79-4224-8741-C1C70EEE21BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

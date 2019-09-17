@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.Api.Binders
