@@ -1,7 +1,7 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain;
 
-namespace TheFipster.Munchkin.Persistance
+namespace TheFipster.Munchkin.GamePersistance
 {
     public interface IPlayerStore
     {

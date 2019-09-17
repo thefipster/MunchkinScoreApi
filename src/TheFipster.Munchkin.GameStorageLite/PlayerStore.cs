@@ -1,8 +1,8 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.Persistance;
+using TheFipster.Munchkin.GamePersistance;
 
-namespace TheFipster.Munchkin.LiteStorage
+namespace TheFipster.Munchkin.GameStorageLite
 {
     public class PlayerStore : IPlayerStore
     {

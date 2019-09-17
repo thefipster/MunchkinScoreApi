@@ -1,7 +1,7 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Messages;
-using TheFipster.Munchkin.Persistance;
+using TheFipster.Munchkin.GamePersistance;
 
 namespace TheFipster.Munchkin.GameEngine
 {
