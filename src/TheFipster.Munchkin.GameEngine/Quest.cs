@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GamePersistance;
 
@@ -42,7 +43,6 @@ namespace TheFipster.Munchkin.GameEngine
 
         private Game performActionIfPossible(Game game, GameMessage message)
         {
-            game.Protocol.Add(message);
             var action = _actionFactory.CreateActionFrom(message, game);
             action.Validate();
             return action.Do();
@@ -50,10 +50,15 @@ namespace TheFipster.Munchkin.GameEngine
 
         private Game performUndo(Game game)
         {
+            if (protocolIsEmpty(game))
+                throw new ProtocolEmptyException();
+
             var lastMessage = game.Protocol.Last();
-            game.Protocol.Remove(lastMessage);
             var action = _actionFactory.CreateActionFrom(lastMessage, game);
             return action.Undo();
         }
+
+        private bool protocolIsEmpty(Game game) =>
+            !game.Protocol.Any();
     }
 }

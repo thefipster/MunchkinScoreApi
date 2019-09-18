@@ -3,7 +3,7 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public abstract class MessageAction
+    public abstract class MessageAction : IGameAction
     {
         public MessageAction(GameMessage message, Game game)
         {
@@ -16,5 +16,19 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         public Game Game { get; }
 
         protected bool GameHasStarted => Game.Score.Begin.HasValue;
+
+        public virtual Game Do()
+        {
+            Game.Protocol.Add(Message);
+            return Game;
+        }
+
+        public virtual Game Undo()
+        {
+            Game.Protocol.Remove(Message);
+            return Game;
+        }
+
+        public virtual void Validate() { }
     }
 }

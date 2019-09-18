@@ -4,26 +4,28 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class EndAction : MessageAction, IGameAction
+    public class EndAction : MessageAction
     {
         public EndAction(GameMessage message, Game game)
             : base(message, game) { }
 
         public new EndMessage Message => (EndMessage)base.Message;
 
-        public Game Do()
+        public override Game Do()
         {
+            base.Do();
             Game.Score.End = Message.Timestamp;
             return Game;
         }
 
-        public Game Undo()
+        public override Game Undo()
         {
+            base.Undo();
             Game.Score.End = null;
             return Game;
         }
 
-        public void Validate()
+        public override void Validate()
         {
             if (!GameHasStarted)
                 throw new InvalidActionException("Already quitting before it has even begun, just how I imagined it.");
