@@ -8,3 +8,7 @@ obj/
 # Data files
 *.litedb
 *.sqlite
+
+# NCrunch
+*ncrunchsolution
+*.user

@@ -4,9 +4,9 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 {
     public interface IGameAction
     {
-        Scoreboard Do();
+        Game Do();
 
-        Scoreboard Undo();
+        Game Undo();
 
         void Validate();
     }

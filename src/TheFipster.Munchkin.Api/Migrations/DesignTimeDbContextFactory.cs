@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace TheFipster.Munchkin.Api.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<IdentityDbContext>
     {
         public IdentityDbContext CreateDbContext(string[] args)

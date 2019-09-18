@@ -7,12 +7,12 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 {
     public class LevelAction : MessageAction, IGameAction
     {
-        public LevelAction(GameMessage message, Scoreboard board)
-            : base(message, board) { }
+        public LevelAction(GameMessage message, Game game)
+            : base(message, game) { }
 
         public new LevelMessage Message => (LevelMessage)base.Message;
 
-        public Scoreboard Do()
+        public Game Do()
         {
             switch (Message.Modifier)
             {
@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public Scoreboard Undo()
+        public Game Undo()
         {
             switch (Message.Modifier)
             {
@@ -40,23 +40,26 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public void Validate()
         {
+            if (!gameHasStarted())
+                throw new InvalidActionException("The adventure hasn't even started.");
+
             if (heroIsMissing())
                 throw new InvalidActionException("Couldn't find the hero in the dungeon.");
         }
 
         private bool heroIsMissing() =>
-            !Board.Heroes.Any(hero => hero.Player.Id == Message.PlayerId);
+            Game.Score.Heroes.All(hero => hero.Player.Id != Message.PlayerId);
 
-        private Scoreboard increaseLevel()
+        private Game increaseLevel()
         {
-            Board.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level += Message.Delta;
-            return Board;
+            Game.Score.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level += Message.Delta;
+            return Game;
         }
 
-        private Scoreboard decreaseLevel()
+        private Game decreaseLevel()
         {
-            Board.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level -= Message.Delta;
-            return Board;
+            Game.Score.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level -= Message.Delta;
+            return Game;
         }
     }
 }

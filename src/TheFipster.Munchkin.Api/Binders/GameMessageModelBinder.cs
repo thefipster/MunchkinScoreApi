@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using TheFipster.Munchkin.GameDomain;
 
 namespace TheFipster.Munchkin.Api.Binders
 {
+    [ExcludeFromCodeCoverage]
     public class GameMessageModelBinder : IModelBinder
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)

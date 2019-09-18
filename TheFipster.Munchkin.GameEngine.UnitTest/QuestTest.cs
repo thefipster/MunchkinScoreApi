@@ -1,4 +1,5 @@
 using System;
+using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
 using TheFipster.Munchkin.GameStorageVolatile;
 using Xunit;
 
@@ -9,13 +10,14 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         [Fact]
         public void StartJourneyGeneratesGameAndReturnsGameIdTest()
         {
+            // Arrange
             var gameStore = new MockedGameStore();
-            var actionFactory = new PrimitiveActionFactory();
+            var quest = QuestFactory.Create(gameStore);
 
-            var quest = new Quest(gameStore, actionFactory);
-
+            // Act
             var gameId = quest.StartJourney();
 
+            // Assert
             Assert.NotEqual(Guid.Empty, gameId);
             Assert.NotNull(gameStore.Get(gameId));
         }
