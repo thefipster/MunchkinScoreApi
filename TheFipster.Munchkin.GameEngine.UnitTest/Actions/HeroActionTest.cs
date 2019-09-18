@@ -13,7 +13,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddHeroTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var hero = HeroFactory.CreateFemaleHero("Bonnie"); 
             var addHero = new HeroMessage(gameId, hero, Modifier.Add);
 
@@ -28,7 +28,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddHeroAndUndoTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var hero = HeroFactory.CreateFemaleHero("Bonnie"); 
             var addHero = new HeroMessage(gameId, hero, Modifier.Add);
 
@@ -42,7 +42,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddTwoHeroesTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var bonnie = HeroFactory.CreateFemaleHero("Bonnie"); 
             var clyde = HeroFactory.CreateMaleHero("Clyde"); 
             var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
@@ -58,7 +58,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddTwoHeroesAndUndoTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var bonnie = HeroFactory.CreateFemaleHero("Bonnie"); 
             var clyde = HeroFactory.CreateMaleHero("Clyde"); 
             var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
@@ -75,7 +75,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddSameHeroTwiceThrowsExceptionTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var bonnie = HeroFactory.CreateFemaleHero("Bonnie"); 
             var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
 
@@ -88,7 +88,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void RemoveUnknownHeroThrowsExceptionTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var bonnie = HeroFactory.CreateFemaleHero("Bonnie"); 
             var removeBonnie = new HeroMessage(gameId, bonnie, Modifier.Remove);
 
@@ -99,7 +99,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddHeroAndRemoveHeroAndUndoTest()
         {
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateWithStartedGame(gameStore, out var gameId);
+            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
             var bonnie = HeroFactory.CreateFemaleHero("Bonnie"); 
             var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
             var removeBonnie = new HeroMessage(gameId, bonnie, Modifier.Remove);

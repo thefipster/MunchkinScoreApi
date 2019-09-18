@@ -40,14 +40,14 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public void Validate()
         {
-            if (!gameHasStarted())
+            if (!GameHasStarted)
                 throw new InvalidActionException("The adventure hasn't even started.");
 
-            if (heroIsMissing())
+            if (heroIsMissing)
                 throw new InvalidActionException("Couldn't find the hero in the dungeon.");
         }
 
-        private bool heroIsMissing() =>
+        private bool heroIsMissing =>
             Game.Score.Heroes.All(hero => hero.Player.Id != Message.PlayerId);
 
         private Game increaseLevel()

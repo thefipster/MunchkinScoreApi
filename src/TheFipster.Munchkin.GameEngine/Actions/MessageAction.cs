@@ -12,11 +12,10 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             Message = message;
         }
 
-        public GameMessage Message { get; }
+        public virtual GameMessage Message { get; }
 
         public Game Game { get; }
 
-        protected bool gameHasStarted() =>
-            Game.Protocol.Any(message => message is StartMessage);
+        protected bool GameHasStarted => Game.Score.Begin.HasValue;
     }
 }
