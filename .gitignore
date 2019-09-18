@@ -12,3 +12,6 @@ obj/
 # NCrunch
 *ncrunchsolution
 *.user
+
+# Coverage Reports
+coverage.cobertura.xml

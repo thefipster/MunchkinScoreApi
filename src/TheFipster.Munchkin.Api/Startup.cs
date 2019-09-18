@@ -18,7 +18,7 @@ namespace TheFipster.Munchkin.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCorsPolicy();
+            services.AddCorsPolicy(Configuration);
             services.AddOAuth();
             services.AddMvcWithCustomBinders();
             services.AddDependecies();

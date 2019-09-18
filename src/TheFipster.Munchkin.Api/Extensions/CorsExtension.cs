@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {
@@ -9,14 +11,22 @@ namespace TheFipster.Munchkin.Api.Extensions
     {
         private const string CorsPolicyName = "default";
 
-        public static IServiceCollection AddCorsPolicy(this IServiceCollection services)
+        public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration configuration)
         {
+            var origins = configuration
+                .GetSection("AllowedOrigins")
+                .AsEnumerable()
+                .Where(x => !string.IsNullOrWhiteSpace(x.Value))
+                .Select(x => x.Value)
+                .ToArray();
+
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicyName, policy => policy
-                    .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader());
+                    .AllowAnyHeader()
+                    .WithOrigins(origins)
+                    .AllowCredentials());
             });
 
             return services;
