@@ -5,15 +5,16 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class HeroAction : MessageAction, IGameAction
+    public class HeroAction : MessageAction
     {
         public HeroAction(HeroMessage message, Game game)
             : base(message, game) { }
 
         public new HeroMessage Message => (HeroMessage)base.Message;
 
-        public Game Do()
+        public override Game Do()
         {
+            base.Do();
             switch (Message.Modifier)
             {
                 case Modifier.Add:
@@ -25,8 +26,9 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public Game Undo()
+        public override Game Undo()
         {
+            base.Undo();
             switch (Message.Modifier)
             {
                 case Modifier.Add:
@@ -38,7 +40,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public void Validate()
+        public override void Validate()
         {
             if (Message.Modifier == Modifier.Add && playerExists())
                 throw new InvalidActionException("The hero is already part of the game.");

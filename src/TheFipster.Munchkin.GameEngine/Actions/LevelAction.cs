@@ -5,15 +5,16 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class LevelAction : MessageAction, IGameAction
+    public class LevelAction : MessageAction
     {
         public LevelAction(GameMessage message, Game game)
             : base(message, game) { }
 
         public new LevelMessage Message => (LevelMessage)base.Message;
 
-        public Game Do()
+        public override Game Do()
         {
+            base.Do();
             switch (Message.Modifier)
             {
                 case Modifier.Add:
@@ -25,8 +26,9 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public Game Undo()
+        public override Game Undo()
         {
+            base.Undo();
             switch (Message.Modifier)
             {
                 case Modifier.Add:
@@ -38,7 +40,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public void Validate()
+        public override void Validate()
         {
             if (!GameHasStarted)
                 throw new InvalidActionException("The adventure hasn't even started.");
