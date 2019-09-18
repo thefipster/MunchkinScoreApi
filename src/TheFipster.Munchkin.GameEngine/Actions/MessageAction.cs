@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TheFipster.Munchkin.GameDomain;
+﻿using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions

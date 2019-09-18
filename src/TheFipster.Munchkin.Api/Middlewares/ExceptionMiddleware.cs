@@ -37,34 +37,32 @@ namespace TheFipster.Munchkin.Api.Middlewares
 
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            HttpStatusCode code;
+            HttpStatusCode code = getCodeFrom(ex);
+            var result = JsonConvert.SerializeObject(new { error = ex.Message });
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)code;
+            await context.Response.WriteAsync(result).ConfigureAwait(false);
+        }
 
+        private static HttpStatusCode getCodeFrom(Exception ex)
+        {
             switch (ex)
             {
                 case UnknownGameException _:
                 case UnknownPlayerException _:
-                    code = HttpStatusCode.NotFound;
-                    break;
+                    return HttpStatusCode.NotFound;
                 case ArgumentNullException _:
                 case ArgumentException _:
                 case InvalidModifierException _:
                 case ProtocolEmptyException _:
                 case InvalidGameMessageException _:
                 case InvalidActionException _:
-                    code = HttpStatusCode.BadRequest;
-                    break;
+                    return HttpStatusCode.BadRequest;
                 case NotImplementedException _:
-                    code = HttpStatusCode.NotImplemented;
-                    break;
+                    return HttpStatusCode.NotImplemented;
                 default:
-                    code = HttpStatusCode.InternalServerError;
-                    break;
+                    return HttpStatusCode.InternalServerError;
             }
-
-            var result = JsonConvert.SerializeObject(new { error = ex.Message });
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)code;
-            await context.Response.WriteAsync(result).ConfigureAwait(false);
         }
     }
 }

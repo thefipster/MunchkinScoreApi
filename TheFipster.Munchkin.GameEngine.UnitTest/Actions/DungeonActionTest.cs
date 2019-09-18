@@ -17,7 +17,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var expectedDungeon = "My Dungeon";
             var dungeonMessage = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
 
@@ -34,7 +34,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var expectedDungeon = "My Dungeon";
             var dungeonMessage = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
 
@@ -51,7 +51,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var expectedDungeon = "My Dungeon";
             var addDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
             var removeDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Remove);
@@ -69,7 +69,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var expectedDungeon = "My Dungeon";
             var addDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
             var removeDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Remove);
@@ -89,7 +89,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var expectedDungeon = "My Dungeon";
             var removeDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Remove);
 
@@ -102,7 +102,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var expectedDungeon = "My Dungeon";
             var addDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
 

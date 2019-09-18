@@ -13,7 +13,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var endMsg = new EndMessage(gameId);
 
             // Act & Assert
@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
             var endMsg = new EndMessage(gameId);
 
@@ -43,7 +43,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
             var endMsg = new EndMessage(gameId);
 
@@ -61,7 +61,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateAndStore(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
             var endMsg = new EndMessage(gameId);
 
