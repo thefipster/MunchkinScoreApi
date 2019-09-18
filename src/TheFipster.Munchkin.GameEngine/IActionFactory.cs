@@ -6,6 +6,6 @@ namespace TheFipster.Munchkin.GameEngine
 {
     public interface IActionFactory
     {
-        IGameAction CreateActionFrom(GameMessage message, Scoreboard board);
+        IGameAction CreateActionFrom(GameMessage message, Game game);
     }
 }

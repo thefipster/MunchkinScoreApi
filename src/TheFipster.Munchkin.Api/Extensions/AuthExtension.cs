@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class AuthExtension
     {
         public static IServiceCollection AddOAuth(this IServiceCollection services)

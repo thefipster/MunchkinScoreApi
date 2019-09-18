@@ -7,12 +7,12 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 {
     public class HeroAction : MessageAction, IGameAction
     {
-        public HeroAction(HeroMessage message, Scoreboard board)
-            : base(message, board) { }
+        public HeroAction(HeroMessage message, Game game)
+            : base(message, game) { }
 
         public new HeroMessage Message => (HeroMessage)base.Message;
 
-        public Scoreboard Do()
+        public Game Do()
         {
             switch (Message.Modifier)
             {
@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public Scoreboard Undo()
+        public Game Undo()
         {
             switch (Message.Modifier)
             {
@@ -48,18 +48,18 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         }
 
         private bool playerExists() =>
-            Board.Heroes.Any(x => x.Player.Id == Message.Hero.Player.Id);
+            Game.Score.Heroes.Any(x => x.Player.Id == Message.Hero.Player.Id);
 
-        private Scoreboard addPlayer()
+        private Game addPlayer()
         {
-            Board.Heroes.Add(Message.Hero);
-            return Board;
+            Game.Score.Heroes.Add(Message.Hero);
+            return Game;
         }
 
-        private Scoreboard removePlayer()
+        private Game removePlayer()
         {
-            Board.Heroes.Remove(Message.Hero);
-            return Board;
+            Game.Score.Heroes.Remove(Message.Hero);
+            return Game;
         }
     }
 }

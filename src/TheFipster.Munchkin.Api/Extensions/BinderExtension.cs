@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.Api.Binders;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class BinderExtension
     {
         public static IServiceCollection AddMvcWithCustomBinders(this IServiceCollection services)

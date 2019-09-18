@@ -1,22 +1,22 @@
-﻿using TheFipster.Munchkin.GameDomain;
+﻿using System.Linq;
+using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
     public abstract class MessageAction
     {
-        public MessageAction(GameMessage message, Scoreboard board)
+        public MessageAction(GameMessage message, Game game)
         {
-            Board = board;
+            Game = game;
             Message = message;
         }
 
         public GameMessage Message { get; }
-        public T GetMessage<T>() where T : GameMessage
-        {
-            return (T)Message;
-        }
 
-        public Scoreboard Board { get; }
+        public Game Game { get; }
+
+        protected bool gameHasStarted() =>
+            Game.Protocol.Any(message => message is StartMessage);
     }
 }
