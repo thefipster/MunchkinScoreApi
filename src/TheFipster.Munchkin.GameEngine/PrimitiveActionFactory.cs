@@ -17,6 +17,10 @@ namespace TheFipster.Munchkin.GameEngine
                     return new DungeonAction(dungeonMsg, game);
                 case LevelMessage lvlMsg:
                     return new LevelAction(lvlMsg, game);
+                case StartMessage startMsg:
+                    return new StartAction(startMsg, game);
+                case EndMessage endMsg:
+                    return new EndAction(endMsg, game);
 
                 default:
                     throw new InvalidGameMessageException();

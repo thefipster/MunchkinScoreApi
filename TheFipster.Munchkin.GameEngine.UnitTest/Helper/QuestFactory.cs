@@ -15,7 +15,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
             return new Quest(gameStore, actionFactory);
         }
 
-        public static Quest CreateWithStartedGame(IGameStore gameStore, out Guid gameId)
+        public static Quest CreateAndStore(IGameStore gameStore, out Guid gameId)
         {
             var quest = Create(gameStore);
             gameId = quest.StartJourney();
