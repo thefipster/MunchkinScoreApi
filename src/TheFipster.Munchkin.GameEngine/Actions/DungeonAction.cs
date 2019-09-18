@@ -4,7 +4,7 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class DungeonAction : MessageAction, IGameAction
+    public class DungeonAction : ModifierMessageAction, IGameAction
     {
         public DungeonAction(DungeonMessage message, Game game)
             : base(message, game) { }
@@ -39,14 +39,14 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public void Validate()
         {
-            if (Message.Modifier == Modifier.Add && dungeonExists())
+            if (IsAddMessage && dungeonExists)
                 throw new InvalidActionException("You are already in this dungeon.");
 
-            if (Message.Modifier == Modifier.Remove && !dungeonExists())
+            if (IsRemoveMessage && !dungeonExists)
                 throw new InvalidActionException("Can't leave a dungeon that you have not entered.");
         }
 
-        private bool dungeonExists() =>
+        private bool dungeonExists =>
             Game.Score.Dungeons.Contains(Message.Dungeon);
 
         private Game addDungeon()
