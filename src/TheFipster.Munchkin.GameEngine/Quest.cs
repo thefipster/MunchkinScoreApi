@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GamePersistance;
@@ -26,16 +27,33 @@ namespace TheFipster.Munchkin.GameEngine
         public Scoreboard AddMessage(GameMessage message)
         {
             var game = _gameStore.Get(message.GameId);
-            game.Score = performActionIfPossible(game.Score, message);
+            game = performActionIfPossible(game, message);
             _gameStore.Upsert(game);
             return game.Score;
         }
 
-        private Scoreboard performActionIfPossible(Scoreboard score, GameMessage message)
+        public Scoreboard Undo(Guid gameId)
         {
-            var action = _actionFactory.CreateActionFrom(message, score);
+            var game = _gameStore.Get(gameId);
+            game = performUndo(game);
+            _gameStore.Upsert(game);
+            return game.Score;
+        }
+
+        private Game performActionIfPossible(Game game, GameMessage message)
+        {
+            game.Protocol.Add(message);
+            var action = _actionFactory.CreateActionFrom(message, game);
             action.Validate();
             return action.Do();
+        }
+
+        private Game performUndo(Game game)
+        {
+            var lastMessage = game.Protocol.Last();
+            game.Protocol.Remove(lastMessage);
+            var action = _actionFactory.CreateActionFrom(lastMessage, game);
+            return action.Undo();
         }
     }
 }

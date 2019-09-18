@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.GamePersistance;
@@ -6,6 +7,7 @@ using TheFipster.Munchkin.GameStorageLite;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class InjectionExtension
     {
         public static IServiceCollection AddDependecies(this IServiceCollection services)

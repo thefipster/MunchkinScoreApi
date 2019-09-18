@@ -6,12 +6,12 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 {
     public class DungeonAction : MessageAction, IGameAction
     {
-        public DungeonAction(DungeonMessage message, Scoreboard board)
-            : base(message, board) { }
+        public DungeonAction(DungeonMessage message, Game game)
+            : base(message, game) { }
 
         public new DungeonMessage Message => (DungeonMessage)base.Message;
 
-        public Scoreboard Do()
+        public Game Do()
         {
             switch (Message.Modifier)
             {
@@ -24,7 +24,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             }
         }
 
-        public Scoreboard Undo()
+        public Game Undo()
         {
             switch(Message.Modifier)
             {
@@ -47,18 +47,18 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         }
 
         private bool dungeonExists() =>
-            Board.Dungeons.Contains(Message.Dungeon);
+            Game.Score.Dungeons.Contains(Message.Dungeon);
 
-        private Scoreboard addDungeon()
+        private Game addDungeon()
         {
-            Board.Dungeons.Add(Message.Dungeon);
-            return Board;
+            Game.Score.Dungeons.Add(Message.Dungeon);
+            return Game;
         }
 
-        private Scoreboard removeDungeon()
+        private Game removeDungeon()
         {
-            Board.Dungeons.Remove(Message.Dungeon);
-            return Board;
+            Game.Score.Dungeons.Remove(Message.Dungeon);
+            return Game;
         }
     }
 }

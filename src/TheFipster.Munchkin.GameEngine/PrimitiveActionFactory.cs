@@ -7,16 +7,16 @@ namespace TheFipster.Munchkin.GameEngine
 {
     public class PrimitiveActionFactory : IActionFactory
     {
-        public IGameAction CreateActionFrom(GameMessage msg, Scoreboard board)
+        public IGameAction CreateActionFrom(GameMessage msg, Game game)
         {
             switch (msg)
             {
                 case HeroMessage heroMsg:
-                    return new HeroAction(heroMsg, board);
+                    return new HeroAction(heroMsg, game);
                 case DungeonMessage dungeonMsg:
-                    return new DungeonAction(dungeonMsg, board);
+                    return new DungeonAction(dungeonMsg, game);
                 case LevelMessage lvlMsg:
-                    return new LevelAction(lvlMsg, board);
+                    return new LevelAction(lvlMsg, game);
 
                 default:
                     throw new InvalidGameMessageException();

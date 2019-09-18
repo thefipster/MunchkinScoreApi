@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class CorsExtensions
     {
         private const string CorsPolicyName = "default";

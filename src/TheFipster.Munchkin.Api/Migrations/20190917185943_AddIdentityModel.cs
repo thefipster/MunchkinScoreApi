@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TheFipster.Munchkin.Api.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class AddIdentityModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
