@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TheFipster.Munchkin.GamePersistance\TheFipster.Munchkin.GamePersistance.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GamePersistance\TheFipster.Munchkin.GamePersistance.csproj" />
   </ItemGroup>
 
 </Project>
