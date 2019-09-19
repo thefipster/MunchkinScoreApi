@@ -1,15 +1,11 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GamePersistance;
-using TheFipster.Munchkin.GameStorageVolatile;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
 {
     public class QuestFactory
     {
-        public static Quest Create() =>
-            Create(new MockedGameStore());
-
         public static Quest Create(IGameStore gameStore)
         {
             var actionFactory = new PrimitiveActionFactory();
@@ -33,7 +29,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
         public static Quest CreateStartedWithMaleHero(IGameStore gameStore, out Guid gameId, out Guid playerId)
         {
             var quest = CreateStarted(gameStore, out gameId);
-            addPlayerToQuest(quest, gameId, out playerId);
+            addMaleHeroToQuest(quest, gameId, out playerId);
             return quest;
         }
 
@@ -43,7 +39,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
             quest.AddMessage(startMsg);
         }
 
-        private static void addPlayerToQuest(Quest quest, Guid gameId, out Guid playerId)
+        private static void addMaleHeroToQuest(Quest quest, Guid gameId, out Guid playerId)
         {
             var hero = HeroFactory.CreateMaleHero("John Doe");
             var heroAddMsg = new HeroMessage(gameId, hero, Modifier.Add);

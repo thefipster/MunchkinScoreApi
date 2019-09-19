@@ -10,6 +10,7 @@ obj/
 *.sqlite
 
 # NCrunch
+_NCrunch_munchkin_scoreboard_api/
 *ncrunchsolution
 *.user
 

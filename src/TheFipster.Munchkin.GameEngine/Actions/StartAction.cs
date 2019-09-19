@@ -27,7 +27,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {
-            if (GameHasStarted)
+            if (IsGameStarted)
                 throw new InvalidActionException("The adventure has already begun my young hero.");
         }
     }

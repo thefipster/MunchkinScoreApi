@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using TheFipster.Munchkin.GameDomain;
+﻿using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class HeroAction : MessageAction
+    public class HeroAction : ModifierMessageAction
     {
         public HeroAction(HeroMessage message, Game game)
             : base(message, game) { }
@@ -42,15 +41,12 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {
-            if (Message.Modifier == Modifier.Add && playerExists())
+            if (IsAddMessage && IsHeroThere(Message.Hero.Player.Id))
                 throw new InvalidActionException("The hero is already part of the game.");
 
-            if (Message.Modifier == Modifier.Remove && !playerExists())
+            if (IsRemoveMessage && !IsHeroThere(Message.Hero.Player.Id))
                 throw new InvalidActionException("The hero isn't even in the game.");
         }
-
-        private bool playerExists() =>
-            Game.Score.Heroes.Any(x => x.Player.Id == Message.Hero.Player.Id);
 
         private Game addPlayer()
         {
