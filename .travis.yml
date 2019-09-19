@@ -18,7 +18,7 @@ script:
   - dotnet restore
   - dotnet build
   - dotnet test --filter FullyQualifiedName~UnitTest /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=[xunit*]*
-  - ~/.dotnet/tools/reportgenerator "-reports:**\coverage.cobertura.xml" "-targetdir:." -reporttypes:Cobertura
+  - ~/.dotnet/tools/reportgenerator "-reports:**/coverage.cobertura.xml" "-targetdir:." -reporttypes:Cobertura
   - ./cc-test-reporter format-coverage --input-type cobertura Cobertura.xml
   - ./cc-test-reporter upload-coverage
 after_script:
