@@ -1,6 +1,7 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GamePersistance;
+using TheFipster.Munchkin.GameStorageVolatile;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
 {
@@ -12,23 +13,24 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
             return new Quest(gameStore, actionFactory);
         }
 
-        public static Quest CreateStored(IGameStore gameStore, out Guid gameId)
+        public static Quest CreateStored(out IGameStore gameStore, out Guid gameId)
         {
+            gameStore = new MockedGameStore();
             var quest = Create(gameStore);
             gameId = quest.StartJourney();
             return quest;
         }
 
-        public static Quest CreateStarted(IGameStore gameStore, out Guid gameId)
+        public static Quest CreateStarted(out IGameStore gameStore, out Guid gameId)
         {
-            var quest = CreateStored(gameStore, out gameId);
+            var quest = CreateStored(out gameStore, out gameId);
             startQuest(quest, gameId);
             return quest;
         }
 
-        public static Quest CreateStartedWithMaleHero(IGameStore gameStore, out Guid gameId, out Guid playerId)
+        public static Quest CreateStartedWithMaleHero(out IGameStore gameStore, out Guid gameId, out Guid playerId)
         {
-            var quest = CreateStarted(gameStore, out gameId);
+            var quest = CreateStarted(out gameStore, out gameId);
             addMaleHeroToQuest(quest, gameId, out playerId);
             return quest;
         }

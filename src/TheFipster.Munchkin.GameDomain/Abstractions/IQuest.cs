@@ -8,5 +8,7 @@ namespace TheFipster.Munchkin.GameDomain
         Guid StartJourney();
 
         Scoreboard AddMessage(GameMessage message);
+
+        Scoreboard GetState(Guid gameId);
     }
 }

@@ -41,6 +41,12 @@ namespace TheFipster.Munchkin.GameEngine
             return game.Score;
         }
 
+        public Scoreboard GetState(Guid gameId)
+        {
+            var game = _gameStore.Get(gameId);
+            return game.Score;
+        }
+
         private Game performActionIfPossible(Game game, GameMessage message)
         {
             var action = _actionFactory.CreateActionFrom(message, game);

@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameStorageVolatile;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
 {
     public class ClassActionTest
     {
+        private string  expectedClass = "Warrior";
+
         [Fact]
         public void AddClassToUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var addClassMessage = new ClassMessage(gameId, Guid.NewGuid(), expectedClass, Modifier.Add);
 
             // Act & Assert
@@ -29,9 +26,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void RemoveClassFromUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var removeClassMessage = new ClassMessage(gameId, Guid.NewGuid(), expectedClass, Modifier.Remove);
 
             // Act & Assert
@@ -42,9 +37,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void RemoveNotExistingClassFromHeroThrowsExceptionTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var removeClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Remove);
 
             // Act & Assert
@@ -55,9 +48,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddClassToHeroTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var addClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Add);
 
             // Act
@@ -72,9 +63,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddClassToHeroAndUndoTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var addClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Add);
 
             // Act
@@ -89,9 +78,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddClassToHeroAndRemoveItTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var addClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Add);
             var removeClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Remove);
 
@@ -107,9 +94,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddClassToHeroAndRemoveItAndUndoTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var addClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Add);
             var removeClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Remove);
 
@@ -127,9 +112,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddClassToHeroTwiceThrowsExceptionTest()
         {
             // Arrange
-            var expectedClass = "Warrior";
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var addClassMessage = new ClassMessage(gameId, playerId, expectedClass, Modifier.Add);
 
             // Act & Assert

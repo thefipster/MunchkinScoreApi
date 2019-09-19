@@ -1,7 +1,6 @@
 ﻿using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameStorageVolatile;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
@@ -12,8 +11,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void EndANotStartedGameThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var endMsg = new EndMessage(gameId);
 
             // Act & Assert
@@ -24,8 +22,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void EndAStartedGameSetsEndToMessageTimestampTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
             var endMsg = new EndMessage(gameId);
 
@@ -42,8 +39,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void EndGameAndUndoSetsEndToNullTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
             var endMsg = new EndMessage(gameId);
 
@@ -60,8 +56,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void EndGameTwiceThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
             var endMsg = new EndMessage(gameId);
 
