@@ -27,7 +27,7 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {
-            if (!GameHasStarted)
+            if (!IsGameStarted)
                 throw new InvalidActionException("Already quitting before it has even begun, just how I imagined it.");
 
             if (Game.Score.End.HasValue)
