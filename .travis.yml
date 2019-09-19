@@ -10,13 +10,15 @@ global:
   - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
   - DOTNET_CLI_TELEMETRY_OPTOUT=1
 before_script:
+  - dotnet tool install -g dotnet-reportgenerator-globaltool
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
   - dotnet restore
   - dotnet build
-  - dotnet test --filter FullyQualifiedName~UnitTest /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=[xunit*]* /p:CoverletOutput=./../../
+  - dotnet test --filter FullyQualifiedName~UnitTest /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=[xunit*]*
+  - reportgenerator "-reports:**\coverage.cobertura.xml" "-targetdir:." -reporttypes:Cobertura
   - ./cc-test-reporter format-coverage --input-type cobertura coverage.cobertura.xml
   - ./cc-test-reporter upload-coverage
 after_script:
