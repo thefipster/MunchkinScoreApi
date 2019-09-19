@@ -15,4 +15,5 @@ _NCrunch_munchkin_scoreboard_api/
 *.user
 
 # Coverage Reports
+Cobertura.xml
 coverage.cobertura.xml
