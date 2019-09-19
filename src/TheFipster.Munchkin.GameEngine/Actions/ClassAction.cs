@@ -5,23 +5,23 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class RaceAction : ModifierMessageAction
+    public class ClassAction : ModifierMessageAction
     {
-        public RaceAction(GameMessage message, Game game)
+        public ClassAction(GameMessage message, Game game)
             : base(message, game) { }
 
-        public new RaceMessage Message => (RaceMessage) base.Message;
+        public new ClassMessage Message => (ClassMessage)base.Message;
 
         public override void Validate()
-        {   
+        {
             if (!IsHeroThere(Message.PlayerId))
-                throw new InvalidActionException("Can't add a race to a hero that is not in the dungeon.");
+                throw new InvalidActionException("Can't add a class to a hero that is not in the dungeon.");
 
-            if (IsAddMessage && heroAlreadyHasRace)
-                throw new InvalidActionException("Hero can't be of the same race twice.");
+            if (IsAddMessage && heroAlreadyHasClass)
+                throw new InvalidActionException("Hero can't be of the same class twice.");
 
-            if (IsRemoveMessage && !heroAlreadyHasRace)
-                throw new InvalidActionException("Can't remove a race that a hero doesn't have.");
+            if (IsRemoveMessage && !heroAlreadyHasClass)
+                throw new InvalidActionException("Can't remove a class that a hero doesn't have.");
         }
 
         public override Game Do()
@@ -30,9 +30,9 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             switch (Message.Modifier)
             {
                 case Modifier.Add:
-                    return addRaceToHero();
+                    return addClassToHero();
                 case Modifier.Remove:
-                    return removeRaceFromHero();
+                    return removeClassFromHero();
 
                 default:
                     throw new InvalidModifierException();
@@ -45,32 +45,32 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             switch (Message.Modifier)
             {
                 case Modifier.Add:
-                    return removeRaceFromHero();
+                    return removeClassFromHero();
                 case Modifier.Remove:
-                    return addRaceToHero();
+                    return addClassToHero();
 
                 default:
                     throw new InvalidModifierException();
             }
         }
 
-        private bool heroAlreadyHasRace =>
-            Game.Score.Heroes.First(x => x.Player.Id == Message.PlayerId).Races.Contains(Message.Race);
+        private bool heroAlreadyHasClass =>
+            Game.Score.Heroes.First(x => x.Player.Id == Message.PlayerId).Classes.Contains(Message.Class);
 
-        private Game addRaceToHero()
+        private Game addClassToHero()
         {
             Game.Score.Heroes
                 .First(x => x.Player.Id == Message.PlayerId)
-                .Races.Add(Message.Race);
+                .Classes.Add(Message.Class);
 
             return Game;
         }
 
-        private Game removeRaceFromHero()
+        private Game removeClassFromHero()
         {
             Game.Score.Heroes
                 .First(x => x.Player.Id == Message.PlayerId)
-                .Races.Remove(Message.Race);
+                .Classes.Remove(Message.Class);
 
             return Game;
         }
