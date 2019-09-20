@@ -11,6 +11,14 @@ namespace TheFipster.Munchkin.GameDomain
             PlayerPool = new List<Player>();
         }
 
+        public GameMaster(IPlayer player, string email) : this()
+        {
+            Id = player.Id;
+            Name = player.Name;
+            Gender = player.Gender;
+            Email = email;
+        }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }

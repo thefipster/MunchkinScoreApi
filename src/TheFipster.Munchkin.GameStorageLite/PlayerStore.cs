@@ -1,34 +1,31 @@
-﻿using System;
+﻿using LiteDB;
+using System;
+using System.Linq;
 using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GamePersistance;
 
 namespace TheFipster.Munchkin.GameStorageLite
 {
     public class PlayerStore : IPlayerStore
     {
-        public void Add(GameMaster gameMaster)
+        private readonly LiteCollection<GameMaster> _collection;
+
+        public PlayerStore(IRepository<GameMaster> repository)
         {
-            throw new NotImplementedException();
+            var repo = repository;
+            _collection = repo.GetCollection();
         }
 
-        public void Add(Player player, Guid gameMasterId)
-        {
-            throw new NotImplementedException();
-        }
+        public void Add(GameMaster gameMaster) =>
+            _collection.Upsert(gameMaster);
 
-        public void Get(string email)
-        {
-            throw new NotImplementedException();
-        }
+        public GameMaster Get(string email) =>
+            _collection.Find(x => x.Email == email).FirstOrDefault() 
+            ?? throw new UnknownPlayerException();
 
-        public void Get(Guid playerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetPool(Guid gameMasterId)
-        {
-            throw new NotImplementedException();
-        }
+        public GameMaster Get(Guid playerId) =>
+            _collection.Find(x => x.Id == playerId).FirstOrDefault()
+            ?? throw new UnknownPlayerException();
     }
 }

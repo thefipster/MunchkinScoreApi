@@ -4,7 +4,7 @@ namespace TheFipster.Munchkin.GameStorageLite
 {
     public class Repository<T> : IRepository<T>
     {
-        private const string Filename = "munchkin_store.litedb";
+        private const string Filename = "games.litedb";
 
         private readonly LiteDatabase _db;
 

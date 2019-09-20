@@ -4,6 +4,8 @@ namespace TheFipster.Munchkin.GameDomain.Exceptions
 {
     public class UnknownPlayerException : Exception
     {
+        public UnknownPlayerException() { }
+
         public UnknownPlayerException(string message) : base(message) { }
 
         public UnknownPlayerException(Guid playerId)
