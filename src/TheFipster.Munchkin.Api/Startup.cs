@@ -40,6 +40,7 @@ namespace TheFipster.Munchkin.Api
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
+            env.SynchronizeSeedData(Configuration);
         }
     }
 }

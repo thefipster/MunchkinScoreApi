@@ -14,6 +14,7 @@ namespace TheFipster.Munchkin.Api.Extensions
             {
                 config.SetBasePath(Directory.GetCurrentDirectory());
                 config.AddJsonFile("appsettings.json");
+                config.AddJsonFile("Seed/dungeons.json");
                 config.AddEnvironmentVariables();
                 config.AddCommandLine(args);
             });
