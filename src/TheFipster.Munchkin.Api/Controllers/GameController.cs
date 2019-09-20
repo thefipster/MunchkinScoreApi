@@ -30,7 +30,8 @@ namespace TheFipster.Munchkin.Api.Controllers
             var initCode = _cache.GenerateInitCode();
             _initCodePolling.CreateWaitHandle(initCode);
             var url = Url.Action(nameof(VerifyInitCode), new { initCode });
-            return Created(url, initCode);
+            Response.Headers.Add("Location", url);
+            return Ok(new { initCode });
         }
 
         [HttpGet("verify/{initCode}")]
@@ -43,10 +44,11 @@ namespace TheFipster.Munchkin.Api.Controllers
             var url = Url.Action(nameof(AddMessage));
 
             _initCodePolling.FinishCodePollRequest(initCode, gameId);
-            return Created(url, gameId);
+            Response.Headers.Add("Location", url);
+            return Ok(new { gameId });
         }
 
-        [HttpGet("hasItStartedYet/{initCode}")]
+        [HttpGet("wait/{initCode}")]
         public async Task<ActionResult> WaitForVerification(string initCode)
         {
             var waitHandle = _initCodePolling.GetWaitHandle(initCode);
@@ -57,7 +59,7 @@ namespace TheFipster.Munchkin.Api.Controllers
 
             var url = Url.Action(nameof(GetState), new { gameId });
             Response.Headers.Add("Location", url);
-            return Ok(gameId);
+            return Ok(new { gameId });
         }
 
         [HttpGet("state/{gameId:Guid}")]
