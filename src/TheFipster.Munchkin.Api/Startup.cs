@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using TheFipster.Munchkin.Api.Extensions;
 using TheFipster.Munchkin.Api.Middlewares;
+using TheFipster.Munchkin.GamePersistance;
 
 namespace TheFipster.Munchkin.Api
 {
@@ -24,7 +25,7 @@ namespace TheFipster.Munchkin.Api
             services.AddDependecies();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ICardStore cardStore)
         {
             if (env.IsDevelopment())
             {
@@ -40,7 +41,7 @@ namespace TheFipster.Munchkin.Api
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
-            env.SynchronizeSeedData(Configuration);
+            env.SynchronizeSeedData(Configuration, cardStore);
         }
     }
 }

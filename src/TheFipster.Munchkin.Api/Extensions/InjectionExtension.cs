@@ -23,6 +23,9 @@ namespace TheFipster.Munchkin.Api.Extensions
             services.AddSingleton<IRepository<GameMaster>>(new Repository<GameMaster>());
             services.AddTransient<IPlayerStore, PlayerStore>();
 
+            services.AddSingleton<IRepository<CardCollection>>(new Repository<CardCollection>());
+            services.AddTransient<ICardStore, CardStore>();
+
             services.AddTransient<IQuest, Quest>();
 
             return services;
