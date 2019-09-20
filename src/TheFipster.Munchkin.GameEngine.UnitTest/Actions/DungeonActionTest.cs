@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameStorageVolatile;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
 {
     public class DungeonActionTest
     {
+        private string expectedDungeon = "My Dungeon";
+
         [Fact]
         public void AddDungeonTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
-            var expectedDungeon = "My Dungeon";
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var dungeonMessage = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
 
             // Act
@@ -33,9 +29,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddDungeonAndUndoTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
-            var expectedDungeon = "My Dungeon";
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var dungeonMessage = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
 
             // Act
@@ -50,9 +44,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddDungeonAndRemoveDungeonTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
-            var expectedDungeon = "My Dungeon";
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var addDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
             var removeDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Remove);
 
@@ -68,9 +60,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddDungeonAndRemoveDungeonAndUndoTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
-            var expectedDungeon = "My Dungeon";
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var addDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
             var removeDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Remove);
 
@@ -88,9 +78,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void RemoveNotExistantDungeonThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
-            var expectedDungeon = "My Dungeon";
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var removeDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Remove);
 
             // Act & Assert
@@ -101,9 +89,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddExistantDungeonThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
-            var expectedDungeon = "My Dungeon";
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var addDungeon = new DungeonMessage(gameId, expectedDungeon, Modifier.Add);
 
             quest.AddMessage(addDungeon);

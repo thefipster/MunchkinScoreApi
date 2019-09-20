@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameStorageVolatile;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
@@ -16,8 +13,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseLevelWithNotStartedGameThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var increaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Add);
 
             // Act & Assert
@@ -27,8 +23,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseLevelOnUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStarted(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId);
             var increaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Add);
 
             // Act & Assert
@@ -39,8 +34,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void DecreaseLevelOnNotStartedGameThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var decreaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Remove);
 
             // Act & Assert
@@ -51,8 +45,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void DecreaseLevelOnUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStarted(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId);
             var decreaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Remove);
 
             // Act & Assert
@@ -63,8 +56,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseLevelOnHeroTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
 
             // Act
@@ -78,8 +70,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseLevelOnHeroAndUndoTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
 
             // Act
@@ -94,8 +85,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseAndDecreaseLevelOnHeroTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
             var decreaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Remove);
 
@@ -111,8 +101,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseAndDecreaseLevelOnHeroAndUndoTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStartedWithMaleHero(gameStore, out var gameId, out var playerId);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
             var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
             var decreaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Remove);
 

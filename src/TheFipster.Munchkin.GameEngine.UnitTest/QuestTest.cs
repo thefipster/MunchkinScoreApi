@@ -28,8 +28,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         public void UndoActionWithEmptyProtocolThrowsExceptionTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
 
             // Act & Assert
             Assert.Throws<ProtocolEmptyException>(() => quest.Undo(gameId));
@@ -39,8 +38,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         public void AddActionToQuestMovesTheMessageIntoTheProtocolTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
 
             // Act
@@ -55,8 +53,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         public void AddActionToQuestAndUndoItResultsInEmptyProtocolTest()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
-            var quest = QuestFactory.CreateStored(gameStore, out var gameId);
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var startMsg = new StartMessage(gameId);
 
             // Act

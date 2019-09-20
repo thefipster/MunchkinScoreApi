@@ -26,7 +26,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameSto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorageVolatile", "src\TheFipster.Munchkin.GameStorageMock\TheFipster.Munchkin.GameStorageVolatile.csproj", "{5805684A-E86F-4259-8AEE-0EB369107869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameEngine.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameEngine.UnitTest.csproj", "{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameEngine.UnitTest.csproj", "{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameOrchestrator", "src\TheFipster.Munchkin.GameOrchestrator\TheFipster.Munchkin.GameOrchestrator.csproj", "{47021764-D8B0-4070-BCA7-5819A5BF7822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameOrchestrator.UnitTest", "src\TheFipster.Munchkin.GameOrchestrator.UnitTest\TheFipster.Munchkin.GameOrchestrator.UnitTest.csproj", "{A88F3991-41F8-484A-88A6-C83CF7758FE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +74,14 @@ Global
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
