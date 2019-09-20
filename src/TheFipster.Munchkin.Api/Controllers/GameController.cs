@@ -34,6 +34,7 @@ namespace TheFipster.Munchkin.Api.Controllers
             return Ok(new { initCode });
         }
 
+        [Authorize]
         [HttpGet("verify/{initCode}")]
         public ActionResult VerifyInitCode(string initCode)
         {

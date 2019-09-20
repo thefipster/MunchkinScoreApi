@@ -13,11 +13,16 @@ namespace TheFipster.Munchkin.Api.Extensions
     {
         public static IServiceCollection AddDependecies(this IServiceCollection services)
         {
-            services.AddSingleton<IRepository<Game>>(new Repository<Game>());
             services.AddSingleton<IActionFactory>(new PrimitiveActionFactory());
             services.AddSingleton<IInitializationCache>(new InitCodeCache());
             services.AddSingleton<IInitCodePollService>(new InitCodePollService());
+
+            services.AddSingleton<IRepository<Game>>(new Repository<Game>());
             services.AddTransient<IGameStore, GameStore>();
+
+            services.AddSingleton<IRepository<GameMaster>>(new Repository<GameMaster>());
+            services.AddTransient<IPlayerStore, PlayerStore>();
+
             services.AddTransient<IQuest, Quest>();
 
             return services;
