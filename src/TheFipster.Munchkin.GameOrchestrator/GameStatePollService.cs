@@ -1,14 +1,15 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
+using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 
 namespace TheFipster.Munchkin.GameOrchestrator
 {
-    public class InitCodePollService : IInitCodePollService
+    public class GameStatePollService : IGameStatePollService
     {
         private MemoryCache _cache;
 
-        public InitCodePollService()
+        public GameStatePollService()
         {
             _cache = new MemoryCache(new MemoryCacheOptions
             {
@@ -17,26 +18,23 @@ namespace TheFipster.Munchkin.GameOrchestrator
             });
         }
 
-        public InitCodePollRequest GetWaitHandle(string initCode)
+        public GameStatePollRequest GetScoreRequest(Guid gameId)
         {
-            if (_cache.TryGetValue<InitCodePollRequest>(initCode, out var request))
+            if (_cache.TryGetValue<GameStatePollRequest>(gameId, out var request))
                 return request;
 
-            throw new InvalidInitCodeException();
+            request = new GameStatePollRequest();
+            _cache.Set(gameId, request, EntryOptions);
+            return request;
         }
 
-        public void FinishCodePollRequest(string initCode, Guid gameId)
+        public void FinishRequest(Guid gameId, Scoreboard score)
         {
-            if (!_cache.TryGetValue<InitCodePollRequest>(initCode, out var request))
-                throw new InvalidInitCodeException();
+            if (!_cache.TryGetValue<GameStatePollRequest>(gameId, out var request))
+                throw new UnknownGameException();
 
-            request.Notify(gameId);
-            _cache.Remove(initCode);
-        }
-
-        public void CreateWaitHandle(string initCode)
-        {
-            _cache.Set(initCode, new InitCodePollRequest(), EntryOptions);
+            request.Notify(score);
+            _cache.Remove(gameId);
         }
 
         private MemoryCacheEntryOptions EntryOptions =>
