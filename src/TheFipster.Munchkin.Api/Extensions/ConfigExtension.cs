@@ -1,5 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
@@ -20,6 +22,16 @@ namespace TheFipster.Munchkin.Api.Extensions
             });
 
             return webHostBuilder;
+        }
+
+        public static List<string> GetArray(this IConfiguration config, string key)
+        {
+            return config
+                .GetSection(key)
+                .AsEnumerable()
+                .Where(x => !string.IsNullOrWhiteSpace(x.Value))
+                .Select(x => x.Value)
+                .ToList();
         }
     }
 }

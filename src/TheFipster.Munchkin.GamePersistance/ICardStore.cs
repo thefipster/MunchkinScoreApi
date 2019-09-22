@@ -6,5 +6,6 @@ namespace TheFipster.Munchkin.GamePersistance
     {
         List<string> GetDungeons();
         void SyncDungeons(List<string> dungeons);
+
     }
 }

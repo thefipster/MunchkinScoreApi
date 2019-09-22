@@ -16,6 +16,7 @@ namespace TheFipster.Munchkin.Api.Extensions
             services.AddSingleton<IActionFactory>(new PrimitiveActionFactory());
             services.AddSingleton<IInitializationCache>(new InitCodeCache());
             services.AddSingleton<IInitCodePollService>(new InitCodePollService());
+            services.AddSingleton<IGameStatePollService>(new GameStatePollService());
 
             services.AddSingleton<IRepository<Game>>(new Repository<Game>());
             services.AddTransient<IGameStore, GameStore>();

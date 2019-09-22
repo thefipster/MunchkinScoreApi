@@ -11,13 +11,7 @@ namespace TheFipster.Munchkin.Api.Extensions
     {
         public static void SynchronizeSeedData(this IHostingEnvironment env, IConfiguration config, ICardStore cardStore)
         {
-            var dungeons = config
-                .GetSection("dungeons")
-                .AsEnumerable()
-                .Where(x => !string.IsNullOrWhiteSpace(x.Value))
-                .Select(x => x.Value)
-                .ToList();
-
+            var dungeons = config.GetArray("dungeons");
             cardStore.SyncDungeons(dungeons);
         }
     }
