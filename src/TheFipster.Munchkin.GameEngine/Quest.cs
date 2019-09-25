@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
@@ -25,12 +26,23 @@ namespace TheFipster.Munchkin.GameEngine
             return game.Id;
         }
 
-        public Scoreboard AddMessage(GameMessage message)
+        public Scoreboard AddMessage(Guid gameId, GameMessage message) =>
+            AddMessages(gameId, new GameMessage[] { message });
+
+        public Scoreboard AddMessages(Guid gameId, IEnumerable<GameMessage> messages)
         {
-            var game = _gameStore.Get(message.GameId);
-            game = performActionIfPossible(game, message);
+            var game = _gameStore.Get(gameId);
+            game = executeMessages(game, messages);
             _gameStore.Upsert(game);
             return game.Score;
+        }
+
+        private Game executeMessages(Game game, IEnumerable<GameMessage> messages)
+        {
+            foreach (var msg in messages)
+                game = performActionIfPossible(game, msg);
+
+            return game;
         }
 
         public Scoreboard Undo(Guid gameId)

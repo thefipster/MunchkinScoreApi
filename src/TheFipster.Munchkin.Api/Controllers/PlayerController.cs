@@ -18,14 +18,27 @@ namespace TheFipster.Munchkin.Api.Controllers
             _playerStore = playerStore;
         }
 
-
         [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
-            var idClaim = User.FindFirst("userId");
-            var userId = Guid.Parse(idClaim.Value);
-            var player = _playerStore.Get(userId);
+            var player = getLoggedInUser();
+            return Ok(player);
+        }
+
+        [Authorize]
+        [HttpGet("pool")]
+        public IActionResult GetPool()
+        {
+            var player = getLoggedInUser();
+            return Ok(player.PlayerPool);
+        }
+
+        [Authorize]
+        [HttpPost("find")]
+        public IActionResult GetByEmail([FromBody] string email)
+        {
+            var player = _playerStore.Get(email);
             return Ok(player);
         }
 
@@ -44,10 +57,7 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpPost("friend")]
         public IActionResult PostNewFriend(Player friend)
         {
-            var idClaim = User.FindFirst("userId");
-            var userId = Guid.Parse(idClaim.Value);
-            var gameMaster = _playerStore.Get(userId);
-
+            var gameMaster = getLoggedInUser();
             if (gameMaster.PlayerPool.Any(x => x.Name == friend.Name))
                 return BadRequest("You already have a friend with that name.");
 
@@ -57,6 +67,13 @@ namespace TheFipster.Munchkin.Api.Controllers
 
             var url = Url.Action(nameof(Get));
             return Created(url, gameMaster);
+        }
+
+        private GameMaster getLoggedInUser()
+        {
+            var idClaim = User.FindFirst("userId");
+            var userId = Guid.Parse(idClaim.Value);
+            return _playerStore.Get(userId);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.GameDomain
 {
-    public class GameMaster : IPlayer
+    public class GameMaster : Player
     {
         public GameMaster()
         {
@@ -11,7 +11,7 @@ namespace TheFipster.Munchkin.GameDomain
             PlayerPool = new List<Player>();
         }
 
-        public GameMaster(IPlayer player, string email) : this()
+        public GameMaster(Player player, string email) : this()
         {
             Id = player.Id;
             Name = player.Name;
@@ -19,9 +19,6 @@ namespace TheFipster.Munchkin.GameDomain
             Email = email;
         }
 
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Gender { get; set; }
         public string Email { get; set; }
         public ICollection<Player> PlayerPool { get; set; }
     }

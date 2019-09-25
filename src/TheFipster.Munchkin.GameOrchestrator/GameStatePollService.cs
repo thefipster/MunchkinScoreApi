@@ -30,11 +30,11 @@ namespace TheFipster.Munchkin.GameOrchestrator
 
         public void FinishRequest(Guid gameId, Scoreboard score)
         {
-            if (!_cache.TryGetValue<GameStatePollRequest>(gameId, out var request))
-                throw new UnknownGameException();
-
-            request.Notify(score);
-            _cache.Remove(gameId);
+            if (_cache.TryGetValue<GameStatePollRequest>(gameId, out var request))
+            {
+                request.Notify(score);
+                _cache.Remove(gameId);
+            }
         }
 
         private MemoryCacheEntryOptions EntryOptions =>

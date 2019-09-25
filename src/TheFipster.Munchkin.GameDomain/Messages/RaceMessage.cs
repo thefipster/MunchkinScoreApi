@@ -6,8 +6,8 @@ namespace TheFipster.Munchkin.GameDomain.Messages
     {
         public RaceMessage() { }
 
-        public RaceMessage(Guid gameId, Guid playerId, string race, Modifier modifier)
-            : base(gameId, modifier)
+        public RaceMessage(Guid playerId, string race, Modifier modifier)
+            : base(modifier)
         {
             PlayerId = playerId;
             Race = race;

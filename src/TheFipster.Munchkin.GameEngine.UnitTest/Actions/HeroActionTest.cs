@@ -9,29 +9,29 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
 {
     public class HeroActionTest
     {
-        private Hero bonnie = HeroFactory.CreateFemaleHero("Bonnie");
-        private Hero clyde = HeroFactory.CreateMaleHero("Clyde");
+        private Player bonnie = PlayerFactory.CreateFemale("Bonnie");
+        private Player clyde = PlayerFactory.CreateMale("Clyde");
 
         [Fact]
         public void AddHeroTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addHero = new HeroMessage(gameId, bonnie, Modifier.Add);
+            var addHero = new PlayerMessage(bonnie, Modifier.Add);
 
-            var score = quest.AddMessage(addHero);
+            var score = quest.AddMessage(gameId, addHero);
 
             Assert.Single(score.Heroes);
-            Assert.Equal(bonnie.Player.Name, score.Heroes.First().Player.Name);
-            Assert.Equal(bonnie.Player.Gender, score.Heroes.First().Player.Gender);
+            Assert.Equal(bonnie.Name, score.Heroes.First().Player.Name);
+            Assert.Equal(bonnie.Gender, score.Heroes.First().Player.Gender);
         }
         
         [Fact]
         public void AddHeroAndUndoTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addHero = new HeroMessage(gameId, bonnie, Modifier.Add);
+            var addHero = new PlayerMessage(bonnie, Modifier.Add);
 
-            quest.AddMessage(addHero);
+            quest.AddMessage(gameId, addHero);
             var score = quest.Undo(gameId);
 
             Assert.Empty(score.Heroes);
@@ -41,11 +41,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddTwoHeroesTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
-            var addClyde = new HeroMessage(gameId, clyde, Modifier.Add);
+            var addBonnie = new PlayerMessage(bonnie, Modifier.Add);
+            var addClyde = new PlayerMessage(clyde, Modifier.Add);
 
-            quest.AddMessage(addBonnie);
-            var score = quest.AddMessage(addClyde);
+            quest.AddMessage(gameId, addBonnie);
+            var score = quest.AddMessage(gameId, addClyde);
 
             Assert.Equal(2, score.Heroes.Count);
         }
@@ -54,11 +54,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddTwoHeroesAndUndoTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
-            var addClyde = new HeroMessage(gameId, clyde, Modifier.Add);
+            var addBonnie = new PlayerMessage(bonnie, Modifier.Add);
+            var addClyde = new PlayerMessage(clyde, Modifier.Add);
 
-            quest.AddMessage(addBonnie);
-            quest.AddMessage(addClyde);
+            quest.AddMessage(gameId, addBonnie);
+            quest.AddMessage(gameId, addClyde);
             var score = quest.Undo(gameId);
 
             Assert.Single(score.Heroes);
@@ -68,36 +68,36 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddSameHeroTwiceThrowsExceptionTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
+            var addBonnie = new PlayerMessage(bonnie, Modifier.Add);
 
-            quest.AddMessage(addBonnie);
+            quest.AddMessage(gameId, addBonnie);
 
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(addBonnie));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addBonnie));
         }
 
         [Fact]
         public void RemoveUnknownHeroThrowsExceptionTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var removeBonnie = new HeroMessage(gameId, bonnie, Modifier.Remove);
+            var removeBonnie = new PlayerMessage(bonnie, Modifier.Remove);
 
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(removeBonnie));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeBonnie));
         }
         
         [Fact]
         public void AddHeroAndRemoveHeroAndUndoTest()
         {
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addBonnie = new HeroMessage(gameId, bonnie, Modifier.Add);
-            var removeBonnie = new HeroMessage(gameId, bonnie, Modifier.Remove);
+            var addBonnie = new PlayerMessage(bonnie, Modifier.Add);
+            var removeBonnie = new PlayerMessage(bonnie, Modifier.Remove);
 
-            quest.AddMessage(addBonnie);
-            quest.AddMessage(removeBonnie);
+            quest.AddMessage(gameId, addBonnie);
+            quest.AddMessage(gameId, removeBonnie);
             var score = quest.Undo(gameId);
 
             Assert.Single(score.Heroes);
-            Assert.Equal(bonnie.Player.Name, score.Heroes.First().Player.Name);
-            Assert.Equal(bonnie.Player.Gender, score.Heroes.First().Player.Gender);
+            Assert.Equal(bonnie.Name, score.Heroes.First().Player.Name);
+            Assert.Equal(bonnie.Gender, score.Heroes.First().Player.Gender);
         }
     }
 }

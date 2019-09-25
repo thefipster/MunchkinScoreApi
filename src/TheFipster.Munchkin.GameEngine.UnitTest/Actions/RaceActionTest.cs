@@ -16,10 +16,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(gameId, Guid.NewGuid(), humanRace, Modifier.Add);
+            var addRaceMessage = new RaceMessage(Guid.NewGuid(), humanRace, Modifier.Add);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(addRaceMessage));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addRaceMessage));
         }
 
         [Fact]
@@ -27,10 +27,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var removeRaceMessage = new RaceMessage(gameId, Guid.NewGuid(), humanRace, Modifier.Remove);
+            var removeRaceMessage = new RaceMessage( Guid.NewGuid(), humanRace, Modifier.Remove);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(removeRaceMessage));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeRaceMessage));
         }
 
         [Fact]
@@ -38,10 +38,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var removeRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Remove);
+            var removeRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Remove);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(removeRaceMessage));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeRaceMessage));
         }
 
         [Fact]
@@ -49,10 +49,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Add);
+            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
 
             // Act
-            var score = quest.AddMessage(addRaceMessage);
+            var score = quest.AddMessage(gameId, addRaceMessage);
 
             // Assert
             Assert.Single(score.Heroes.First(x => x.Player.Id == playerId).Races);
@@ -64,10 +64,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Add);
+            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
 
             // Act
-            quest.AddMessage(addRaceMessage);
+            quest.AddMessage(gameId, addRaceMessage);
             var score = quest.Undo(gameId);
 
             // Assert
@@ -79,12 +79,12 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Add);
-            var removeRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Remove);
+            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
+            var removeRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Remove);
 
             // Act
-            quest.AddMessage(addRaceMessage);
-            var score = quest.AddMessage(removeRaceMessage);
+            quest.AddMessage(gameId, addRaceMessage);
+            var score = quest.AddMessage(gameId, removeRaceMessage);
 
             // Assert
             Assert.Empty(score.Heroes.First(x => x.Player.Id == playerId).Races);
@@ -95,12 +95,12 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Add);
-            var removeRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Remove);
+            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
+            var removeRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Remove);
 
             // Act
-            quest.AddMessage(addRaceMessage);
-            quest.AddMessage(removeRaceMessage);
+            quest.AddMessage(gameId, addRaceMessage);
+            quest.AddMessage(gameId, removeRaceMessage);
             var score = quest.Undo(gameId);
 
             // Assert
@@ -113,11 +113,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(gameId, playerId, humanRace, Modifier.Add);
+            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
 
             // Act & Assert
-            quest.AddMessage(addRaceMessage);
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(addRaceMessage));
+            quest.AddMessage(gameId, addRaceMessage);
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addRaceMessage));
         }
     }
 }

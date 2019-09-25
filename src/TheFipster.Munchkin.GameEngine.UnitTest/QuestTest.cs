@@ -39,10 +39,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage(gameId);
+            var startMsg = new StartMessage();
 
             // Act
-            quest.AddMessage(startMsg);
+            quest.AddMessage(gameId, startMsg);
 
             // Assert
             var game = gameStore.Get(gameId);
@@ -54,10 +54,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage(gameId);
+            var startMsg = new StartMessage();
 
             // Act
-            quest.AddMessage(startMsg);
+            quest.AddMessage(gameId, startMsg);
             quest.Undo(gameId);
 
             // Assert

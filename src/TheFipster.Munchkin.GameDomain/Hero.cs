@@ -6,7 +6,7 @@ namespace TheFipster.Munchkin.GameDomain
     {
         public Hero() { }
 
-        public Hero(IPlayer player)
+        public Hero(Player player)
         {
             Player = player;
             Level = 1;
@@ -14,7 +14,7 @@ namespace TheFipster.Munchkin.GameDomain
             Classes = new List<string>();
         }
 
-        public IPlayer Player { get; set; }
+        public Player Player { get; set; }
         public int Level { get; set; }
         public int Bonus { get; set; }
         public ICollection<string> Races { get; set; }
