@@ -84,21 +84,16 @@ namespace TheFipster.Munchkin.Api.Controllers
         public async Task<ActionResult> GetStateAsync(Guid gameId)
         {
             var handle = _gameStatePolling.GetScoreRequest(gameId);
-            var score = await handle.WaitAsync();
-
-            if (score == null)
-                throw new TimeoutException();
-
-            return Ok(score);
+            await handle.WaitAsync();
+            return GetState(gameId);
         }
 
         [Authorize]
         [HttpPost("append")]
         public ActionResult AddMessage([FromBody] List<GameMessage> messages)
         {
-            Scoreboard score = null;
-            Guid gameId = getGameFromHeader();
-            score = _quest.AddMessages(gameId, messages);
+            var gameId = getGameFromHeader();
+            var score = _quest.AddMessages(gameId, messages);
             _gameStatePolling.FinishRequest(gameId, score);
             return Ok(score);
         }
