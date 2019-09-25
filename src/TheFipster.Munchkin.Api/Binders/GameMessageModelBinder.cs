@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Messages;
+using System.Collections.Generic;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 
 namespace TheFipster.Munchkin.Api.Binders
 {
@@ -14,30 +17,57 @@ namespace TheFipster.Munchkin.Api.Binders
     {
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
+            var jArray = readJsonFromBody(bindingContext);
+            tryParseMessagesToContext(bindingContext, jArray);
+            return Task.CompletedTask;
+        }
+
+        private JArray readJsonFromBody(ModelBindingContext bindingContext)
+        {
             var body = bindingContext.ActionContext.HttpContext.Request.Body;
-            var json = string.Empty;
             using (var stream = new StreamReader(body))
             {
-                json = stream.ReadToEnd();
+                var json = stream.ReadToEnd();
+                return JArray.Parse(json);
             }
+        }
 
-            var jToken = JToken.Parse(json);
-            var types = new MessageInventory().Get();
-            var msgType = jToken["type"].Value<string>();
-
-            var type = types.FirstOrDefault(x => x.Name == msgType);
-
-            if (type != null)
+        private ModelBindingContext tryParseMessagesToContext(ModelBindingContext bindingContext, JArray jArray)
+        {
+            try
             {
-                var msg = JsonConvert.DeserializeObject(json, type);
-                bindingContext.Result = ModelBindingResult.Success(msg);
+                var messages = parseMessages(bindingContext, jArray).ToList();
+                bindingContext.Result = ModelBindingResult.Success(messages);
             }
-            else
+            catch (InvalidGameMessageException)
             {
                 bindingContext.Result = ModelBindingResult.Failed();
             }
-           
-            return Task.CompletedTask;
+
+            return bindingContext;
+        }
+
+        private static IEnumerable<GameMessage> parseMessages(ModelBindingContext bindingContext, JArray jArray)
+        {
+            foreach (var jToken in jArray)
+                yield return parseMessage(jToken);
+        }
+
+        private static GameMessage parseMessage(JToken jToken)
+        {
+            var type = extractType(jToken);
+            if (type == null)
+                throw new InvalidGameMessageException();
+
+            return (GameMessage)JsonConvert.DeserializeObject(jToken.ToString(), type);
+
+        }
+
+        private static System.Type extractType(JToken jToken)
+        {
+            var types = new MessageInventory().Get();
+            var msgType = jToken["type"].Value<string>();
+            return types.FirstOrDefault(t => t.Name == msgType);
         }
     }
 }

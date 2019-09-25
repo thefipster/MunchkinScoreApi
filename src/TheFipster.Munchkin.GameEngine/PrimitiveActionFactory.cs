@@ -11,8 +11,8 @@ namespace TheFipster.Munchkin.GameEngine
         {
             switch (msg)
             {
-                case HeroMessage heroMsg:
-                    return new HeroAction(heroMsg, game);
+                case PlayerMessage heroMsg:
+                    return new PlayerAction(heroMsg, game);
                 case DungeonMessage dungeonMsg:
                     return new DungeonAction(dungeonMsg, game);
                 case LevelMessage lvlMsg:

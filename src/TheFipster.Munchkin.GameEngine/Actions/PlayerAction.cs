@@ -1,15 +1,16 @@
-﻿using TheFipster.Munchkin.GameDomain;
+﻿using System.Linq;
+using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class HeroAction : ModifierMessageAction
+    public class PlayerAction : ModifierMessageAction
     {
-        public HeroAction(HeroMessage message, Game game)
+        public PlayerAction(PlayerMessage message, Game game)
             : base(message, game) { }
 
-        public new HeroMessage Message => (HeroMessage)base.Message;
+        public new PlayerMessage Message => (PlayerMessage)base.Message;
 
         public override Game Do()
         {
@@ -41,22 +42,24 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {
-            if (IsAddMessage && IsHeroThere(Message.Hero.Player.Id))
+            if (IsAddMessage && IsHeroThere(Message.Player.Id))
                 throw new InvalidActionException("The hero is already part of the game.");
 
-            if (IsRemoveMessage && !IsHeroThere(Message.Hero.Player.Id))
+            if (IsRemoveMessage && !IsHeroThere(Message.Player.Id))
                 throw new InvalidActionException("The hero isn't even in the game.");
         }
 
         private Game addPlayer()
         {
-            Game.Score.Heroes.Add(Message.Hero);
+            var hero = new Hero(Message.Player);
+            Game.Score.Heroes.Add(hero);
             return Game;
         }
 
         private Game removePlayer()
         {
-            Game.Score.Heroes.Remove(Message.Hero);
+            var hero = Game.Score.Heroes.First(h => h.Player.Id == Message.Player.Id);
+            Game.Score.Heroes.Remove(hero);
             return Game;
         }
     }

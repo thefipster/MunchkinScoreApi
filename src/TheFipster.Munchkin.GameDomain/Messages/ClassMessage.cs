@@ -6,8 +6,8 @@ namespace TheFipster.Munchkin.GameDomain.Messages
     {
         public ClassMessage() { }
 
-        public ClassMessage(Guid gameId, Guid playerId, string className, Modifier modifier)
-            : base(gameId, modifier)
+        public ClassMessage(Guid playerId, string className, Modifier modifier)
+            : base(modifier)
         {
             PlayerId = playerId;
             Class = className;

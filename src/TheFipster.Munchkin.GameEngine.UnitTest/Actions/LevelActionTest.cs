@@ -14,20 +14,20 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var increaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Add);
+            var increaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Add);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(increaseLevelMsg));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseLevelMsg));
         }
         [Fact]
         public void IncreaseLevelOnUnknownHeroThrowsExceptionTest()
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId);
-            var increaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Add);
+            var increaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Add);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(increaseLevelMsg));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseLevelMsg));
         }
 
         [Fact]
@@ -35,10 +35,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var decreaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Remove);
+            var decreaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Remove);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(decreaseLevelMsg));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, decreaseLevelMsg));
         }
 
         [Fact]
@@ -46,10 +46,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId);
-            var decreaseLevelMsg = new LevelMessage(gameId, Guid.NewGuid(), 1, Modifier.Remove);
+            var decreaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Remove);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(decreaseLevelMsg));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, decreaseLevelMsg));
         }
 
         [Fact]
@@ -57,10 +57,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
+            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
 
             // Act
-            var score = quest.AddMessage(increaseLevelMsg);
+            var score = quest.AddMessage(gameId, increaseLevelMsg);
 
             // Assert
             Assert.Equal(2, score.Heroes.First().Level);
@@ -71,10 +71,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
+            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
 
             // Act
-            quest.AddMessage(increaseLevelMsg);
+            quest.AddMessage(gameId, increaseLevelMsg);
             var score = quest.Undo(gameId);
 
             // Assert
@@ -86,12 +86,12 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
-            var decreaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Remove);
+            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
+            var decreaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Remove);
 
             // Act
-            quest.AddMessage(increaseLevelMsg);
-            var score = quest.AddMessage(decreaseLevelMsg);
+            quest.AddMessage(gameId, increaseLevelMsg);
+            var score = quest.AddMessage(gameId, decreaseLevelMsg);
 
             // Assert
             Assert.Equal(1, score.Heroes.First().Level);
@@ -102,12 +102,12 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Add);
-            var decreaseLevelMsg = new LevelMessage(gameId, playerId, 1, Modifier.Remove);
+            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
+            var decreaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Remove);
 
             // Act
-            quest.AddMessage(increaseLevelMsg);
-            quest.AddMessage(decreaseLevelMsg);
+            quest.AddMessage(gameId, increaseLevelMsg);
+            quest.AddMessage(gameId, decreaseLevelMsg);
             var score = quest.Undo(gameId);
 
             // Assert

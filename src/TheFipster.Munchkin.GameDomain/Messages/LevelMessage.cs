@@ -6,10 +6,10 @@ namespace TheFipster.Munchkin.GameDomain.Messages
     {
         public LevelMessage() { }
 
-        public LevelMessage(Guid gameId, Guid playerId, int levelDelta, Modifier modifier)
-            : this(gameId, playerId, levelDelta, modifier, null) { }
+        public LevelMessage(Guid playerId, int levelDelta, Modifier modifier)
+            : this(playerId, levelDelta, modifier, null) { }
 
-        public LevelMessage(Guid gameId, Guid playerId, int levelDelta, Modifier modifier, string reason) : base(gameId)
+        public LevelMessage(Guid playerId, int levelDelta, Modifier modifier, string reason)
         {
             PlayerId = playerId;
             Delta = levelDelta;

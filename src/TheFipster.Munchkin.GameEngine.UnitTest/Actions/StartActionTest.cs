@@ -1,7 +1,6 @@
 ﻿using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameStorageVolatile;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
@@ -13,10 +12,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var start = new StartMessage(gameId);
+            var start = new StartMessage();
 
             // Act
-            var score = quest.AddMessage(start);
+            var score = quest.AddMessage(gameId, start);
 
             // Assert
             Assert.NotNull(score.Begin);
@@ -28,10 +27,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var start = new StartMessage(gameId);
+            var start = new StartMessage();
 
             // Act
-            quest.AddMessage(start);
+            quest.AddMessage(gameId, start);
             var score = quest.Undo(gameId);
 
             // Assert
@@ -43,11 +42,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var start = new StartMessage(gameId);
+            var start = new StartMessage();
 
             // Act & Assert
-            quest.AddMessage(start);
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(start));
+            quest.AddMessage(gameId, start);
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, start));
         }
     }
 }

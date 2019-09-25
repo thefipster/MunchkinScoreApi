@@ -6,7 +6,7 @@ namespace TheFipster.Munchkin.GameDomain.Messages
     {
         public GameModifierMessage() { }
 
-        public GameModifierMessage(Guid gameId, Modifier modifier) : base(gameId)
+        public GameModifierMessage(Modifier modifier)
         {
             Modifier = modifier;
         }

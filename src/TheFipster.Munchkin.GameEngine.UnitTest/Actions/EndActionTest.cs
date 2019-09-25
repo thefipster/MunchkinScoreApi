@@ -12,10 +12,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var endMsg = new EndMessage(gameId);
+            var endMsg = new EndMessage();
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(endMsg));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, endMsg));
         }
 
         [Fact]
@@ -23,12 +23,12 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage(gameId);
-            var endMsg = new EndMessage(gameId);
+            var startMsg = new StartMessage();
+            var endMsg = new EndMessage();
 
             // Act
-            quest.AddMessage(startMsg);
-            var score = quest.AddMessage(endMsg);
+            quest.AddMessage(gameId, startMsg);
+            var score = quest.AddMessage(gameId, endMsg);
 
             // Assert
             Assert.NotNull(score.End);
@@ -40,12 +40,12 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage(gameId);
-            var endMsg = new EndMessage(gameId);
+            var startMsg = new StartMessage();
+            var endMsg = new EndMessage();
 
             // Act
-            quest.AddMessage(startMsg);
-            quest.AddMessage(endMsg);
+            quest.AddMessage(gameId, startMsg);
+            quest.AddMessage(gameId, endMsg);
             var score = quest.Undo(gameId);
 
             // Assert
@@ -57,13 +57,13 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage(gameId);
-            var endMsg = new EndMessage(gameId);
+            var startMsg = new StartMessage();
+            var endMsg = new EndMessage();
 
             // Act & Assert
-            quest.AddMessage(startMsg);
-            quest.AddMessage(endMsg);
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(endMsg));
+            quest.AddMessage(gameId, startMsg);
+            quest.AddMessage(gameId, endMsg);
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, endMsg));
         }
     }
 }

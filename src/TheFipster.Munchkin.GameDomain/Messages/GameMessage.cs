@@ -12,13 +12,7 @@ namespace TheFipster.Munchkin.GameDomain.Messages
             Timestamp = DateTime.UtcNow;
         }
 
-        protected GameMessage(Guid gameId) :this()
-        {
-            GameId = gameId;
-        }
-
         public Guid Id { get; set; }
-        public Guid GameId { get; set; }
         public DateTime Timestamp { get; set; }
 
         public string Type

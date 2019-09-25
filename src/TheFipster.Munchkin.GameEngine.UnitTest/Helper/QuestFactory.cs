@@ -37,16 +37,16 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
 
         private static void startQuest(Quest quest, Guid gameId)
         {
-            var startMsg = new StartMessage(gameId);
-            quest.AddMessage(startMsg);
+            var startMsg = new StartMessage();
+            quest.AddMessage(gameId, startMsg);
         }
 
         private static void addMaleHeroToQuest(Quest quest, Guid gameId, out Guid playerId)
         {
-            var hero = HeroFactory.CreateMaleHero("John Doe");
-            var heroAddMsg = new HeroMessage(gameId, hero, Modifier.Add);
-            quest.AddMessage(heroAddMsg);
-            playerId = hero.Player.Id;
+            var player = PlayerFactory.CreateMale("John Doe");
+            var heroAddMsg = new PlayerMessage(player, Modifier.Add);
+            quest.AddMessage(gameId, heroAddMsg);
+            playerId = player.Id;
         }
     }
 }

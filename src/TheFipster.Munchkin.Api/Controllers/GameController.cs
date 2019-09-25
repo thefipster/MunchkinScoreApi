@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
@@ -13,6 +15,8 @@ namespace TheFipster.Munchkin.Api.Controllers
     [ApiController]
     public class GameController : ControllerBase
     {
+        private const string GameIdHeaderName = "Munchkin-GameId";
+
         private readonly IQuest _quest;
         private readonly IInitializationCache _cache;
         private readonly IInitCodePollService _initCodePolling;
@@ -90,11 +94,27 @@ namespace TheFipster.Munchkin.Api.Controllers
 
         [Authorize]
         [HttpPost("append")]
-        public ActionResult AddMessage([FromBody] GameMessage message)
+        public ActionResult AddMessage([FromBody] List<GameMessage> messages)
         {
-            var score = _quest.AddMessage(message);
-            _gameStatePolling.FinishRequest(message.GameId, score);
+            Scoreboard score = null;
+            Guid gameId = getGameFromHeader();
+            score = _quest.AddMessages(gameId, messages);
+            _gameStatePolling.FinishRequest(gameId, score);
             return Ok(score);
+        }
+
+        private Guid getGameFromHeader()
+        {
+            var headers = Request.Headers[GameIdHeaderName];
+            var firstHeader = headers.FirstOrDefault();
+
+            if (firstHeader == null)
+                throw new GameIdHeaderException($"Header {GameIdHeaderName} is missing.");
+
+            if (Guid.TryParse(firstHeader, out var gameId))
+                return gameId;
+
+            throw new GameIdHeaderException($"Header {GameIdHeaderName} has invalid format. Guid4 is expected.");
         }
     }
 }
