@@ -18,13 +18,6 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             return Game;
         }
 
-        public override Game Undo()
-        {
-            base.Undo();
-            Game.Score.End = null;
-            return Game;
-        }
-
         public override void Validate()
         {
             if (!IsGameStarted)

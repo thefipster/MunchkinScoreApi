@@ -71,12 +71,20 @@ namespace TheFipster.Munchkin.GameEngine
             if (protocolIsEmpty(game))
                 throw new ProtocolEmptyException();
 
-            var lastMessage = game.Protocol.Last();
-            var action = _actionFactory.CreateActionFrom(lastMessage, game);
-            return action.Undo();
+            game.Protocol.Remove(game.Protocol.Last());
+            return createNewGameFromProtocol(game.Protocol);
         }
 
         private bool protocolIsEmpty(Game game) =>
             !game.Protocol.Any();
+
+        private Game createNewGameFromProtocol(IList<GameMessage> protocol)
+        {
+            var game = new Game();
+            foreach (var msg in protocol)
+                game = performActionIfPossible(game, msg);
+
+            return game;
+        }
     }
 }

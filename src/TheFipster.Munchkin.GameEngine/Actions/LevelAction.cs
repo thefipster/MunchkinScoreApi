@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TheFipster.Munchkin.GameDomain;
+﻿using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
@@ -15,29 +14,9 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         public override Game Do()
         {
             base.Do();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return increaseLevel();
-                case Modifier.Remove:
-                    return decreaseLevel();
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
+            applyLevelDelta();
 
-        public override Game Undo()
-        {
-            base.Undo();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return decreaseLevel();
-                case Modifier.Remove:
-                    return increaseLevel();
-                default:
-                    throw new InvalidModifierException();
-            }
+            return Game;
         }
 
         public override void Validate()
@@ -49,16 +28,10 @@ namespace TheFipster.Munchkin.GameEngine.Actions
                 throw new InvalidActionException("Couldn't find the hero in the dungeon.");
         }
 
-        private Game increaseLevel()
+        private void applyLevelDelta()
         {
-            Game.Score.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level += Message.Delta;
-            return Game;
-        }
-
-        private Game decreaseLevel()
-        {
-            Game.Score.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level -= Message.Delta;
-            return Game;
+            Hero hero = Game.GetHero(Message.PlayerId);
+            hero.Level += Message.Delta;
         }
     }
 }

@@ -6,8 +6,6 @@ namespace TheFipster.Munchkin.GameEngine.Actions
     {
         Game Do();
 
-        Game Undo();
-
         void Validate();
     }
 }

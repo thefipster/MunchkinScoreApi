@@ -28,12 +28,6 @@ namespace TheFipster.Munchkin.GameEngine.Actions
             return Game;
         }
 
-        public virtual Game Undo()
-        {
-            Game.Protocol.Remove(Message);
-            return Game;
-        }
-
         public virtual void Validate() { }
     }
 }

@@ -1,16 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.GameDomain.Messages
 {
-    public class DungeonMessage : GameModifierMessage
+    public class DungeonMessage : GameSwitchMessage<string>
     {
         public DungeonMessage() { }
-
-        public DungeonMessage(string dungeon, Modifier modifier) : base(modifier)
-        {
-            Dungeon = dungeon;
-        }
-
-        public string Dungeon { get; set; }
     }
 }
