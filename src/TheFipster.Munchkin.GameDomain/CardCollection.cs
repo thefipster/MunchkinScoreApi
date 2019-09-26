@@ -11,6 +11,7 @@ namespace TheFipster.Munchkin.GameDomain
         public const string Classes = "classes";
         public const string Monsters = "monsters";
         public const string Curses = "curses";
+        public const string Genders = "genders";
 
         public CardCollection()
         {

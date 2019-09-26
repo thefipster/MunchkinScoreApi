@@ -17,6 +17,11 @@ namespace TheFipster.Munchkin.Api.Controllers
             _cardStore = cardStore;
         }
 
+
+        [Authorize]
+        [HttpGet("genders")]
+        public ActionResult GetGenders() => Get(CardCollection.Genders);
+
         [Authorize]
         [HttpGet("dungeons")]
         public ActionResult GetDungeons() => Get(CardCollection.Dungeons);

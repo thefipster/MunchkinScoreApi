@@ -16,6 +16,7 @@ namespace TheFipster.Munchkin.Api.Extensions
             sync(config, cardStore, CardCollection.Dungeons);
             sync(config, cardStore, CardCollection.Monsters);
             sync(config, cardStore, CardCollection.Races);
+            sync(config, cardStore, CardCollection.Genders);
         }
 
         private static void sync(IConfiguration config, ICardStore cardStore, string collectionName)

@@ -19,6 +19,7 @@ namespace TheFipster.Munchkin.Api.Extensions
                 config.AddJsonFile("Seed/classes.json");
                 config.AddJsonFile("Seed/curses.json");
                 config.AddJsonFile("Seed/dungeons.json");
+                config.AddJsonFile("Seed/genders.json");
                 config.AddJsonFile("Seed/monsters.json");
                 config.AddJsonFile("Seed/races.json");
                 config.AddEnvironmentVariables();
