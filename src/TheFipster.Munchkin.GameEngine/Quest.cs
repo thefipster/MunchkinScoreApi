@@ -40,9 +40,21 @@ namespace TheFipster.Munchkin.GameEngine
         private Game executeMessages(Game game, IEnumerable<GameMessage> messages)
         {
             foreach (var msg in messages)
-                game = performActionIfPossible(game, msg);
+            {
+                checkSequence(game, msg);
+                game = applyAction(game, msg);
+            }
 
             return game;
+        }
+
+        private void checkSequence(Game game, GameMessage msg)
+        {
+            var lastSequence = game.Protocol.Max(m => m.Sequence);
+            var nextSequence = lastSequence + 1;
+
+            if (msg.Sequence != nextSequence)
+                throw new GameOutOfSyncException(lastSequence);
         }
 
         public Scoreboard Undo(Guid gameId)
@@ -59,7 +71,7 @@ namespace TheFipster.Munchkin.GameEngine
             return game.Score;
         }
 
-        private Game performActionIfPossible(Game game, GameMessage message)
+        private Game applyAction(Game game, GameMessage message)
         {
             var action = _actionFactory.CreateActionFrom(message, game);
             action.Validate();
@@ -82,7 +94,7 @@ namespace TheFipster.Munchkin.GameEngine
         {
             var game = new Game();
             foreach (var msg in protocol)
-                game = performActionIfPossible(game, msg);
+                game = applyAction(game, msg);
 
             return game;
         }
