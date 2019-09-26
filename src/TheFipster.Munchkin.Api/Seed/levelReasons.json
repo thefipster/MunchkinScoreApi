@@ -1,0 +1,15 @@
+{
+    "levelIncreaseReasons": [
+      "Kampf",
+      "Erleuchtung",
+      "Steige eine Stufe auf Karte",
+      "Gold",
+      "Elf"
+    ],
+    "levelDecreaseReasons": [
+      "Schlimme Dinge",
+      "Fluch",
+      "Diebeszug mislingt"
+    ]
+  }
+  

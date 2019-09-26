@@ -62,6 +62,38 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpPost("curses")]
         public ActionResult PostCurses(string curse) => Post(CardCollection.Curses, curse, nameof(GetCurses));
 
+        [Authorize]
+        [HttpGet("fight/end")]
+        public ActionResult GetFightResults() => Get(CardCollection.FightResults);
+
+        [Authorize]
+        [HttpPost("fight/end")]
+        public ActionResult PostFightResults(string fightResult) => Post(CardCollection.FightResults, fightResult, nameof(GetFightResults));
+
+        [Authorize]
+        [HttpGet("fight/start")]
+        public ActionResult GetFightStarters() => Get(CardCollection.FightStarters);
+
+        [Authorize]
+        [HttpPost("fight/start")]
+        public ActionResult PostFightStarters(string fightStarter) => Post(CardCollection.FightStarters, fightStarter, nameof(GetFightStarters));
+
+        [Authorize]
+        [HttpGet("reasons/level/increase")]
+        public ActionResult GetLevelIncreaseReasons() => Get(CardCollection.LevelIncreaseReasons);
+
+        [Authorize]
+        [HttpPost("reasons/level/increase")]
+        public ActionResult GetLevelIncreaseReasons(string levelIncreaseReason) => Post(CardCollection.LevelIncreaseReasons, levelIncreaseReason, nameof(GetLevelIncreaseReasons));
+
+        [Authorize]
+        [HttpGet("reasons/level/decrease")]
+        public ActionResult GetLevelDecreaseReasons() => Get(CardCollection.LevelDecreaseReasons);
+
+        [Authorize]
+        [HttpPost("reasons/level/decrease")]
+        public ActionResult GetLevelDecreaseReasons(string levelDecreaseReason) => Post(CardCollection.LevelDecreaseReasons, levelDecreaseReason, nameof(GetLevelDecreaseReasons));
+
         private ActionResult Get(string collection)
         {
             var cards = _cardStore.Get(collection);

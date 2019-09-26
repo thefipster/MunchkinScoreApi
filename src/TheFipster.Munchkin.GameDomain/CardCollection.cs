@@ -12,6 +12,10 @@ namespace TheFipster.Munchkin.GameDomain
         public const string Monsters = "monsters";
         public const string Curses = "curses";
         public const string Genders = "genders";
+        public const string FightResults = "fightResults";
+        public const string LevelIncreaseReasons = "levelIncreaseReasons";
+        public const string LevelDecreaseReasons = "levelDecreaseReasons";
+        public const string FightStarters = "fightStarters";
 
         public CardCollection()
         {
