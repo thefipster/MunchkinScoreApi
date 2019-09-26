@@ -8,8 +8,6 @@ namespace TheFipster.Munchkin.GameStorageLite
 {
     public class CardStore : ICardStore
     {
-        private const string DungeonId = "dungeons";
-
         private readonly LiteCollection<CardCollection> _collection;
 
         public CardStore(IRepository<CardCollection> repository)
@@ -18,14 +16,15 @@ namespace TheFipster.Munchkin.GameStorageLite
             _collection = repo.GetCollection();
         }
 
-        public List<string> GetDungeons() =>
-            _collection.Find(x => x.Id == DungeonId).FirstOrDefault()?.Cards;
+        public List<string> Get(string cardCollectionName) =>
+            _collection.Find(x => x.Id == cardCollectionName).FirstOrDefault()?.Cards;
 
-        public void SyncDungeons(List<string> dungeons)
+        public void Sync(string cardCollectionName, List<string> cards)
         {
-            var storedDungeons = GetDungeons() ?? new List<string>();
-            dungeons.AddRange(storedDungeons);
-            var collection = new CardCollection(DungeonId, dungeons.Distinct().ToList());
+            var storedCards = Get(cardCollectionName) ?? new List<string>();
+            storedCards.AddRange(cards);
+            storedCards = storedCards.Distinct().ToList();
+            var collection = new CardCollection(cardCollectionName, storedCards);
             _collection.Upsert(collection);
         }
     }

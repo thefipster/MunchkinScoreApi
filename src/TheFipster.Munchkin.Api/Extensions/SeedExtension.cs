@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
-using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GamePersistance;
 
 namespace TheFipster.Munchkin.Api.Extensions
@@ -11,8 +11,17 @@ namespace TheFipster.Munchkin.Api.Extensions
     {
         public static void SynchronizeSeedData(this IHostingEnvironment env, IConfiguration config, ICardStore cardStore)
         {
-            var dungeons = config.GetArray("dungeons");
-            cardStore.SyncDungeons(dungeons);
+            sync(config, cardStore, CardCollection.Classes);
+            sync(config, cardStore, CardCollection.Curses);
+            sync(config, cardStore, CardCollection.Dungeons);
+            sync(config, cardStore, CardCollection.Monsters);
+            sync(config, cardStore, CardCollection.Races);
+        }
+
+        private static void sync(IConfiguration config, ICardStore cardStore, string collectionName)
+        {
+            var cards = config.GetArray(collectionName);
+            cardStore.Sync(collectionName, cards);
         }
     }
 }

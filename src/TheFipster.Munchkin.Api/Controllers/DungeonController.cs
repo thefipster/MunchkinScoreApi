@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GamePersistance;
 
 namespace TheFipster.Munchkin.Api.Controllers
@@ -19,7 +20,7 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            var dungeons = _cardStore.GetDungeons();
+            var dungeons = _cardStore.Get(CardCollection.Dungeons);
             return Ok(dungeons);
         }
 
@@ -27,7 +28,7 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpPost]
         public ActionResult Post(string dungeon)
         {
-            _cardStore.SyncDungeons(new List<string> { dungeon });
+            _cardStore.Sync(CardCollection.Dungeons, new List<string> { dungeon });
             var url = Url.Action(nameof(Get));
             return Created(url, dungeon);
         }
