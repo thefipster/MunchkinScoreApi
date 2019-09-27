@@ -25,6 +25,8 @@ namespace TheFipster.Munchkin.GameEngine
                     return new RaceAction(raceMsg, game);
                 case ClassMessage classMsg:
                     return new ClassAction(classMsg, game);
+                case BonusMessage bonusMsg:
+                    return new BonusAction(bonusMsg, game);
 
                 default:
                     throw new InvalidGameMessageException();

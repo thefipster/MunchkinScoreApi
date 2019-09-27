@@ -10,7 +10,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
     public class QuestTest
     {
         [Fact]
-        public void StartJourneyGeneratesGameAndReturnsGameIdTest()
+        public void StartJourney_ResultsInGeneratedGame_AndReturnsGameId_Test()
         {
             // Arrange
             var gameStore = new MockedGameStore();
@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void UndoActionWithEmptyProtocolThrowsExceptionTest()
+        public void UndoActionWithEmptyProtocol_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -35,7 +35,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddActionToQuestMovesTheMessageIntoTheProtocolTest()
+        public void AddMessageToQuest_ResultsInMessageBeingPutIntoProtocol_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -50,7 +50,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddActionToQuestAndUndoItResultsInEmptyProtocolTest()
+        public void AddMessageToQuest_ThenUndoIt_ResultsInEmptyProtocol_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -66,7 +66,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddTwoMessagesWithSameSequenceThrowsGameOutOfSyncExceptionTest()
+        public void AddTwoMessagesWithSameSequence_ThrowsGameOutOfSyncException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -79,7 +79,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddTwoMessagesWithGapInSequenceThrowsGameOutOfSyncExceptionTest()
+        public void AddTwoMessagesWithGapInSequence_ThrowsGameOutOfSyncException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -92,7 +92,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddTwoMessagesWithCorrectSequenceTest()
+        public void AddStartAndEndMessagesWithCorrectSequence_ResultsInEndedGame_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);

@@ -13,7 +13,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         private Player clyde = PlayerFactory.CreateMale("Clyde");
 
         [Fact]
-        public void AddHeroTest()
+        public void AddHeroToGame_ResultsInAddedHero_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -29,7 +29,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddHeroAndUndoTest()
+        public void AddHero_ThenUndoId_ResultsInEmptyGame_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -44,7 +44,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddTwoHeroesTest()
+        public void AddTwoHeroes_ResultsInTwoAddedHeroes_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -60,7 +60,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddTwoHeroesAndUndoTest()
+        public void AddTwoHeroes_ThenUndoIt_ResultsInNoChange_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -77,7 +77,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddSameHeroTwiceThrowsExceptionTest()
+        public void AddSameHeroTwice_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -90,7 +90,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void RemoveUnknownHeroThrowsExceptionTest()
+        public void RemoveUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -101,7 +101,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddHeroAndRemoveHeroAndUndoTest()
+        public void AddHero_ThenRemoveHim_ThenUndoIt_ResultsInAddedHero_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);

@@ -8,7 +8,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
     public class EndActionTest
     {
         [Fact]
-        public void EndANotStartedGameThrowsExceptionTest()
+        public void EndingANotStartedGame_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -19,7 +19,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void EndAStartedGameSetsEndToMessageTimestampTest()
+        public void EndingAStartedGame_EndsItByAddingTimestamp_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -36,7 +36,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void EndGameAndUndoSetsEndToNullTest()
+        public void EndingGame_ThenUndoIt_RemovesTheEndTimestamp_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -53,7 +53,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void EndGameTwiceThrowsExceptionTest()
+        public void EndingGameTwice_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);

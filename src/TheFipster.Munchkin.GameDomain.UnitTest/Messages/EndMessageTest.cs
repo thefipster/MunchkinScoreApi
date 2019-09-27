@@ -6,7 +6,7 @@ namespace TheFipster.Munchkin.GameDomain.UnitTest.Messages
     public class EndMessageTest
     {
         [Fact]
-        public void TypeNameTest()
+        public void GetSpecificTypeFromBaseClass_ResultsInSpecificClassName_Test()
         {
             // Arrange
             var endMessage = new EndMessage();

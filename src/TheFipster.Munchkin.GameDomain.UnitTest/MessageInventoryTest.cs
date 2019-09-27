@@ -5,7 +5,7 @@ namespace TheFipster.Munchkin.GameDomain.UnitTest
     public class MessageInventoryTest
     {
         [Fact]
-        public void LoadAllMessagesTest()
+        public void GetAllMessageTypesInAssembly_ResultsInNotEmptyMessageTypeList_Test()
         {
             // Arrange
             var inventory = new MessageInventory();

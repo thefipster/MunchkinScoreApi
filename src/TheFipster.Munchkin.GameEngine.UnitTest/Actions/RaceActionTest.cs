@@ -10,9 +10,10 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
     public class RaceActionTest
     {
         private string humanRace = "Human";
+        private string dwarfRace = "Dwarf";
 
         [Fact]
-        public void AddRaceToUnknownHeroThrowsExceptionTest()
+        public void AddRaceToUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -23,7 +24,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void RemoveRaceFromUnknownHeroThrowsExceptionTest()
+        public void RemoveRaceFromUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -34,7 +35,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void RemoveNotExistingRaceFromHeroThrowsExceptionTest()
+        public void RemoveNotExistingRaceFromHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -45,7 +46,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddRaceToHeroTest()
+        public void AddRaceToHero_ResultsInAddedRace_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -60,7 +61,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddRaceToHeroAndUndoTest()
+        public void AddRaceToHero_ThenUndoIt_ResultsInNoChange_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -75,7 +76,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddRaceToHeroAndRemoveItTest()
+        public void AddRaceToHero_ThenRemoveIt_ResultsInNoChange_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -91,7 +92,24 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddRaceToHeroAndRemoveItAndUndoTest()
+        public void AddRaceToHero_ThenSwitchIt_ResultsInSwitchedRace_Test()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
+            var switchRaceMessage = RaceMessage.Create(sequence + 2, playerId, new[] { dwarfRace }, new[] { humanRace });
+
+            // Act
+            quest.AddMessage(gameId, addRaceMessage);
+            var game = quest.AddMessage(gameId, switchRaceMessage);
+
+            // Assert
+            Assert.Single(game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Equal(dwarfRace, game.Score.Heroes.First(x => x.Player.Id == playerId).Races.First());
+        }
+
+        [Fact]
+        public void AddRaceToHero_ThenRemoveIt_ThenUndoIt_ResultsInAddedRace_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -109,7 +127,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddRaceToHeroTwiceThrowsExceptionTest()
+        public void AddRaceToHeroTwice_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);

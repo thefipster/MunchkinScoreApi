@@ -10,7 +10,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
     public class LevelActionTest
     {
         [Fact]
-        public void IncreaseLevelWithNotStartedGameThrowsExceptionTest()
+        public void IncreaseLevelWhenGameIsNotStarted_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -19,8 +19,9 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseLevelMsg));
         }
+
         [Fact]
-        public void IncreaseLevelOnUnknownHeroThrowsExceptionTest()
+        public void IncreaseLevelOnUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
@@ -31,7 +32,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void DecreaseLevelOnNotStartedGameThrowsExceptionTest()
+        public void DecreaseLevelWhenGameIsNotStarted_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -42,7 +43,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void DecreaseLevelOnUnknownHeroThrowsExceptionTest()
+        public void DecreaseLevelOnUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
@@ -53,7 +54,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void IncreaseLevelOnHeroTest()
+        public void IncreaseLevelOnHero_ResultsInIncreasedLevel_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -67,7 +68,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void IncreaseLevelOnHeroAndUndoTest()
+        public void IncreaseLevelOnHero_ThenUndoId_ResultsInOriginalLevel_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -82,7 +83,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void IncreaseAndDecreaseLevelOnHeroTest()
+        public void IncreaseLevel_ThenDecreaseLevelOnHero_ResultsInNoChange_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -98,7 +99,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void IncreaseAndDecreaseLevelOnHeroAndUndoTest()
+        public void IncreaseLevel_ThenDecreaseLevel_ThenUndoId_ResultsInIncreasedLevel_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);

@@ -9,11 +9,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
 {
     public class ClassActionTest
     {
-        private string warriorClass = "Kireger";
+        private string warriorClass = "Krieger";
         private string thiefClass = "Dieb";
 
         [Fact]
-        public void AddClassToUnknownHeroThrowsExceptionTest()
+        public void AddClassToUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -24,7 +24,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void RemoveClassFromUnknownHeroThrowsExceptionTest()
+        public void RemoveClassFromUnknownHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -35,7 +35,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void RemoveNotExistingClassFromHeroThrowsExceptionTest()
+        public void RemoveNotExistingClassFromHero_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -46,7 +46,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddClassToHeroTest()
+        public void AddClassToHero_ResultsInAddedClass_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -61,7 +61,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddClassToHeroAndUndoTest()
+        public void AddClassToHero_ThenUndoIt_ResultsInNoChange_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -76,7 +76,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddClassToHeroAndRemoveItTest()
+        public void AddClassToHero_ThenRemoveIt_ResultsInNoChange_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -92,7 +92,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddClassToHeroAndRemoveItAndUndoTest()
+        public void AddClassToHero_ThenRemoveIt_ThenUndoIt_ResultsInAddedClass_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -110,7 +110,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddClassToHeroTwiceThrowsExceptionTest()
+        public void AddClassToHeroTwice_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
@@ -123,21 +123,20 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void AddClassToHeroThenSwitchThenRemoveTest()
+        public void AddClassToHero_ThenSwitchClasses_ResultsInSwitchedClass_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
             var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
             var switchClassMessage = ClassMessage.Create(sequence + 2, playerId, new[] { thiefClass }, new[] { warriorClass });
-            var removeClassMessage = ClassMessage.CreateRemove(sequence + 3, playerId, new[] { thiefClass });
 
             // Act
             quest.AddMessage(gameId, addClassMessage);
-            quest.AddMessage(gameId, switchClassMessage);
-            var game = quest.AddMessage(gameId, removeClassMessage);
+            var game = quest.AddMessage(gameId, switchClassMessage);
 
             // Assert
-            Assert.Empty(game.Score.Heroes.First().Classes);
+            Assert.Single(game.Score.Heroes.First().Classes);
+            Assert.Equal(thiefClass, game.Score.Heroes.First().Classes.First());
         }
     }
 }

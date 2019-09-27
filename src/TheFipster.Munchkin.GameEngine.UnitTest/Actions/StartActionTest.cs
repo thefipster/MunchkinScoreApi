@@ -8,7 +8,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
     public class StartActionTest
     {
         [Fact]
-        public void StartGameSetsBeginToMessageTimestampTest()
+        public void StartGame_ResultsInBeginTimestampBeginSet_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -23,7 +23,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void StartGameAndUndoSetsBeginToNullTest()
+        public void StartGame_ThenUndoIt_ResultsInTimestampBeingSetToNull_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -38,7 +38,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void StartGameTwiceThrowsExceptionTest()
+        public void StartGameTwice_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
