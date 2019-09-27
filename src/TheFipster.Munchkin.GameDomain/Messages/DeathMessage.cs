@@ -2,11 +2,11 @@
 
 namespace TheFipster.Munchkin.GameDomain.Messages
 {
-    public class DoorMessage : GameMessage
+    public class DeathMessage : GameMessage
     {
-        public static DoorMessage Create(int sequence, Guid playerId)
+        public static DeathMessage Create(int sequence, Guid playerId)
         {
-            return new DoorMessage
+            return new DeathMessage
             {
                 Sequence = sequence,
                 PlayerId = playerId

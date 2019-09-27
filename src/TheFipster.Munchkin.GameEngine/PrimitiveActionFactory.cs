@@ -7,7 +7,7 @@ namespace TheFipster.Munchkin.GameEngine
 {
     public class PrimitiveActionFactory : IActionFactory
     {
-        public IGameAction CreateActionFrom(GameMessage msg, Game game)
+        public GameAction CreateActionFrom(GameMessage msg, Game game)
         {
             switch (msg)
             {

@@ -6,6 +6,6 @@ namespace TheFipster.Munchkin.GameOrchestrator
     public interface IGameStatePollService
     {
         GameStatePollRequest GetScoreRequest(Guid gameId);
-        void FinishRequest(Guid gameId, Scoreboard score);
+        void FinishRequest(Guid gameId, Game game);
     }
 }

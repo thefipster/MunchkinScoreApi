@@ -26,15 +26,15 @@ namespace TheFipster.Munchkin.GameEngine
             return game.Id;
         }
 
-        public Scoreboard AddMessage(Guid gameId, GameMessage message) =>
+        public Game AddMessage(Guid gameId, GameMessage message) =>
             AddMessages(gameId, new GameMessage[] { message });
 
-        public Scoreboard AddMessages(Guid gameId, IEnumerable<GameMessage> messages)
+        public Game AddMessages(Guid gameId, IEnumerable<GameMessage> messages)
         {
             var game = _gameStore.Get(gameId);
             game = executeMessages(game, messages);
             _gameStore.Upsert(game);
-            return game.Score;
+            return game;
         }
 
         private Game executeMessages(Game game, IEnumerable<GameMessage> messages)
@@ -50,26 +50,27 @@ namespace TheFipster.Munchkin.GameEngine
 
         private void checkSequence(Game game, GameMessage msg)
         {
-            var lastSequence = game.Protocol.Max(m => m.Sequence);
+            var lastSequence = getLatestSequence(game.Protocol);
             var nextSequence = lastSequence + 1;
 
             if (msg.Sequence != nextSequence)
                 throw new GameOutOfSyncException(lastSequence);
         }
 
-        public Scoreboard Undo(Guid gameId)
+        private int getLatestSequence(IList<GameMessage> protocol) =>
+            protocol.Any()
+                ? protocol.Max(item => item.Sequence)
+                : 0;
+
+        public Game Undo(Guid gameId)
         {
             var game = _gameStore.Get(gameId);
             game = performUndo(game);
             _gameStore.Upsert(game);
-            return game.Score;
+            return game;
         }
 
-        public Scoreboard GetState(Guid gameId)
-        {
-            var game = _gameStore.Get(gameId);
-            return game.Score;
-        }
+        public Game GetState(Guid gameId) => _gameStore.Get(gameId);
 
         private Game applyAction(Game game, GameMessage message)
         {

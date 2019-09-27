@@ -21,30 +21,32 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
             return quest;
         }
 
-        public static Quest CreateStarted(out IGameStore gameStore, out Guid gameId)
+        public static Quest CreateStarted(out IGameStore gameStore, out Guid gameId, out int sequence)
         {
             var quest = CreateStored(out gameStore, out gameId);
-            startQuest(quest, gameId);
+            sequence = 1;
+            startQuest(quest, sequence, gameId);
             return quest;
         }
 
-        public static Quest CreateStartedWithMaleHero(out IGameStore gameStore, out Guid gameId, out Guid playerId)
+        public static Quest CreateStartedWithMaleHero(out IGameStore gameStore, out Guid gameId, out Guid playerId, out int sequence)
         {
-            var quest = CreateStarted(out gameStore, out gameId);
-            addMaleHeroToQuest(quest, gameId, out playerId);
+            var quest = CreateStarted(out gameStore, out gameId, out sequence);
+            sequence++;
+            addMaleHeroToQuest(quest, sequence, gameId, out playerId);
             return quest;
         }
 
-        private static void startQuest(Quest quest, Guid gameId)
+        private static void startQuest(Quest quest, int sequence, Guid gameId)
         {
-            var startMsg = new StartMessage();
+            var startMsg = StartMessage.Create(sequence);
             quest.AddMessage(gameId, startMsg);
         }
 
-        private static void addMaleHeroToQuest(Quest quest, Guid gameId, out Guid playerId)
+        private static void addMaleHeroToQuest(Quest quest, int sequence, Guid gameId, out Guid playerId)
         {
             var player = PlayerFactory.CreateMale("John Doe");
-            var heroAddMsg = new PlayerMessage(player, Modifier.Add);
+            var heroAddMsg = PlayerMessage.CreateAdd(sequence, new[] { player });
             quest.AddMessage(gameId, heroAddMsg);
             playerId = player.Id;
         }

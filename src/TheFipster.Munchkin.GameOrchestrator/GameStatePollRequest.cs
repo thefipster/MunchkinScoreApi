@@ -2,5 +2,5 @@
 
 namespace TheFipster.Munchkin.GameOrchestrator
 {
-    public class GameStatePollRequest : PollRequest<Scoreboard> { }
+    public class GameStatePollRequest : PollRequest<Game> { }
 }

@@ -15,8 +15,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddRaceToUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(Guid.NewGuid(), humanRace, Modifier.Add);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, Guid.NewGuid(), new[] { humanRace });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addRaceMessage));
@@ -26,8 +26,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void RemoveRaceFromUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var removeRaceMessage = new RaceMessage( Guid.NewGuid(), humanRace, Modifier.Remove);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 1, Guid.NewGuid(), new[] { humanRace });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeRaceMessage));
@@ -37,8 +37,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void RemoveNotExistingRaceFromHeroThrowsExceptionTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var removeRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Remove);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 1, playerId, new[] { humanRace });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeRaceMessage));
@@ -48,76 +48,77 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void AddRaceToHeroTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
 
             // Act
-            var score = quest.AddMessage(gameId, addRaceMessage);
+            var game = quest.AddMessage(gameId, addRaceMessage);
 
             // Assert
-            Assert.Single(score.Heroes.First(x => x.Player.Id == playerId).Races);
-            Assert.Contains(humanRace, score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Single(game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Contains(humanRace, game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
         }
 
         [Fact]
         public void AddRaceToHeroAndUndoTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Empty(score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Empty(game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
         }
 
         [Fact]
         public void AddRaceToHeroAndRemoveItTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
-            var removeRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Remove);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 2, playerId, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
-            var score = quest.AddMessage(gameId, removeRaceMessage);
+            var game = quest.AddMessage(gameId, removeRaceMessage);
 
             // Assert
-            Assert.Empty(score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Empty(game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
         }
 
         [Fact]
         public void AddRaceToHeroAndRemoveItAndUndoTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
-            var removeRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Remove);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 2, playerId, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
             quest.AddMessage(gameId, removeRaceMessage);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Single(score.Heroes.First(x => x.Player.Id == playerId).Races);
-            Assert.Contains(humanRace, score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Single(game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
+            Assert.Contains(humanRace, game.Score.Heroes.First(x => x.Player.Id == playerId).Races);
         }
 
         [Fact]
         public void AddRaceToHeroTwiceThrowsExceptionTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var addRaceMessage = new RaceMessage(playerId, humanRace, Modifier.Add);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
+            var addAnotherRaceMessage = RaceMessage.CreateAdd(sequence + 2, playerId, new[] { humanRace });
 
             // Act & Assert
             quest.AddMessage(gameId, addRaceMessage);
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addRaceMessage));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addAnotherRaceMessage));
         }
     }
 }

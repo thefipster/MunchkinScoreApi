@@ -14,7 +14,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var increaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Add);
+            var increaseLevelMsg = LevelMessage.Create(1, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseLevelMsg));
@@ -23,8 +23,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseLevelOnUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId);
-            var increaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Add);
+            var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
+            var increaseLevelMsg = LevelMessage.Create(sequence + 1, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseLevelMsg));
@@ -35,7 +35,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var decreaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Remove);
+            var decreaseLevelMsg = LevelMessage.Create(1, Guid.NewGuid(), -1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, decreaseLevelMsg));
@@ -45,8 +45,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void DecreaseLevelOnUnknownHeroThrowsExceptionTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId);
-            var decreaseLevelMsg = new LevelMessage(Guid.NewGuid(), 1, Modifier.Remove);
+            var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
+            var decreaseLevelMsg = LevelMessage.Create(sequence + 1, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, decreaseLevelMsg));
@@ -56,62 +56,62 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         public void IncreaseLevelOnHeroTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
 
             // Act
-            var score = quest.AddMessage(gameId, increaseLevelMsg);
+            var game = quest.AddMessage(gameId, increaseLevelMsg);
 
             // Assert
-            Assert.Equal(2, score.Heroes.First().Level);
+            Assert.Equal(2, game.Score.Heroes.First().Level);
         }
 
         [Fact]
         public void IncreaseLevelOnHeroAndUndoTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
 
             // Act
             quest.AddMessage(gameId, increaseLevelMsg);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Equal(1, score.Heroes.First().Level);
+            Assert.Equal(1, game.Score.Heroes.First().Level);
         }
 
         [Fact]
         public void IncreaseAndDecreaseLevelOnHeroTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
-            var decreaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Remove);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
+            var decreaseLevelMsg = LevelMessage.Create(sequence + 2, playerId, -1);
 
             // Act
             quest.AddMessage(gameId, increaseLevelMsg);
-            var score = quest.AddMessage(gameId, decreaseLevelMsg);
+            var game = quest.AddMessage(gameId, decreaseLevelMsg);
 
             // Assert
-            Assert.Equal(1, score.Heroes.First().Level);
+            Assert.Equal(1, game.Score.Heroes.First().Level);
         }
 
         [Fact]
         public void IncreaseAndDecreaseLevelOnHeroAndUndoTest()
         {
             // Arrange
-            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId);
-            var increaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Add);
-            var decreaseLevelMsg = new LevelMessage(playerId, 1, Modifier.Remove);
+            var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
+            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
+            var decreaseLevelMsg = LevelMessage.Create(sequence + 2, playerId, -1);
 
             // Act
             quest.AddMessage(gameId, increaseLevelMsg);
             quest.AddMessage(gameId, decreaseLevelMsg);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Equal(2, score.Heroes.First().Level);
+            Assert.Equal(2, game.Score.Heroes.First().Level);
         }
     }
 }

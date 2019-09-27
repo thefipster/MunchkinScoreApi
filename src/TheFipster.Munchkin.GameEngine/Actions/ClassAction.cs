@@ -1,10 +1,12 @@
-﻿using TheFipster.Munchkin.GameDomain;
+﻿using System;
+using System.Linq;
+using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class ClassAction : MessageSwitchAction
+    public class ClassAction : GameSwitchAction<string>
     {
         public ClassAction(GameMessage message, Game game)
             : base(message, game) { }
@@ -13,13 +15,22 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {
+            base.Validate();
+
             if (!IsHeroThere(Message.PlayerId))
                 throw new InvalidActionException("Can't add a class to a hero that is not in the dungeon.");
+
+            if (heroHasClass())
+                throw new InvalidActionException("Hero already has the class.");
+
+            if (heroHasNotClass())
+                throw new InvalidActionException("Hero doesn't has the class.");
         }
 
         public override Game Do()
         {
             base.Do();
+
             if (IsAddMessage)
                 addClassToHero();
 
@@ -27,6 +38,18 @@ namespace TheFipster.Munchkin.GameEngine.Actions
                 removeClassFromHero();
 
             return Game;
+        }
+
+        private bool heroHasClass()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            return Message.Add.Any(x => hero.Classes.Contains(x));
+        }
+
+        private bool heroHasNotClass()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            return Message.Remove.Any(x => !hero.Classes.Contains(x));
         }
 
         private void addClassToHero()

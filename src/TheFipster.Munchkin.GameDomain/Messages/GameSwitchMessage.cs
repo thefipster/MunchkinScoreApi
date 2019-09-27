@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.GameDomain.Messages
 {
-    public class GameSwitchMessage<T> : GameSwitchMessage
+    public abstract class GameSwitchMessage<T> : GameMessage
     {
-        public new List<T> Add { get; set; }
-        public new List<T> Remove { get; set; }
-    }
+        protected GameSwitchMessage()
+        {
+            Add = new List<T>();
+            Remove = new List<T>();
+        }
 
-
-    public class GameSwitchMessage : GameMessage
-    {
-        public List<object> Add { get; set; }
-        public List<object> Remove { get; set; }
+        public IList<T> Add { get; set; }
+        public IList<T> Remove { get; set; }
     }
 }

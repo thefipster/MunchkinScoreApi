@@ -28,11 +28,11 @@ namespace TheFipster.Munchkin.GameOrchestrator
             return request;
         }
 
-        public void FinishRequest(Guid gameId, Scoreboard score)
+        public void FinishRequest(Guid gameId, Game game)
         {
             if (_cache.TryGetValue<GameStatePollRequest>(gameId, out var request))
             {
-                request.Notify(score);
+                request.Notify(game);
                 _cache.Remove(gameId);
             }
         }

@@ -5,9 +5,9 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public abstract class MessageAction : IGameAction
+    public abstract class GameAction
     {
-        public MessageAction(GameMessage message, Game game)
+        public GameAction(GameMessage message, Game game)
         {
             Game = game;
             Message = message;
@@ -22,12 +22,12 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         protected bool IsHeroThere(Guid playerId) =>
             Game.Score.Heroes.Any(hero => hero.Player.Id == playerId);
 
+        public virtual void Validate() { }
+
         public virtual Game Do()
         {
             Game.Protocol.Add(Message);
             return Game;
         }
-
-        public virtual void Validate() { }
     }
 }

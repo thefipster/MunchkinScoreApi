@@ -15,14 +15,14 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var dungeonMessage = new DungeonMessage(expectedDungeon, Modifier.Add);
+            var dungeonMessage = DungeonMessage.CreateAdd(1, new[] { expectedDungeon });
 
             // Act
-            var score = quest.AddMessage(gameId, dungeonMessage);
+            var game = quest.AddMessage(gameId, dungeonMessage);
 
             // Assert
-            Assert.Single(score.Dungeons);
-            Assert.Equal(expectedDungeon, score.Dungeons.First());
+            Assert.Single(game.Score.Dungeons);
+            Assert.Equal(expectedDungeon, game.Score.Dungeons.First());
         }
 
         [Fact]
@@ -30,14 +30,14 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var dungeonMessage = new DungeonMessage(expectedDungeon, Modifier.Add);
+            var dungeonMessage = DungeonMessage.CreateAdd(1, new[] { expectedDungeon });
 
             // Act
             quest.AddMessage(gameId, dungeonMessage);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Empty(score.Dungeons);
+            Assert.Empty(game.Score.Dungeons);
         }
 
         [Fact]
@@ -45,15 +45,15 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addDungeon = new DungeonMessage(expectedDungeon, Modifier.Add);
-            var removeDungeon = new DungeonMessage(expectedDungeon, Modifier.Remove);
+            var addDungeon = DungeonMessage.CreateAdd(1, new[] { expectedDungeon });
+            var removeDungeon = DungeonMessage.CreateRemove(2, new[] { expectedDungeon });
 
             // Act
             quest.AddMessage(gameId, addDungeon);
-            var score = quest.AddMessage(gameId, removeDungeon);
+            var game = quest.AddMessage(gameId, removeDungeon);
 
             // Assert
-            Assert.Empty(score.Dungeons);
+            Assert.Empty(game.Score.Dungeons);
         }
 
         [Fact]
@@ -61,17 +61,17 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addDungeon = new DungeonMessage(expectedDungeon, Modifier.Add);
-            var removeDungeon = new DungeonMessage(expectedDungeon, Modifier.Remove);
+            var addDungeon = DungeonMessage.CreateAdd(1, new[] { expectedDungeon });
+            var removeDungeon = DungeonMessage.CreateRemove(2, new[] { expectedDungeon });
 
             // Act
             quest.AddMessage(gameId, addDungeon);
             quest.AddMessage(gameId, removeDungeon);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Single(score.Dungeons);
-            Assert.Equal(expectedDungeon, score.Dungeons.First());
+            Assert.Single(game.Score.Dungeons);
+            Assert.Equal(expectedDungeon, game.Score.Dungeons.First());
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var removeDungeon = new DungeonMessage(expectedDungeon, Modifier.Remove);
+            var removeDungeon = DungeonMessage.CreateRemove(1, new[] { expectedDungeon });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeDungeon));
@@ -90,12 +90,13 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var addDungeon = new DungeonMessage(expectedDungeon, Modifier.Add);
+            var addDungeon = DungeonMessage.CreateAdd(1, new[] { expectedDungeon });
+            var addAnotherDungeon = DungeonMessage.CreateAdd(2, new[] { expectedDungeon });
 
             quest.AddMessage(gameId, addDungeon);
 
             // Act & Assert
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addDungeon));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addAnotherDungeon));
         }
     }
 }
