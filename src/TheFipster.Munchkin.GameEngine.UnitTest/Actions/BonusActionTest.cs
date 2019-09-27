@@ -64,7 +64,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
             var game = quest.AddMessage(gameId, increaseBonusMsg);
 
             // Assert
-            Assert.Equal(2, game.Score.Heroes.First().Bonus);
+            Assert.Equal(1, game.Score.Heroes.First().Bonus);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
             var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Equal(1, game.Score.Heroes.First().Bonus);
+            Assert.Equal(0, game.Score.Heroes.First().Bonus);
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
             var game = quest.AddMessage(gameId, decreaseBonusMsg);
 
             // Assert
-            Assert.Equal(1, game.Score.Heroes.First().Bonus);
+            Assert.Equal(0, game.Score.Heroes.First().Bonus);
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
             var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Equal(2, game.Score.Heroes.First().Bonus);
+            Assert.Equal(1, game.Score.Heroes.First().Bonus);
         }
     }
 }
