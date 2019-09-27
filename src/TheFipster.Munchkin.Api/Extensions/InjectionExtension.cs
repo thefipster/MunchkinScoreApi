@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Abstractions;
 using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.GameOrchestrator;
 using TheFipster.Munchkin.GamePersistance;
@@ -13,7 +14,10 @@ namespace TheFipster.Munchkin.Api.Extensions
     {
         public static IServiceCollection AddDependecies(this IServiceCollection services)
         {
-            services.AddSingleton<IActionFactory>(new PrimitiveActionFactory());
+            services.AddSingleton<ITypeInventory>(new ActionInventory());
+            services.AddSingleton<IActionFactory>(new ReflectedActionFactory(
+                getActionInventoryFrom(services)));
+
             services.AddSingleton<IInitializationCache>(new InitCodeCache());
             services.AddSingleton<IInitCodePollService>(new InitCodePollService());
             services.AddSingleton<IGameStatePollService>(new GameStatePollService());
@@ -30,6 +34,12 @@ namespace TheFipster.Munchkin.Api.Extensions
             services.AddTransient<IQuest, Quest>();
 
             return services;
+        }
+
+        private static ITypeInventory getActionInventoryFrom(IServiceCollection services)
+        {
+            var provider = services.BuildServiceProvider();
+            return provider.GetRequiredService<ITypeInventory>();
         }
     }
 }
