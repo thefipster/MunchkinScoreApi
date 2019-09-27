@@ -64,5 +64,48 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
             var game = gameStore.Get(gameId);
             Assert.Empty(game.Protocol);
         }
+
+        [Fact]
+        public void AddTwoMessagesWithSameSequenceThrowsGameOutOfSyncExceptionTest()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(1);
+
+            // Act & Assert
+            quest.AddMessage(gameId, startMsg);
+            Assert.Throws<GameOutOfSyncException>(() => quest.AddMessage(gameId, endMsg));
+        }
+
+        [Fact]
+        public void AddTwoMessagesWithGapInSequenceThrowsGameOutOfSyncExceptionTest()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(3);
+
+            // Act & Assert
+            quest.AddMessage(gameId, startMsg);
+            Assert.Throws<GameOutOfSyncException>(() => quest.AddMessage(gameId, endMsg));
+        }
+
+        [Fact]
+        public void AddTwoMessagesWithCorrectSequenceTest()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(2);
+
+            // Act
+            quest.AddMessage(gameId, startMsg);
+            var game = quest.AddMessage(gameId, endMsg);
+
+            // Assert
+            Assert.NotNull(game.Score.Begin);
+            Assert.NotNull(game.Score.End);
+        }
     }
 }
