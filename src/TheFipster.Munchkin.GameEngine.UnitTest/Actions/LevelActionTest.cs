@@ -99,7 +99,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void IncreaseLevel_ThenDecreaseLevel_ThenUndoId_ResultsInIncreasedLevel_Test()
+        public void IncreaseLevel_ThenDecreaseLevel_ThenUndoIt_ResultsInIncreasedLevel_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
