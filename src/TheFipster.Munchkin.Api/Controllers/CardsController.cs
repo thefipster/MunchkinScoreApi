@@ -47,14 +47,6 @@ namespace TheFipster.Munchkin.Api.Controllers
         public ActionResult PostRace(string race) => Post(CardCollection.Races, race, nameof(GetRaces));
 
         [Authorize]
-        [HttpGet("monsters")]
-        public ActionResult GetMonsters() => Get(CardCollection.Monsters);
-
-        [Authorize]
-        [HttpPost("monsters")]
-        public ActionResult PostMonsters(string monster) => Post(CardCollection.Monsters, monster, nameof(GetMonsters));
-
-        [Authorize]
         [HttpGet("curses")]
         public ActionResult GetCurses() => Get(CardCollection.Curses);
 

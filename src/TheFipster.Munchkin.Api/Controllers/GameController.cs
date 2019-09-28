@@ -76,8 +76,8 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpGet("state/{gameId:Guid}")]
         public ActionResult GetState(Guid gameId)
         {
-            var score = _quest.GetState(gameId);
-            return Ok(score);
+            var game = _quest.GetState(gameId);
+            return Ok(game);
         }
 
         [HttpGet("poll/{gameId:Guid}")]
@@ -93,9 +93,9 @@ namespace TheFipster.Munchkin.Api.Controllers
         public ActionResult AddMessage([FromBody] List<GameMessage> messages)
         {
             var gameId = getGameFromHeader();
-            var score = _quest.AddMessages(gameId, messages);
-            _gameStatePolling.FinishRequest(gameId, score);
-            return Ok(score);
+            var game = _quest.AddMessages(gameId, messages);
+            _gameStatePolling.FinishRequest(gameId, game);
+            return Ok(game);
         }
 
         private Guid getGameFromHeader()

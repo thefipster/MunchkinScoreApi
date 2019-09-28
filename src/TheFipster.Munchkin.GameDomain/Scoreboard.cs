@@ -15,5 +15,6 @@ namespace TheFipster.Munchkin.GameDomain
         public DateTime? End { get; set; }
         public ICollection<string> Dungeons { get; set; }
         public ICollection<Hero> Heroes { get; set; }
+        public Fight Fight { get; set; }
     }
 }

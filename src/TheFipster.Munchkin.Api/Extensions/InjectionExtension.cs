@@ -31,6 +31,9 @@ namespace TheFipster.Munchkin.Api.Extensions
             services.AddSingleton<IRepository<CardCollection>>(new Repository<CardCollection>());
             services.AddTransient<ICardStore, CardStore>();
 
+            services.AddSingleton<IRepository<Monster>>(new Repository<Monster>());
+            services.AddTransient<IMonsterStore, MonsterStore>();
+
             services.AddTransient<IQuest, Quest>();
 
             return services;

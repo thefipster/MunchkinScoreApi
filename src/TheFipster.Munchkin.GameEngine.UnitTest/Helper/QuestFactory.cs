@@ -9,7 +9,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
     {
         public static Quest Create(IGameStore gameStore)
         {
-            var actionFactory = new PrimitiveActionFactory();
+            var actionInventory = new ActionInventory();
+            var actionFactory = new ReflectedActionFactory(actionInventory);
             return new Quest(gameStore, actionFactory);
         }
 

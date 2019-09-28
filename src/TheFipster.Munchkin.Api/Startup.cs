@@ -25,23 +25,23 @@ namespace TheFipster.Munchkin.Api
             services.AddDependecies();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ICardStore cardStore)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ICardStore cardStore, 
+            IMonsterStore monsterStore)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseHsts();
-            }
 
             app.UseCorsPolicy();
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
-            env.SynchronizeSeedData(Configuration, cardStore);
+            env.SynchronizeSeedData(Configuration, cardStore, monsterStore);
         }
     }
 }
