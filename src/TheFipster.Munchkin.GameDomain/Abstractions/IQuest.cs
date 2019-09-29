@@ -12,5 +12,7 @@ namespace TheFipster.Munchkin.GameDomain
         Game AddMessages(Guid gameId, IEnumerable<GameMessage> messages);
 
         Game GetState(Guid gameId);
+
+        string GenerateInitCode();
     }
 }

@@ -3,7 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Abstractions;
 using TheFipster.Munchkin.GameEngine;
-using TheFipster.Munchkin.GameOrchestrator;
+using TheFipster.Munchkin.GameEngine.Polling;
+using TheFipster.Munchkin.GamePolling;
 using TheFipster.Munchkin.GameStorage;
 using TheFipster.Munchkin.GameStorage.LiteDb;
 
@@ -18,7 +19,6 @@ namespace TheFipster.Munchkin.Api.Extensions
             services.AddSingleton<IActionFactory>(new ReflectedActionFactory(
                 getActionInventoryFrom(services)));
 
-            services.AddSingleton<IInitializationCache>(new InitCodeCache());
             services.AddSingleton<IInitCodePollService>(new InitCodePollService());
             services.AddSingleton<IGameStatePollService>(new GameStatePollService());
 

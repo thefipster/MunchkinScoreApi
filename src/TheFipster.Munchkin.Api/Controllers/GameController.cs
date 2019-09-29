@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
-using TheFipster.Munchkin.GameOrchestrator;
+using TheFipster.Munchkin.GamePolling;
 
 namespace TheFipster.Munchkin.Api.Controllers
 {
@@ -18,18 +18,15 @@ namespace TheFipster.Munchkin.Api.Controllers
         private const string GameIdHeaderName = "Munchkin-GameId";
 
         private readonly IQuest _quest;
-        private readonly IInitializationCache _cache;
         private readonly IInitCodePollService _initCodePolling;
         private readonly IGameStatePollService _gameStatePolling;
 
         public GameController(
             IQuest quest, 
-            IInitializationCache cache, 
             IInitCodePollService initCodePolling, 
             IGameStatePollService gameStatePolling)
         {
             _quest = quest;
-            _cache = cache;
             _initCodePolling = initCodePolling;
             _gameStatePolling = gameStatePolling;
         }
@@ -37,8 +34,8 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpGet("init")]
         public ActionResult InitGame()
         {
-            var initCode = _cache.GenerateInitCode();
-            _initCodePolling.CreateWaitHandle(initCode);
+            var initCode = _quest.GenerateInitCode();
+            _initCodePolling.StartRequest(initCode);
             var url = Url.Action(nameof(VerifyInitCode), new { initCode });
             Response.Headers.Add("Location", url);
             return Ok(new { initCode });
@@ -48,13 +45,13 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpGet("verify/{initCode}")]
         public ActionResult VerifyInitCode(string initCode)
         {
-            if (!_cache.CheckInitCode(initCode))
+            if (!_initCodePolling.CheckRequest(initCode))
                 throw new InvalidInitCodeException();
 
             var gameId = _quest.StartJourney();
             var url = Url.Action(nameof(AddMessage));
 
-            _initCodePolling.FinishCodePollRequest(initCode, gameId);
+            _initCodePolling.FinishRequest(initCode, gameId);
             Response.Headers.Add("Location", url);
             return Ok(new { gameId });
         }
@@ -62,10 +59,10 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpGet("wait/{initCode}")]
         public async Task<ActionResult> WaitForVerification(string initCode)
         {
-            var waitHandle = _initCodePolling.GetWaitHandle(initCode);
+            var waitHandle = _initCodePolling.StartRequest(initCode);
             var gameId = await waitHandle.WaitAsync();
 
-            if (!gameId.HasValue)
+            if (gameId == Guid.Empty)
                 throw new TimeoutException();
 
             var url = Url.Action(nameof(GetState), new { gameId });
@@ -83,7 +80,7 @@ namespace TheFipster.Munchkin.Api.Controllers
         [HttpGet("poll/{gameId:Guid}")]
         public async Task<ActionResult> GetStateAsync(Guid gameId)
         {
-            var handle = _gameStatePolling.GetScoreRequest(gameId);
+            var handle = _gameStatePolling.StartRequest(gameId);
             await handle.WaitAsync();
             return GetState(gameId);
         }
