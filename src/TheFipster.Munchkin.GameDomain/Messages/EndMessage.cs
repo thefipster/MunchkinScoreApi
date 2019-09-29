@@ -1,9 +1,13 @@
-﻿using System;
-
-namespace TheFipster.Munchkin.GameDomain.Messages
+﻿namespace TheFipster.Munchkin.GameDomain.Messages
 {
     public class EndMessage : GameMessage
     {
-        public EndMessage() { }
+        public static EndMessage Create(int sequence)
+        {
+            return new EndMessage
+            {
+                Sequence = sequence
+            };
+        }
     }
 }

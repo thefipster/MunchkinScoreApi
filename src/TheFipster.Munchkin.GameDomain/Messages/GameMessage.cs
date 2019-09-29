@@ -13,6 +13,8 @@ namespace TheFipster.Munchkin.GameDomain.Messages
         }
 
         public Guid Id { get; set; }
+        public Guid? OriginId { get; set; }
+        public int Sequence { get; set; }
         public DateTime Timestamp { get; set; }
 
         public string Type

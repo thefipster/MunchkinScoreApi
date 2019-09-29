@@ -7,7 +7,7 @@ namespace TheFipster.Munchkin.GameEngine
 {
     public class PrimitiveActionFactory : IActionFactory
     {
-        public IGameAction CreateActionFrom(GameMessage msg, Game game)
+        public GameAction CreateActionFrom(GameMessage msg, Game game)
         {
             switch (msg)
             {
@@ -25,6 +25,10 @@ namespace TheFipster.Munchkin.GameEngine
                     return new RaceAction(raceMsg, game);
                 case ClassMessage classMsg:
                     return new ClassAction(classMsg, game);
+                case BonusMessage bonusMsg:
+                    return new BonusAction(bonusMsg, game);
+                case DeathMessage deathMsg:
+                    return new DeathAction(deathMsg, game);
 
                 default:
                     throw new InvalidGameMessageException();

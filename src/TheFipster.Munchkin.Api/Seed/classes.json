@@ -1,0 +1,8 @@
+{
+  "classes": [
+    "Krieger",
+    "Zauberer",
+    "Priester",
+    "Dieb"
+  ]
+}

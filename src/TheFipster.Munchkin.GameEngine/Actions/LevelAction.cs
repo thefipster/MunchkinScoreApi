@@ -1,47 +1,20 @@
-﻿using System.Linq;
-using TheFipster.Munchkin.GameDomain;
+﻿using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class LevelAction : MessageAction
+    public class LevelAction : GameAction
     {
         public LevelAction(GameMessage message, Game game)
             : base(message, game) { }
 
         public new LevelMessage Message => (LevelMessage)base.Message;
 
-        public override Game Do()
-        {
-            base.Do();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return increaseLevel();
-                case Modifier.Remove:
-                    return decreaseLevel();
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
-
-        public override Game Undo()
-        {
-            base.Undo();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return decreaseLevel();
-                case Modifier.Remove:
-                    return increaseLevel();
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
-
         public override void Validate()
         {
+            base.Validate();
+
             if (!IsGameStarted)
                 throw new InvalidActionException("The adventure hasn't even started.");
 
@@ -49,16 +22,19 @@ namespace TheFipster.Munchkin.GameEngine.Actions
                 throw new InvalidActionException("Couldn't find the hero in the dungeon.");
         }
 
-        private Game increaseLevel()
+        public override Game Do()
         {
-            Game.Score.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level += Message.Delta;
+            base.Do();
+
+            applyLevelDelta();
+
             return Game;
         }
 
-        private Game decreaseLevel()
+        private void applyLevelDelta()
         {
-            Game.Score.Heroes.First(hero => hero.Player.Id == Message.PlayerId).Level -= Message.Delta;
-            return Game;
+            var hero = Game.GetHero(Message.PlayerId);
+            hero.Level += Message.Delta;
         }
     }
 }

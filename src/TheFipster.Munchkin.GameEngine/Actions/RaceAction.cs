@@ -5,7 +5,7 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class RaceAction : ModifierMessageAction
+    public class RaceAction : GameSwitchAction<string>
     {
         public RaceAction(GameMessage message, Game game)
             : base(message, game) { }
@@ -14,65 +14,57 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {   
+            base.Validate();
+
             if (!IsHeroThere(Message.PlayerId))
                 throw new InvalidActionException("Can't add a race to a hero that is not in the dungeon.");
 
-            if (IsAddMessage && heroAlreadyHasRace)
-                throw new InvalidActionException("Hero can't be of the same race twice.");
+            if (heroHasRace())
+                throw new InvalidActionException("Hero already has the race.");
 
-            if (IsRemoveMessage && !heroAlreadyHasRace)
-                throw new InvalidActionException("Can't remove a race that a hero doesn't have.");
+            if (heroHasNotRace())
+                throw new InvalidActionException("Hero doesn't has the race.");
         }
 
         public override Game Do()
         {
             base.Do();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return addRaceToHero();
-                case Modifier.Remove:
-                    return removeRaceFromHero();
 
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
+            if (IsAddMessage)
+                addRaceToHero();
 
-        public override Game Undo()
-        {
-            base.Undo();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return removeRaceFromHero();
-                case Modifier.Remove:
-                    return addRaceToHero();
-
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
-
-        private bool heroAlreadyHasRace =>
-            Game.Score.Heroes.First(x => x.Player.Id == Message.PlayerId).Races.Contains(Message.Race);
-
-        private Game addRaceToHero()
-        {
-            Game.Score.Heroes
-                .First(x => x.Player.Id == Message.PlayerId)
-                .Races.Add(Message.Race);
+            if (IsRemoveMessage)
+                removeRaceFromHero();
 
             return Game;
         }
 
-        private Game removeRaceFromHero()
+        private bool heroHasRace()
         {
-            Game.Score.Heroes
-                .First(x => x.Player.Id == Message.PlayerId)
-                .Races.Remove(Message.Race);
+            var hero = Game.GetHero(Message.PlayerId);
+            return Message.Add.Any(x => hero.Races.Contains(x));
+        }
 
-            return Game;
+        private bool heroHasNotRace()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            return Message.Remove.Any(x => !hero.Races.Contains(x));
+        }
+
+        private void addRaceToHero()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            foreach (var race in Message.Add)
+                if (!hero.Races.Contains(race))
+                    hero.Races.Add(race);
+        }
+
+        private void removeRaceFromHero()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            foreach (var race in Message.Remove)
+                if (hero.Races.Contains(race))
+                    hero.Races.Remove(race);
         }
     }
 }

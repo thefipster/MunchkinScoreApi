@@ -5,7 +5,7 @@ namespace TheFipster.Munchkin.GameOrchestrator.UnitTest
     public class InitializationCacheTest
     {
         [Fact]
-        public void GenerateAndCheckTest()
+        public void GenerateInitCode_ThenCheckIt_ResultsInTrueResponse_Test()
         {
             // Arrange
             var cache = new InitCodeCache();
@@ -18,7 +18,7 @@ namespace TheFipster.Munchkin.GameOrchestrator.UnitTest
         }
 
         [Fact]
-        public void CheckInvalidCodeTest()
+        public void CheckInitCodeWithInvalidCode_ResultsInFalseResponse_Test()
         {
             // Arrange
             var invalidKey = "ABCDEF";

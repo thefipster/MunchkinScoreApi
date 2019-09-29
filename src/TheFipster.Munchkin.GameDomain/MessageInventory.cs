@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TheFipster.Munchkin.GameDomain.Abstractions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameDomain
 {
-    public class MessageInventory
+    public class MessageInventory : ITypeInventory
     {
-        public IEnumerable<Type> Get(params object[] constructorArgs)
+        public IEnumerable<Type> Get()
         {
             var types = Assembly
                 .GetAssembly(typeof(GameMessage))

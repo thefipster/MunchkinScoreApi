@@ -8,62 +8,63 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
     public class EndActionTest
     {
         [Fact]
-        public void EndANotStartedGameThrowsExceptionTest()
+        public void EndingANotStartedGame_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var endMsg = new EndMessage();
+            var endMsg = EndMessage.Create(1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, endMsg));
         }
 
         [Fact]
-        public void EndAStartedGameSetsEndToMessageTimestampTest()
+        public void EndingAStartedGame_EndsItByAddingTimestamp_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage();
-            var endMsg = new EndMessage();
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(2);
 
             // Act
             quest.AddMessage(gameId, startMsg);
-            var score = quest.AddMessage(gameId, endMsg);
+            var game = quest.AddMessage(gameId, endMsg);
 
             // Assert
-            Assert.NotNull(score.End);
-            Assert.Equal(endMsg.Timestamp, score.End);
+            Assert.NotNull(game.Score.End);
+            Assert.Equal(endMsg.Timestamp, game.Score.End);
         }
 
         [Fact]
-        public void EndGameAndUndoSetsEndToNullTest()
+        public void EndingGame_ThenUndoIt_RemovesTheEndTimestamp_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage();
-            var endMsg = new EndMessage();
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(2);
 
             // Act
             quest.AddMessage(gameId, startMsg);
             quest.AddMessage(gameId, endMsg);
-            var score = quest.Undo(gameId);
+            var game = quest.Undo(gameId);
 
             // Assert
-            Assert.Null(score.End);
+            Assert.Null(game.Score.End);
         }
 
         [Fact]
-        public void EndGameTwiceThrowsExceptionTest()
+        public void EndingGameTwice_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage();
-            var endMsg = new EndMessage();
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(2);
+            var secondEndMsg = EndMessage.Create(3);
 
             // Act & Assert
             quest.AddMessage(gameId, startMsg);
             quest.AddMessage(gameId, endMsg);
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, endMsg));
+            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, secondEndMsg));
         }
     }
 }

@@ -4,22 +4,19 @@ namespace TheFipster.Munchkin.GameDomain.Messages
 {
     public class LevelMessage : GameMessage
     {
-        public LevelMessage() { }
-
-        public LevelMessage(Guid playerId, int levelDelta, Modifier modifier)
-            : this(playerId, levelDelta, modifier, null) { }
-
-        public LevelMessage(Guid playerId, int levelDelta, Modifier modifier, string reason)
+        public static LevelMessage Create(int sequence, Guid playerId, int delta, string reason = null)
         {
-            PlayerId = playerId;
-            Delta = levelDelta;
-            Reason = reason;
-            Modifier = modifier;
+            return new LevelMessage
+            {
+                Sequence = sequence,
+                PlayerId = playerId,
+                Delta = delta,
+                Reason = reason
+            };
         }
 
         public int Delta { get; set; }
         public Guid PlayerId { get; set; }
         public string Reason { get; set; }
-        public Modifier Modifier { get; set; }
     }
 }

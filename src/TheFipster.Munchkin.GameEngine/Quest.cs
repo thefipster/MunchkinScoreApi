@@ -26,40 +26,53 @@ namespace TheFipster.Munchkin.GameEngine
             return game.Id;
         }
 
-        public Scoreboard AddMessage(Guid gameId, GameMessage message) =>
+        public Game AddMessage(Guid gameId, GameMessage message) =>
             AddMessages(gameId, new GameMessage[] { message });
 
-        public Scoreboard AddMessages(Guid gameId, IEnumerable<GameMessage> messages)
+        public Game AddMessages(Guid gameId, IEnumerable<GameMessage> messages)
         {
             var game = _gameStore.Get(gameId);
             game = executeMessages(game, messages);
             _gameStore.Upsert(game);
-            return game.Score;
+            return game;
         }
 
         private Game executeMessages(Game game, IEnumerable<GameMessage> messages)
         {
             foreach (var msg in messages)
-                game = performActionIfPossible(game, msg);
+            {
+                checkSequence(game, msg);
+                game = applyAction(game, msg);
+            }
 
             return game;
         }
 
-        public Scoreboard Undo(Guid gameId)
+        private void checkSequence(Game game, GameMessage msg)
+        {
+            var lastSequence = getLatestSequence(game.Protocol);
+            var nextSequence = lastSequence + 1;
+
+            if (msg.Sequence != nextSequence)
+                throw new GameOutOfSyncException(lastSequence);
+        }
+
+        private int getLatestSequence(IList<GameMessage> protocol) =>
+            protocol.Any()
+                ? protocol.Max(item => item.Sequence)
+                : 0;
+
+        public Game Undo(Guid gameId)
         {
             var game = _gameStore.Get(gameId);
             game = performUndo(game);
             _gameStore.Upsert(game);
-            return game.Score;
+            return game;
         }
 
-        public Scoreboard GetState(Guid gameId)
-        {
-            var game = _gameStore.Get(gameId);
-            return game.Score;
-        }
+        public Game GetState(Guid gameId) => _gameStore.Get(gameId);
 
-        private Game performActionIfPossible(Game game, GameMessage message)
+        private Game applyAction(Game game, GameMessage message)
         {
             var action = _actionFactory.CreateActionFrom(message, game);
             action.Validate();
@@ -71,12 +84,20 @@ namespace TheFipster.Munchkin.GameEngine
             if (protocolIsEmpty(game))
                 throw new ProtocolEmptyException();
 
-            var lastMessage = game.Protocol.Last();
-            var action = _actionFactory.CreateActionFrom(lastMessage, game);
-            return action.Undo();
+            game.Protocol.Remove(game.Protocol.Last());
+            return createNewGameFromProtocol(game.Protocol);
         }
 
         private bool protocolIsEmpty(Game game) =>
             !game.Protocol.Any();
+
+        private Game createNewGameFromProtocol(IList<GameMessage> protocol)
+        {
+            var game = new Game();
+            foreach (var msg in protocol)
+                game = applyAction(game, msg);
+
+            return game;
+        }
     }
 }

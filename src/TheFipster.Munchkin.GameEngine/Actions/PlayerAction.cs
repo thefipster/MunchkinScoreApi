@@ -5,62 +5,55 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class PlayerAction : ModifierMessageAction
+    public class PlayerAction : GameSwitchAction<Player>
     {
         public PlayerAction(PlayerMessage message, Game game)
             : base(message, game) { }
 
         public new PlayerMessage Message => (PlayerMessage)base.Message;
 
+        public override void Validate()
+        {
+            base.Validate();
+
+            if (heroExists())
+                throw new InvalidActionException("Hero is already in the dungeon.");
+
+            if (heroNotExists())
+                throw new InvalidActionException("Hero isn't even in the dungeon.");
+        }
+
         public override Game Do()
         {
             base.Do();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return addPlayer();
-                case Modifier.Remove:
-                    return removePlayer();
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
 
-        public override Game Undo()
-        {
-            base.Undo();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return removePlayer();
-                case Modifier.Remove:
-                    return addPlayer();
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
+            if (IsAddMessage)
+                addPlayer();
 
-        public override void Validate()
-        {
-            if (IsAddMessage && IsHeroThere(Message.Player.Id))
-                throw new InvalidActionException("The hero is already part of the game.");
+            if (IsRemoveMessage)
+                removePlayer();
 
-            if (IsRemoveMessage && !IsHeroThere(Message.Player.Id))
-                throw new InvalidActionException("The hero isn't even in the game.");
-        }
-
-        private Game addPlayer()
-        {
-            var hero = new Hero(Message.Player);
-            Game.Score.Heroes.Add(hero);
             return Game;
         }
 
-        private Game removePlayer()
+        private bool heroExists() =>
+            Message.Add.Select(x => x.Id).Any(x => Game.Score.Heroes.Select(y => y.Player.Id).Contains(x));
+
+        private bool heroNotExists() =>
+            Message.Remove.Select(x => x.Id).Any(x => !Game.Score.Heroes.Select(y => y.Player.Id).Contains(x));
+
+        private void addPlayer()
         {
-            var hero = Game.Score.Heroes.First(h => h.Player.Id == Message.Player.Id);
-            Game.Score.Heroes.Remove(hero);
-            return Game;
+            foreach (var player in Message.Add)
+                if (!Game.Score.Heroes.Any(hero => hero.Player.Id == player.Id))
+                    Game.Score.Heroes.Add(new Hero(player));
+        }
+
+        private void removePlayer()
+        {
+            foreach (var player in Message.Remove)
+                if (Game.Score.Heroes.Any(hero => hero.Player.Id == player.Id))
+                    Game.Score.Heroes = Game.Score.Heroes.Where(x => x.Player.Id != player.Id).ToList();
         }
     }
 }

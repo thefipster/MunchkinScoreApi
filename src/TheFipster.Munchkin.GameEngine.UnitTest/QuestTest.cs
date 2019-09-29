@@ -10,7 +10,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
     public class QuestTest
     {
         [Fact]
-        public void StartJourneyGeneratesGameAndReturnsGameIdTest()
+        public void StartJourney_ResultsInGeneratedGame_AndReturnsGameId_Test()
         {
             // Arrange
             var gameStore = new MockedGameStore();
@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void UndoActionWithEmptyProtocolThrowsExceptionTest()
+        public void UndoActionWithEmptyProtocol_ThrowsException_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
@@ -35,11 +35,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddActionToQuestMovesTheMessageIntoTheProtocolTest()
+        public void AddMessageToQuest_ResultsInMessageBeingPutIntoProtocol_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage();
+            var startMsg = StartMessage.Create(1);
 
             // Act
             quest.AddMessage(gameId, startMsg);
@@ -50,11 +50,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         }
 
         [Fact]
-        public void AddActionToQuestAndUndoItResultsInEmptyProtocolTest()
+        public void AddMessageToQuest_ThenUndoIt_ResultsInEmptyProtocol_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
-            var startMsg = new StartMessage();
+            var startMsg = StartMessage.Create(1);
 
             // Act
             quest.AddMessage(gameId, startMsg);
@@ -63,6 +63,49 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
             // Assert
             var game = gameStore.Get(gameId);
             Assert.Empty(game.Protocol);
+        }
+
+        [Fact]
+        public void AddTwoMessagesWithSameSequence_ThrowsGameOutOfSyncException_Test()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(1);
+
+            // Act & Assert
+            quest.AddMessage(gameId, startMsg);
+            Assert.Throws<GameOutOfSyncException>(() => quest.AddMessage(gameId, endMsg));
+        }
+
+        [Fact]
+        public void AddTwoMessagesWithGapInSequence_ThrowsGameOutOfSyncException_Test()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(3);
+
+            // Act & Assert
+            quest.AddMessage(gameId, startMsg);
+            Assert.Throws<GameOutOfSyncException>(() => quest.AddMessage(gameId, endMsg));
+        }
+
+        [Fact]
+        public void AddStartAndEndMessagesWithCorrectSequence_ResultsInEndedGame_Test()
+        {
+            // Arrange
+            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
+            var startMsg = StartMessage.Create(1);
+            var endMsg = EndMessage.Create(2);
+
+            // Act
+            quest.AddMessage(gameId, startMsg);
+            var game = quest.AddMessage(gameId, endMsg);
+
+            // Assert
+            Assert.NotNull(game.Score.Begin);
+            Assert.NotNull(game.Score.End);
         }
     }
 }

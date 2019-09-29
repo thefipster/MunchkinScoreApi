@@ -5,7 +5,7 @@ using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
 {
-    public class ClassAction : ModifierMessageAction
+    public class ClassAction : GameSwitchAction<string>
     {
         public ClassAction(GameMessage message, Game game)
             : base(message, game) { }
@@ -14,65 +14,57 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override void Validate()
         {
+            base.Validate();
+
             if (!IsHeroThere(Message.PlayerId))
                 throw new InvalidActionException("Can't add a class to a hero that is not in the dungeon.");
 
-            if (IsAddMessage && heroAlreadyHasClass)
-                throw new InvalidActionException("Hero can't be of the same class twice.");
+            if (heroHasClass())
+                throw new InvalidActionException("Hero already has the class.");
 
-            if (IsRemoveMessage && !heroAlreadyHasClass)
-                throw new InvalidActionException("Can't remove a class that a hero doesn't have.");
+            if (heroHasNotClass())
+                throw new InvalidActionException("Hero doesn't has the class.");
         }
 
         public override Game Do()
         {
             base.Do();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return addClassToHero();
-                case Modifier.Remove:
-                    return removeClassFromHero();
 
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
+            if (IsAddMessage)
+                addClassToHero();
 
-        public override Game Undo()
-        {
-            base.Undo();
-            switch (Message.Modifier)
-            {
-                case Modifier.Add:
-                    return removeClassFromHero();
-                case Modifier.Remove:
-                    return addClassToHero();
-
-                default:
-                    throw new InvalidModifierException();
-            }
-        }
-
-        private bool heroAlreadyHasClass =>
-            Game.Score.Heroes.First(x => x.Player.Id == Message.PlayerId).Classes.Contains(Message.Class);
-
-        private Game addClassToHero()
-        {
-            Game.Score.Heroes
-                .First(x => x.Player.Id == Message.PlayerId)
-                .Classes.Add(Message.Class);
+            if (IsRemoveMessage)
+                removeClassFromHero();
 
             return Game;
         }
 
-        private Game removeClassFromHero()
+        private bool heroHasClass()
         {
-            Game.Score.Heroes
-                .First(x => x.Player.Id == Message.PlayerId)
-                .Classes.Remove(Message.Class);
+            var hero = Game.GetHero(Message.PlayerId);
+            return Message.Add.Any(x => hero.Classes.Contains(x));
+        }
 
-            return Game;
+        private bool heroHasNotClass()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            return Message.Remove.Any(x => !hero.Classes.Contains(x));
+        }
+
+        private void addClassToHero()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            foreach (var @class in Message.Add)
+                if (!hero.Classes.Contains(@class))
+                    hero.Classes.Add(@class);
+        }
+
+        private void removeClassFromHero()
+        {
+            var hero = Game.GetHero(Message.PlayerId);
+            foreach (var @class in Message.Remove)
+                if (hero.Classes.Contains(@class))
+                    hero.Classes.Remove(@class);
         }
     }
 }

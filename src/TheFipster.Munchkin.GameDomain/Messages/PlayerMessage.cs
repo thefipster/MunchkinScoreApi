@@ -1,16 +1,36 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.GameDomain.Messages
 {
-    public class PlayerMessage : GameModifierMessage
+    public class PlayerMessage : GameSwitchMessage<Player>
     {
-        public PlayerMessage() { }
-
-        public PlayerMessage(Player player, Modifier modifier) : base(modifier)
+        
+        public static PlayerMessage CreateAdd(int sequence, IList<Player> add)
         {
-            Player = player;
+            return new PlayerMessage
+            {
+                Sequence = sequence,
+                Add = add
+            };
         }
 
-        public Player Player { get; set; }
+        public static PlayerMessage CreateRemove(int sequence, IList<Player> remove)
+        {
+            return new PlayerMessage
+            {
+                Sequence = sequence,
+                Remove = remove
+            };
+        }
+
+        public static PlayerMessage Create(int sequence, IList<Player> add, IList<Player> remove)
+        {
+            return new PlayerMessage
+            {
+                Sequence = sequence,
+                Add = add,
+                Remove = remove
+            };
+        }
     }
 }
