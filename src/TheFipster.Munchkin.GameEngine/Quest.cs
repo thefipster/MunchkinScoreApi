@@ -4,7 +4,7 @@ using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
-using TheFipster.Munchkin.GamePersistance;
+using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.GameEngine
 {

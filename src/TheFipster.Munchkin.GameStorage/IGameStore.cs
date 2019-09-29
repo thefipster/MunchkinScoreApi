@@ -1,7 +1,7 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain;
 
-namespace TheFipster.Munchkin.GamePersistance
+namespace TheFipster.Munchkin.GameStorage
 {
     public interface IGameStore
     {

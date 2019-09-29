@@ -2,7 +2,7 @@ using System;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameStorageVolatile;
+using TheFipster.Munchkin.GameStorage.Volatile;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest
@@ -13,7 +13,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
         public void StartJourney_ResultsInGeneratedGame_AndReturnsGameId_Test()
         {
             // Arrange
-            var gameStore = new MockedGameStore();
+            var gameStore = new VolatileGameStore();
             var quest = QuestFactory.Create(gameStore);
 
             // Act

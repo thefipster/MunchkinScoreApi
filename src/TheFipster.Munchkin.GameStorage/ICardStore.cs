@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheFipster.Munchkin.GamePersistance
+namespace TheFipster.Munchkin.GameStorage
 {
     public interface ICardStore
     {

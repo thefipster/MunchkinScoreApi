@@ -1,13 +1,10 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using TheFipster.Munchkin.Api.Controllers;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GamePersistance;
-using TheFipster.Munchkin.GameStorageLite;
+using TheFipster.Munchkin.GameStorage;
 using Xunit;
 
 namespace TheFipster.Munchkin.Api.UnitTest.Controllers
@@ -18,7 +15,7 @@ namespace TheFipster.Munchkin.Api.UnitTest.Controllers
         private Monster laufendeNase = new Monster("Laufende Nase", 5);
 
         [Fact]
-        public void GetMonster_ResultsInListOfAllMonsters_Test()
+        public void GetMonsters_ResultsInSingleMonster_Test()
         {
             // Arrange
             var monsterStore = Substitute.For<IMonsterStore>();
@@ -31,6 +28,22 @@ namespace TheFipster.Munchkin.Api.UnitTest.Controllers
             // Assert
             var monsters = (IEnumerable<Monster>)okResult.Value;
             monsters.Should().ContainSingle();
+        }
+
+        [Fact]
+        public void GetMonsters_ResultsInMultipleMonsters_Test()
+        {
+            // Arrange
+            var monsterStore = Substitute.For<IMonsterStore>();
+            monsterStore.Get().Returns(new[] { zerschmetterling, laufendeNase });
+            var controller = new MonsterController(monsterStore);
+
+            // Act
+            var okResult = controller.Get() as OkObjectResult;
+
+            // Assert
+            var monsters = (IEnumerable<Monster>)okResult.Value;
+            monsters.Should().HaveCount(2);
         }
 
         [Fact]

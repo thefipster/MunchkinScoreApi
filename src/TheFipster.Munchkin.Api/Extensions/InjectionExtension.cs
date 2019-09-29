@@ -4,8 +4,8 @@ using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Abstractions;
 using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.GameOrchestrator;
-using TheFipster.Munchkin.GamePersistance;
-using TheFipster.Munchkin.GameStorageLite;
+using TheFipster.Munchkin.GameStorage;
+using TheFipster.Munchkin.GameStorage.LiteDb;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {

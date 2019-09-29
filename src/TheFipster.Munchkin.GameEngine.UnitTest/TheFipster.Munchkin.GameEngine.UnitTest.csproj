@@ -19,7 +19,8 @@
   <ItemGroup>
     <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.GameStorageMock\TheFipster.Munchkin.GameStorageVolatile.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage.Volatile\TheFipster.Munchkin.GameStorage.Volatile.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj" />
   </ItemGroup>
 
 </Project>

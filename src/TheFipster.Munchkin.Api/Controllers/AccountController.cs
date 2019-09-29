@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GamePersistance;
+using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.Api.Controllers
 {
@@ -23,6 +22,7 @@ namespace TheFipster.Munchkin.Api.Controllers
             _userManager = userManager;
             _playerStore = playerStore;
         }
+
         public IActionResult SignInWithGoogle()
         {
             var authenticationProperties = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action(nameof(HandleExternalLogin)));
