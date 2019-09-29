@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine
 
             var matchedActionTypes = _actionTypes.FirstOrDefault(t => t.Name == expectedActionType);
             if (matchedActionTypes == null)
-                throw new MissingActionException($"There was to action for message of type '{msgType}'. Tried '{expectedActionType}' but no luck.");
+                throw new MissingActionException($"There was no action for message of type '{msgType}'. Tried '{expectedActionType}' but no luck.");
 
             return (GameAction)Activator.CreateInstance(matchedActionTypes, message, game);
         }

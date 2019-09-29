@@ -29,7 +29,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
-            var deathMsg = DeathMessage.Create(sequence + 1, Guid.NewGuid());
+            var deathMsg = DeathMessage.Create(sequence.Next, Guid.NewGuid());
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, deathMsg));
@@ -45,8 +45,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
                 out var playerId,
                 out var sequence);
 
-            var levelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
-            var deathMsg = DeathMessage.Create(sequence + 2, playerId);
+            var levelMsg = LevelMessage.Create(sequence.Next, playerId, 1);
+            var deathMsg = DeathMessage.Create(sequence.Next, playerId);
 
             // Act
             quest.AddMessage(gameId, levelMsg);
@@ -67,8 +67,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
                 out var playerId,
                 out var sequence);
 
-            var bonusMsg = BonusMessage.Create(sequence + 1, playerId, 1);
-            var deathMsg = DeathMessage.Create(sequence + 2, playerId);
+            var bonusMsg = BonusMessage.Create(sequence.Next, playerId, 1);
+            var deathMsg = DeathMessage.Create(sequence.Next, playerId);
 
             // Act
             quest.AddMessage(gameId, bonusMsg);
@@ -91,9 +91,9 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
                 out var playerId,
                 out var sequence);
 
-            var raceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { dwarf });
-            var classMessage = ClassMessage.CreateAdd(sequence + 2, playerId, new[] { priest });
-            var deathMsg = DeathMessage.Create(sequence + 3, playerId);
+            var raceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { dwarf });
+            var classMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { priest });
+            var deathMsg = DeathMessage.Create(sequence.Next, playerId);
 
             // Act
             quest.AddMessage(gameId, raceMessage);

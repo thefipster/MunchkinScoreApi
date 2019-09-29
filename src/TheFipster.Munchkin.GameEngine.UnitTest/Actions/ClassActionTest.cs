@@ -17,7 +17,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, Guid.NewGuid(), new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, Guid.NewGuid(), new[] { warriorClass });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addClassMessage));
@@ -28,7 +28,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var removeClassMessage = ClassMessage.CreateRemove(sequence + 1, Guid.NewGuid(), new[] { warriorClass });
+            var removeClassMessage = ClassMessage.CreateRemove(sequence.Next, Guid.NewGuid(), new[] { warriorClass });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeClassMessage));
@@ -39,7 +39,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var removeClassMessage = ClassMessage.CreateRemove(sequence + 1, playerId, new[] { warriorClass });
+            var removeClassMessage = ClassMessage.CreateRemove(sequence.Next, playerId, new[] { warriorClass });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeClassMessage));
@@ -50,7 +50,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
 
             // Act
             var game = quest.AddMessage(gameId, addClassMessage);
@@ -65,7 +65,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
 
             // Act
             quest.AddMessage(gameId, addClassMessage);
@@ -80,8 +80,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
-            var removeClassMessage = ClassMessage.CreateRemove(sequence + 2, playerId, new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
+            var removeClassMessage = ClassMessage.CreateRemove(sequence.Next, playerId, new[] { warriorClass });
 
             // Act
             quest.AddMessage(gameId, addClassMessage);
@@ -96,8 +96,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
-            var removeClassMessage = ClassMessage.CreateRemove(sequence + 2, playerId, new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
+            var removeClassMessage = ClassMessage.CreateRemove(sequence.Next, playerId, new[] { warriorClass });
 
             // Act
             quest.AddMessage(gameId, addClassMessage);
@@ -114,8 +114,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
-            var addAnotherClassMessage = ClassMessage.CreateAdd(sequence + 2, playerId, new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
+            var addAnotherClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
 
             // Act & Assert
             quest.AddMessage(gameId, addClassMessage);
@@ -127,8 +127,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addClassMessage = ClassMessage.CreateAdd(sequence + 1, playerId, new[] { warriorClass });
-            var switchClassMessage = ClassMessage.Create(sequence + 2, playerId, new[] { thiefClass }, new[] { warriorClass });
+            var addClassMessage = ClassMessage.CreateAdd(sequence.Next, playerId, new[] { warriorClass });
+            var switchClassMessage = ClassMessage.Create(sequence.Next, playerId, new[] { thiefClass }, new[] { warriorClass });
 
             // Act
             quest.AddMessage(gameId, addClassMessage);

@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
-            var increaseBonusMsg = BonusMessage.Create(sequence + 1, Guid.NewGuid(), 1);
+            var increaseBonusMsg = BonusMessage.Create(sequence.Next, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseBonusMsg));
@@ -47,7 +47,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
-            var decreaseBonusMsg = BonusMessage.Create(sequence + 1, Guid.NewGuid(), 1);
+            var decreaseBonusMsg = BonusMessage.Create(sequence.Next, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, decreaseBonusMsg));
@@ -58,7 +58,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseBonusMsg = BonusMessage.Create(sequence + 1, playerId, 1);
+            var increaseBonusMsg = BonusMessage.Create(sequence.Next, playerId, 1);
 
             // Act
             var game = quest.AddMessage(gameId, increaseBonusMsg);
@@ -68,11 +68,11 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         }
 
         [Fact]
-        public void IncreaseBonusOnHero_ThenUndoId_ResultsInOriginalBonus_Test()
+        public void IncreaseBonusOnHero_ThenUndoIt_ResultsInOriginalBonus_Test()
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseBonusMsg = BonusMessage.Create(sequence + 1, playerId, 1);
+            var increaseBonusMsg = BonusMessage.Create(sequence.Next, playerId, 1);
 
             // Act
             quest.AddMessage(gameId, increaseBonusMsg);
@@ -87,8 +87,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseBonusMsg = BonusMessage.Create(sequence + 1, playerId, 1);
-            var decreaseBonusMsg = BonusMessage.Create(sequence + 2, playerId, -1);
+            var increaseBonusMsg = BonusMessage.Create(sequence.Next, playerId, 1);
+            var decreaseBonusMsg = BonusMessage.Create(sequence.Next, playerId, -1);
 
             // Act
             quest.AddMessage(gameId, increaseBonusMsg);
@@ -103,8 +103,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseBonusMsg = BonusMessage.Create(sequence + 1, playerId, 1);
-            var decreaseBonusMsg = BonusMessage.Create(sequence + 2, playerId, -1);
+            var increaseBonusMsg = BonusMessage.Create(sequence.Next, playerId, 1);
+            var decreaseBonusMsg = BonusMessage.Create(sequence.Next, playerId, -1);
 
             // Act
             quest.AddMessage(gameId, increaseBonusMsg);

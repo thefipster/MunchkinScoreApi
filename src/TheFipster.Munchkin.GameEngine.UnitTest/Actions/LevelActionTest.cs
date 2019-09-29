@@ -25,7 +25,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
-            var increaseLevelMsg = LevelMessage.Create(sequence + 1, Guid.NewGuid(), 1);
+            var increaseLevelMsg = LevelMessage.Create(sequence.Next, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, increaseLevelMsg));
@@ -47,7 +47,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStarted(out var gameStore, out var gameId, out var sequence);
-            var decreaseLevelMsg = LevelMessage.Create(sequence + 1, Guid.NewGuid(), 1);
+            var decreaseLevelMsg = LevelMessage.Create(sequence.Next, Guid.NewGuid(), 1);
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, decreaseLevelMsg));
@@ -58,7 +58,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
+            var increaseLevelMsg = LevelMessage.Create(sequence.Next, playerId, 1);
 
             // Act
             var game = quest.AddMessage(gameId, increaseLevelMsg);
@@ -72,7 +72,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
+            var increaseLevelMsg = LevelMessage.Create(sequence.Next, playerId, 1);
 
             // Act
             quest.AddMessage(gameId, increaseLevelMsg);
@@ -87,8 +87,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
-            var decreaseLevelMsg = LevelMessage.Create(sequence + 2, playerId, -1);
+            var increaseLevelMsg = LevelMessage.Create(sequence.Next, playerId, 1);
+            var decreaseLevelMsg = LevelMessage.Create(sequence.Next, playerId, -1);
 
             // Act
             quest.AddMessage(gameId, increaseLevelMsg);
@@ -103,8 +103,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var increaseLevelMsg = LevelMessage.Create(sequence + 1, playerId, 1);
-            var decreaseLevelMsg = LevelMessage.Create(sequence + 2, playerId, -1);
+            var increaseLevelMsg = LevelMessage.Create(sequence.Next, playerId, 1);
+            var decreaseLevelMsg = LevelMessage.Create(sequence.Next, playerId, -1);
 
             // Act
             quest.AddMessage(gameId, increaseLevelMsg);

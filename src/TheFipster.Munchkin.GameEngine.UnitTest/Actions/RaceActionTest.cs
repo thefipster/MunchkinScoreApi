@@ -17,7 +17,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, Guid.NewGuid(), new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, Guid.NewGuid(), new[] { humanRace });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, addRaceMessage));
@@ -28,7 +28,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 1, Guid.NewGuid(), new[] { humanRace });
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence.Next, Guid.NewGuid(), new[] { humanRace });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeRaceMessage));
@@ -39,7 +39,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 1, playerId, new[] { humanRace });
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence.Next, playerId, new[] { humanRace });
 
             // Act & Assert
             Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, removeRaceMessage));
@@ -50,7 +50,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
 
             // Act
             var game = quest.AddMessage(gameId, addRaceMessage);
@@ -65,7 +65,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
@@ -80,8 +80,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
-            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 2, playerId, new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence.Next, playerId, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
@@ -96,8 +96,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
-            var switchRaceMessage = RaceMessage.Create(sequence + 2, playerId, new[] { dwarfRace }, new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
+            var switchRaceMessage = RaceMessage.Create(sequence.Next, playerId, new[] { dwarfRace }, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
@@ -113,8 +113,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
-            var removeRaceMessage = RaceMessage.CreateRemove(sequence + 2, playerId, new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
+            var removeRaceMessage = RaceMessage.CreateRemove(sequence.Next, playerId, new[] { humanRace });
 
             // Act
             quest.AddMessage(gameId, addRaceMessage);
@@ -131,8 +131,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
         {
             // Arrange
             var quest = QuestFactory.CreateStartedWithMaleHero(out var gameStore, out var gameId, out var playerId, out var sequence);
-            var addRaceMessage = RaceMessage.CreateAdd(sequence + 1, playerId, new[] { humanRace });
-            var addAnotherRaceMessage = RaceMessage.CreateAdd(sequence + 2, playerId, new[] { humanRace });
+            var addRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
+            var addAnotherRaceMessage = RaceMessage.CreateAdd(sequence.Next, playerId, new[] { humanRace });
 
             // Act & Assert
             quest.AddMessage(gameId, addRaceMessage);

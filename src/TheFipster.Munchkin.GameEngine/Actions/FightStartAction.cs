@@ -1,4 +1,5 @@
 ﻿using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
@@ -12,7 +13,8 @@ namespace TheFipster.Munchkin.GameEngine.Actions
 
         public override Game Do()
         {
-            var fight = new Fight(Message.Hero, Message.Monster);
+            var hero = Game.GetHero(Message.PlayerId);
+            var fight = new Fight(hero, Message.Monster);
             Game.Score.Fight = fight;
 
             return base.Do();
@@ -21,6 +23,12 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         public override void Validate()
         {
             base.Validate();
+
+            if (!IsGameStarted)
+                throw new InvalidActionException("Perfect, not even in the dungeon but still starting a fight.");
+
+            if (Game.Score.Fight != null)
+                throw new InvalidActionException("Let's finish the current fight first... then maybe.");
         }
     }
 }

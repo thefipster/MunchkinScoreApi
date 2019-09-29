@@ -1,4 +1,5 @@
 ﻿using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
 
 namespace TheFipster.Munchkin.GameEngine.Actions
@@ -19,6 +20,9 @@ namespace TheFipster.Munchkin.GameEngine.Actions
         public override void Validate()
         {
             base.Validate();
+
+            if (Game.Score.Fight == null)
+                throw new InvalidActionException("What a pacifist, want's to end a fight thats not even there.");
         }
     }
 }
