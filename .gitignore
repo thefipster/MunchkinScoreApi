@@ -13,6 +13,7 @@ obj/
 _NCrunch_munchkin_scoreboard_api/
 *ncrunchsolution
 *.user
+*.ncrunchproject
 
 # Coverage Reports
 Cobertura.xml

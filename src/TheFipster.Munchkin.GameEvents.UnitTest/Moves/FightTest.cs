@@ -1,11 +1,10 @@
 ﻿using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Events;
-using TheFipster.Munchkin.GameEvents;
-using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
 using Xunit;
+using TheFipster.Munchkin.TestFactory;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest.Moves
+namespace TheFipster.Munchkin.GameEvents.UnitTest.Moves
 {
     public class FightTest
     {

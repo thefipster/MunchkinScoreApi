@@ -35,16 +35,8 @@ namespace TheFipster.Munchkin.GameApi.Controllers
         }
 
         [Authorize]
-        [HttpPost("find")]
-        public IActionResult GetByEmail([FromBody] string email)
-        {
-            var player = _playerStore.Get(email);
-            return Ok(player);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public IActionResult Post(GameMaster gameMaster)
+        [HttpPut]
+        public IActionResult Put(GameMaster gameMaster)
         {
             var storedGameMaster = _playerStore.Get(gameMaster.Id);
             gameMaster.PlayerPool = storedGameMaster.PlayerPool;

@@ -1,8 +1,10 @@
+using FluentAssertions;
 using System;
+using System.Web;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameEvents;
-using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
 using TheFipster.Munchkin.GameStorage.Volatile;
+using TheFipster.Munchkin.TestFactory;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest
@@ -106,6 +108,33 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest
             // Assert
             Assert.NotNull(game.Score.Begin);
             Assert.NotNull(game.Score.End);
+        }
+
+        [Fact]
+        public void GenerateAnInitCode_ResultsInAnStringWith6Chars_Test()
+        {
+            // Arrange
+            var quest = QuestFactory.Create();
+
+            // Act
+            var initCode = quest.GenerateInitCode();
+
+            // Assert
+            initCode.Should().HaveLength(6);
+        }
+
+        [Fact]
+        public void GenerateAnInitCode_ResultsInAnUrlEncodedString_Test()
+        {
+            // Arrange
+            var quest = QuestFactory.Create();
+
+            // Act
+            var initCode = quest.GenerateInitCode();
+            var urlEncodedInitCode = HttpUtility.UrlEncode(initCode);
+
+            // Assert
+            initCode.Should().BeEquivalentTo(urlEncodedInitCode);
         }
     }
 }

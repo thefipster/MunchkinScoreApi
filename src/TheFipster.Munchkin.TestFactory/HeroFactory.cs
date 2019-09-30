@@ -1,6 +1,6 @@
 ﻿using TheFipster.Munchkin.GameDomain;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
+namespace TheFipster.Munchkin.TestFactory
 {
     public class PlayerFactory
     {
