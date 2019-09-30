@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TheFipster.Munchkin.GameApi\TheFipster.Munchkin.GameApi.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage.Volatile\TheFipster.Munchkin.GameStorage.Volatile.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.TestFactory\TheFipster.Munchkin.TestFactory.csproj" />
   </ItemGroup>
 
 </Project>

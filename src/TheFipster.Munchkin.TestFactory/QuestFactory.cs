@@ -1,9 +1,10 @@
 ﻿using System;
+using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.GameEvents;
 using TheFipster.Munchkin.GameStorage;
 using TheFipster.Munchkin.GameStorage.Volatile;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
+namespace TheFipster.Munchkin.TestFactory
 {
     public class QuestFactory
     {
@@ -12,6 +13,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
             var eventInventory = new Inventory();
             return new Quest(gameStore, eventInventory);
         }
+
+        public static Quest Create() => Create(new VolatileGameStore());
 
         public static Quest CreateStored(out IGameStore gameStore, out Guid gameId)
         {

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using TheFipster.Munchkin.GameDomain.Exceptions;
-using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
-using TheFipster.Munchkin.GameEvents;
+using TheFipster.Munchkin.TestFactory;
 using Xunit;
 
-namespace TheFipster.Munchkin.GameEngine.UnitTest.Actions
+namespace TheFipster.Munchkin.GameEvents.UnitTest.Actions
 {
     public class RaceActionTest
     {

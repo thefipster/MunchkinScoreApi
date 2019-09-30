@@ -36,11 +36,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Polling
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.LiteDb", "src\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj", "{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameEvents", "src\TheFipster.Munchkin.GameEvents\TheFipster.Munchkin.GameEvents.csproj", "{D4415D13-4020-4498-B222-065303809D2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEvents", "src\TheFipster.Munchkin.GameEvents\TheFipster.Munchkin.GameEvents.csproj", "{D4415D13-4020-4498-B222-065303809D2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameAbstractions", "src\TheFipster.Munchkin.GameEvents.Abstractions\TheFipster.Munchkin.GameAbstractions.csproj", "{3CD5B7DF-7C70-4382-9C62-23EF1FCDAE1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameAbstractions", "src\TheFipster.Munchkin.GameEvents.Abstractions\TheFipster.Munchkin.GameAbstractions.csproj", "{3CD5B7DF-7C70-4382-9C62-23EF1FCDAE1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameEvents.UnitTest", "src\TheFipster.Munchkin.GameEvents.UnitTest\TheFipster.Munchkin.GameEvents.UnitTest.csproj", "{71743841-B5E9-4C61-B81B-C247D3FFFC14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEvents.UnitTest", "src\TheFipster.Munchkin.GameEvents.UnitTest\TheFipster.Munchkin.GameEvents.UnitTest.csproj", "{71743841-B5E9-4C61-B81B-C247D3FFFC14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.TestFactory", "src\TheFipster.Munchkin.TestFactory\TheFipster.Munchkin.TestFactory.csproj", "{76F842D2-286E-42CE-9579-1673296E6284}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +110,10 @@ Global
 		{71743841-B5E9-4C61-B81B-C247D3FFFC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71743841-B5E9-4C61-B81B-C247D3FFFC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71743841-B5E9-4C61-B81B-C247D3FFFC14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F842D2-286E-42CE-9579-1673296E6284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F842D2-286E-42CE-9579-1673296E6284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F842D2-286E-42CE-9579-1673296E6284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F842D2-286E-42CE-9579-1673296E6284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 		{73ECA6D7-33C8-48C7-9613-14A14F2D4827} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 		{71743841-B5E9-4C61-B81B-C247D3FFFC14} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
+		{76F842D2-286E-42CE-9579-1673296E6284} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}

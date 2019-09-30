@@ -1,4 +1,4 @@
-﻿namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
+﻿namespace TheFipster.Munchkin.TestFactory
 {
     public class Sequence
     {
