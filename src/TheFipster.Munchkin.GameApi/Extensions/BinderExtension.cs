@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.GameApi.Binders;
+using TheFipster.Munchkin.GameEvents;
 
 namespace TheFipster.Munchkin.GameApi.Extensions
 {
@@ -20,6 +21,6 @@ namespace TheFipster.Munchkin.GameApi.Extensions
 
         private static Action<MvcOptions> addGameMessageBinder() => 
             options => options.ModelBinderProviders
-                .Insert(0, new GameMessageModelBinderProvider());
+                .Insert(0, new GameMessageModelBinderProvider(new Inventory()));
     }
 }

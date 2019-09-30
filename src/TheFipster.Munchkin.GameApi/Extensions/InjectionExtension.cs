@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
+using TheFipster.Munchkin.GameAbstractions;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GameDomain.Abstractions;
 using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.GameEngine.Polling;
+using TheFipster.Munchkin.GameEvents;
 using TheFipster.Munchkin.GamePolling;
 using TheFipster.Munchkin.GameStorage;
 using TheFipster.Munchkin.GameStorage.LiteDb;
@@ -15,9 +16,7 @@ namespace TheFipster.Munchkin.GameApi.Extensions
     {
         public static IServiceCollection AddDependecies(this IServiceCollection services)
         {
-            services.AddSingleton<ITypeInventory>(new ActionInventory());
-            services.AddSingleton<IActionFactory>(new ReflectedActionFactory(
-                getActionInventoryFrom(services)));
+            services.AddSingleton<IEventInventory>(new Inventory());
 
             services.AddSingleton<IInitCodePollService>(new InitCodePollService());
             services.AddSingleton<IGameStatePollService>(new GameStatePollService());
@@ -37,12 +36,6 @@ namespace TheFipster.Munchkin.GameApi.Extensions
             services.AddTransient<IQuest, Quest>();
 
             return services;
-        }
-
-        private static ITypeInventory getActionInventoryFrom(IServiceCollection services)
-        {
-            var provider = services.BuildServiceProvider();
-            return provider.GetRequiredService<ITypeInventory>();
         }
     }
 }

@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameEvents.Abstractions\TheFipster.Munchkin.GameAbstractions.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameEvents\TheFipster.Munchkin.GameEvents.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GamePolling\TheFipster.Munchkin.GamePolling.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Polling\TheFipster.Munchkin.Polling.csproj" />

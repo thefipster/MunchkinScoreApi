@@ -1,4 +1,4 @@
-﻿using TheFipster.Munchkin.GameDomain.Messages;
+﻿using TheFipster.Munchkin.GameEvents;
 using Xunit;
 
 namespace TheFipster.Munchkin.GameDomain.UnitTest.Messages
