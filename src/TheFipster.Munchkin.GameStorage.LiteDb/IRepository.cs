@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace TheFipster.Munchkin.GameStorageLite
+namespace TheFipster.Munchkin.GameStorage.LiteDb
 {
     public interface IRepository<T>
     {

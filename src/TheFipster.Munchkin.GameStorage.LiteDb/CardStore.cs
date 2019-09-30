@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GamePersistance;
 
-namespace TheFipster.Munchkin.GameStorageLite
+namespace TheFipster.Munchkin.GameStorage.LiteDb
 {
     public class CardStore : ICardStore
     {

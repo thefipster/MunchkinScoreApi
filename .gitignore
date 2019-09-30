@@ -17,3 +17,6 @@ _NCrunch_munchkin_scoreboard_api/
 # Coverage Reports
 Cobertura.xml
 coverage.cobertura.xml
+
+# Exception due to *.litedb entry
+!TheFipster.Munchkin.GameStorage.LiteDb/

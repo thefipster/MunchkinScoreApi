@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace TheFipster.Munchkin.GameStorageLite
+namespace TheFipster.Munchkin.GameStorage.LiteDb
 {
     public class Repository<T> : IRepository<T>
     {
@@ -8,10 +8,8 @@ namespace TheFipster.Munchkin.GameStorageLite
 
         private readonly LiteDatabase _db;
 
-        public Repository()
-        {
+        public Repository() =>
             _db = new LiteDatabase(Filename);
-        }
 
         public LiteCollection<T> GetCollection() =>
             _db.GetCollection<T>();

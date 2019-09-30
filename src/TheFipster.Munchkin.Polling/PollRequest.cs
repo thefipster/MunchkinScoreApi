@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TheFipster.Munchkin.GameOrchestrator
+namespace TheFipster.Munchkin.Polling
 {
-    public abstract class PollRequest<T>
+    public class PollRequest<TValue>
     {
         private TaskCompletionSource<bool> _taskCompletion;
         private TimeSpan _timeout;
-        private T _value;
+        private TValue _value;
 
         public PollRequest() 
             : this(TimeSpan.FromMinutes(60)) { }
@@ -18,13 +18,13 @@ namespace TheFipster.Munchkin.GameOrchestrator
             _taskCompletion = new TaskCompletionSource<bool>();
         }
 
-        public void Notify(T value)
+        public void Notify(TValue value)
         {
             _value = value;
             _taskCompletion.SetResult(true);
         }
 
-        public async Task<T> WaitAsync()
+        public async Task<TValue> WaitAsync()
         {
             await Task.WhenAny(
                 _taskCompletion.Task, 

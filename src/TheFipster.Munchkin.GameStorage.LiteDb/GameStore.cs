@@ -3,9 +3,8 @@ using System.Linq;
 using LiteDB;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
-using TheFipster.Munchkin.GamePersistance;
 
-namespace TheFipster.Munchkin.GameStorageLite
+namespace TheFipster.Munchkin.GameStorage.LiteDb
 {
     public class GameStore : IGameStore
     {

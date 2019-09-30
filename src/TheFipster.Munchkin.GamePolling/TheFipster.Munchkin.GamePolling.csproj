@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.GamePolling\TheFipster.Munchkin.GamePolling.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Polling\TheFipster.Munchkin.Polling.csproj" />
   </ItemGroup>
 

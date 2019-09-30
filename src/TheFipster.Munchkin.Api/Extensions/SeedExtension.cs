@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GamePersistance;
+using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.Api.Extensions
 {

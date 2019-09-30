@@ -1,7 +1,7 @@
 ﻿using System;
 using TheFipster.Munchkin.GameDomain.Messages;
-using TheFipster.Munchkin.GamePersistance;
-using TheFipster.Munchkin.GameStorageVolatile;
+using TheFipster.Munchkin.GameStorage;
+using TheFipster.Munchkin.GameStorage.Volatile;
 
 namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
 {
@@ -16,7 +16,7 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
 
         public static Quest CreateStored(out IGameStore gameStore, out Guid gameId)
         {
-            gameStore = new MockedGameStore();
+            gameStore = new VolatileGameStore();
             var quest = Create(gameStore);
             gameId = quest.StartJourney();
             return quest;

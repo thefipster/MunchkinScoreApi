@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
-using TheFipster.Munchkin.GamePersistance;
 
-namespace TheFipster.Munchkin.GameStorageVolatile
+namespace TheFipster.Munchkin.GameStorage.Volatile
 {
-    public class MockedGameStore : IGameStore
+    public class VolatileGameStore : IGameStore
     {
         private IList<Game> games;
 
-        public MockedGameStore() =>
+        public VolatileGameStore() =>
             games = new List<Game>();
 
         public Game Get(Guid gameId) => 
-            games.FirstOrDefault(x => x.Id == gameId) 
+            games.FirstOrDefault(game => game.Id == gameId) 
             ?? throw new UnknownGameException();
 
         public void Upsert(Game game)
         {
-            if (games.Any(x => x.Id == game.Id))
+            if (games.Any(g => g.Id == game.Id))
                 games.Remove(game);
             
             games.Add(game);

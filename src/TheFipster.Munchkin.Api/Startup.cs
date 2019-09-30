@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using TheFipster.Munchkin.Api.Extensions;
 using TheFipster.Munchkin.Api.Middlewares;
-using TheFipster.Munchkin.GamePersistance;
+using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.Api
 {

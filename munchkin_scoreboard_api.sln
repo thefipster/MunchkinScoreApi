@@ -20,17 +20,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine", "src\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj", "{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GamePersistance", "src\TheFipster.Munchkin.GamePersistance\TheFipster.Munchkin.GamePersistance.csproj", "{47E7125E-243D-4B15-951E-FF0C286EEC39}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorageLite", "src\TheFipster.Munchkin.GameStorageLite\TheFipster.Munchkin.GameStorageLite.csproj", "{9F2F0901-346A-49E4-8798-6E61CDB9E0E0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorageVolatile", "src\TheFipster.Munchkin.GameStorageMock\TheFipster.Munchkin.GameStorageVolatile.csproj", "{5805684A-E86F-4259-8AEE-0EB369107869}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameEngine.UnitTest.csproj", "{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameOrchestrator", "src\TheFipster.Munchkin.GameOrchestrator\TheFipster.Munchkin.GameOrchestrator.csproj", "{47021764-D8B0-4070-BCA7-5819A5BF7822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage", "src\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj", "{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameOrchestrator.UnitTest", "src\TheFipster.Munchkin.GameOrchestrator.UnitTest\TheFipster.Munchkin.GameOrchestrator.UnitTest.csproj", "{A88F3991-41F8-484A-88A6-C83CF7758FE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.Volatile", "src\TheFipster.Munchkin.GameStorage.Volatile\TheFipster.Munchkin.GameStorage.Volatile.csproj", "{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unittests", "Unittests", "{A6760F24-9036-4D6D-AF9E-A529B43DB6F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Polling", "src\TheFipster.Munchkin.Polling\TheFipster.Munchkin.Polling.csproj", "{A372DBA6-466A-444B-934B-DDF54AD81EC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GamePolling", "src\TheFipster.Munchkin.GamePolling\TheFipster.Munchkin.GamePolling.csproj", "{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Polling.UnitTest", "src\TheFipster.Munchkin.Polling.UnitTest\TheFipster.Munchkin.Polling.UnitTest.csproj", "{73ECA6D7-33C8-48C7-9613-14A14F2D4827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameStorage.LiteDb", "src\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj", "{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,33 +62,43 @@ Global
 		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47E7125E-243D-4B15-951E-FF0C286EEC39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47E7125E-243D-4B15-951E-FF0C286EEC39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47E7125E-243D-4B15-951E-FF0C286EEC39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47E7125E-243D-4B15-951E-FF0C286EEC39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F2F0901-346A-49E4-8798-6E61CDB9E0E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F2F0901-346A-49E4-8798-6E61CDB9E0E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F2F0901-346A-49E4-8798-6E61CDB9E0E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F2F0901-346A-49E4-8798-6E61CDB9E0E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5805684A-E86F-4259-8AEE-0EB369107869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5805684A-E86F-4259-8AEE-0EB369107869}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5805684A-E86F-4259-8AEE-0EB369107869}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5805684A-E86F-4259-8AEE-0EB369107869}.Release|Any CPU.Build.0 = Release|Any CPU
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47021764-D8B0-4070-BCA7-5819A5BF7822}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A88F3991-41F8-484A-88A6-C83CF7758FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A372DBA6-466A-444B-934B-DDF54AD81EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A372DBA6-466A-444B-934B-DDF54AD81EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A372DBA6-466A-444B-934B-DDF54AD81EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A372DBA6-466A-444B-934B-DDF54AD81EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73ECA6D7-33C8-48C7-9613-14A14F2D4827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73ECA6D7-33C8-48C7-9613-14A14F2D4827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73ECA6D7-33C8-48C7-9613-14A14F2D4827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73ECA6D7-33C8-48C7-9613-14A14F2D4827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8075974-55AF-47A2-A9D4-C751A94E3D6E} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
+		{D00B7C80-7F79-4224-8741-C1C70EEE21BF} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
+		{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
+		{73ECA6D7-33C8-48C7-9613-14A14F2D4827} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}

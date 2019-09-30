@@ -3,9 +3,8 @@ using System;
 using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
-using TheFipster.Munchkin.GamePersistance;
 
-namespace TheFipster.Munchkin.GameStorageLite
+namespace TheFipster.Munchkin.GameStorage.LiteDb
 {
     public class PlayerStore : IPlayerStore
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameDomain.Messages;
-using TheFipster.Munchkin.GamePersistance;
+using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.GameEngine
 {
@@ -37,6 +37,27 @@ namespace TheFipster.Munchkin.GameEngine
             return game;
         }
 
+        public Game Undo(Guid gameId)
+        {
+            var game = _gameStore.Get(gameId);
+            game = performUndo(game);
+            _gameStore.Upsert(game);
+            return game;
+        }
+
+        public Game GetState(Guid gameId) => _gameStore.Get(gameId);
+
+        public string GenerateInitCode()
+        {
+            var length = 6;
+            var rng = new Random();
+            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable
+                .Repeat(alphabet, length)
+                .Select(s => s[rng.Next(s.Length)])
+                .ToArray());
+        }
+
         private Game executeMessages(Game game, IEnumerable<GameMessage> messages)
         {
             foreach (var msg in messages)
@@ -61,16 +82,6 @@ namespace TheFipster.Munchkin.GameEngine
             protocol.Any()
                 ? protocol.Max(item => item.Sequence)
                 : 0;
-
-        public Game Undo(Guid gameId)
-        {
-            var game = _gameStore.Get(gameId);
-            game = performUndo(game);
-            _gameStore.Upsert(game);
-            return game;
-        }
-
-        public Game GetState(Guid gameId) => _gameStore.Get(gameId);
 
         private Game applyAction(Game game, GameMessage message)
         {
