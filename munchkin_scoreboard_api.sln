@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api", "src\TheFipster.Munchkin.Api\TheFipster.Munchkin.Api.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameApi", "src\TheFipster.Munchkin.GameApi\TheFipster.Munchkin.GameApi.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.UnitTest", "src\TheFipster.Munchkin.Api.UnitTest\TheFipster.Munchkin.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameApi.UnitTest", "src\TheFipster.Munchkin.GameApi.UnitTest\TheFipster.Munchkin.GameApi.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain", "src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
 EndProject
@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GamePol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Polling.UnitTest", "src\TheFipster.Munchkin.Polling.UnitTest\TheFipster.Munchkin.Polling.UnitTest.csproj", "{73ECA6D7-33C8-48C7-9613-14A14F2D4827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameStorage.LiteDb", "src\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj", "{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.LiteDb", "src\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj", "{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
