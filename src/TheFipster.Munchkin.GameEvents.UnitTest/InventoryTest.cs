@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿using System;
+using TheFipster.Munchkin.GameDomain.Exceptions;
+using TheFipster.Munchkin.GameEvents.UnitTest.TestData;
+using Xunit;
 
 namespace TheFipster.Munchkin.GameEvents.UnitTest
 {
@@ -28,6 +31,18 @@ namespace TheFipster.Munchkin.GameEvents.UnitTest
 
             // Assert
             Assert.NotEmpty(types);
+        }
+
+        [Fact]
+        public void GetActionForUnknownMessage_ThrowsMissingMessageException_Test()
+        {
+            // Arrange
+            var inventory = new Inventory();
+            var unknownMessage = new UnknownMessage();
+
+            // Act & Assert
+            Assert.Throws<MissingMessageException>(
+                () => inventory.GetActionFromMessage(unknownMessage, null));
         }
     }
 }
