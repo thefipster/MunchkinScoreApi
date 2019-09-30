@@ -44,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.TestFactory", "src\TheFipster.Munchkin.TestFactory\TheFipster.Munchkin.TestFactory.csproj", "{76F842D2-286E-42CE-9579-1673296E6284}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.GameStorage.LiteDb.UnitTest", "src\TheFipster.Munchkin.GameStorage.LiteDb.UnitTest\TheFipster.Munchkin.GameStorage.LiteDb.UnitTest.csproj", "{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,10 @@ Global
 		{76F842D2-286E-42CE-9579-1673296E6284}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76F842D2-286E-42CE-9579-1673296E6284}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76F842D2-286E-42CE-9579-1673296E6284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{73ECA6D7-33C8-48C7-9613-14A14F2D4827} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 		{71743841-B5E9-4C61-B81B-C247D3FFFC14} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 		{76F842D2-286E-42CE-9579-1673296E6284} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
+		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}
