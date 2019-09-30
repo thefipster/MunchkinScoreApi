@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheFipster.Munchkin.GameAbstractions;
 using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Events;
 using TheFipster.Munchkin.GameDomain.Exceptions;
-using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.GameEngine
 {
     public class Quest : IQuest
     {
-        private readonly IGameStore _gameStore;
-        private readonly IActionFactory _actionFactory;
+        private const string InitCodeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        private const int InitCodeLength = 6;
 
-        public Quest(IGameStore gameStore, IActionFactory actionFactory)
+        private readonly IGameStore _gameStore;
+        private readonly IEventInventory _eventInventory;
+
+        public Quest(IGameStore gameStore, IEventInventory eventInventory)
         {
             _gameStore = gameStore;
-            _actionFactory = actionFactory;
+            _eventInventory = eventInventory;
         }
 
         public Guid StartJourney()
@@ -49,11 +53,9 @@ namespace TheFipster.Munchkin.GameEngine
 
         public string GenerateInitCode()
         {
-            var length = 6;
             var rng = new Random();
-            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             return new string(Enumerable
-                .Repeat(alphabet, length)
+                .Repeat(InitCodeAlphabet, InitCodeLength)
                 .Select(s => s[rng.Next(s.Length)])
                 .ToArray());
         }
@@ -85,7 +87,7 @@ namespace TheFipster.Munchkin.GameEngine
 
         private Game applyAction(Game game, GameMessage message)
         {
-            var action = _actionFactory.CreateActionFrom(message, game);
+            var action = _eventInventory.GetActionFromMessage(message, game);
             action.Validate();
             return action.Do();
         }

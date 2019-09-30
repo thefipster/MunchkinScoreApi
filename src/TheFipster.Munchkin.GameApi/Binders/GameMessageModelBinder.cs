@@ -1,13 +1,14 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GameDomain.Messages;
 using System.Collections.Generic;
+using TheFipster.Munchkin.GameAbstractions;
+using TheFipster.Munchkin.GameDomain.Events;
 using TheFipster.Munchkin.GameDomain.Exceptions;
 
 namespace TheFipster.Munchkin.GameApi.Binders
@@ -15,6 +16,13 @@ namespace TheFipster.Munchkin.GameApi.Binders
     [ExcludeFromCodeCoverage]
     public class GameMessageModelBinder : IModelBinder
     {
+        private readonly IEventInventory _eventInventory;
+
+        public GameMessageModelBinder(IEventInventory eventInventory)
+        {
+            _eventInventory = eventInventory;
+        }
+
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             var jArray = readJsonFromBody(bindingContext);
@@ -36,7 +44,7 @@ namespace TheFipster.Munchkin.GameApi.Binders
         {
             try
             {
-                var messages = parseMessages(bindingContext, jArray).ToList();
+                var messages = parseMessages(jArray).ToList();
                 bindingContext.Result = ModelBindingResult.Success(messages);
             }
             catch (InvalidGameMessageException)
@@ -47,13 +55,13 @@ namespace TheFipster.Munchkin.GameApi.Binders
             return bindingContext;
         }
 
-        private static IEnumerable<GameMessage> parseMessages(ModelBindingContext bindingContext, JArray jArray)
+        private IEnumerable<GameMessage> parseMessages(JArray jArray)
         {
             foreach (var jToken in jArray)
                 yield return parseMessage(jToken);
         }
 
-        private static GameMessage parseMessage(JToken jToken)
+        private GameMessage parseMessage(JToken jToken)
         {
             var type = extractType(jToken);
             if (type == null)
@@ -63,9 +71,9 @@ namespace TheFipster.Munchkin.GameApi.Binders
 
         }
 
-        private static System.Type extractType(JToken jToken)
+        private Type extractType(JToken jToken)
         {
-            var types = new MessageInventory().Get();
+            var types = _eventInventory.GetMessageTypes();
             var msgType = jToken["type"].Value<string>();
             return types.FirstOrDefault(t => t.Name == msgType);
         }

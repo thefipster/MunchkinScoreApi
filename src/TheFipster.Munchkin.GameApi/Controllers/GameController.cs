@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameAbstractions;
+using TheFipster.Munchkin.GameDomain.Events;
 using TheFipster.Munchkin.GameDomain.Exceptions;
-using TheFipster.Munchkin.GameDomain.Messages;
 using TheFipster.Munchkin.GamePolling;
 
 namespace TheFipster.Munchkin.GameApi.Controllers

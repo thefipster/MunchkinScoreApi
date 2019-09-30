@@ -1,5 +1,5 @@
 ﻿using System;
-using TheFipster.Munchkin.GameDomain.Messages;
+using TheFipster.Munchkin.GameEvents;
 using TheFipster.Munchkin.GameStorage;
 using TheFipster.Munchkin.GameStorage.Volatile;
 
@@ -9,9 +9,8 @@ namespace TheFipster.Munchkin.GameEngine.UnitTest.Helper
     {
         public static Quest Create(IGameStore gameStore)
         {
-            var actionInventory = new ActionInventory();
-            var actionFactory = new ReflectedActionFactory(actionInventory);
-            return new Quest(gameStore, actionFactory);
+            var eventInventory = new Inventory();
+            return new Quest(gameStore, eventInventory);
         }
 
         public static Quest CreateStored(out IGameStore gameStore, out Guid gameId)

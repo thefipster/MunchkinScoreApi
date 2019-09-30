@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TheFipster.Munchkin.GameDomain;
-using TheFipster.Munchkin.GameDomain.Messages;
+using TheFipster.Munchkin.GameDomain.Events;
+using TheFipster.Munchkin.GameEvents;
 using TheFipster.Munchkin.GameEngine.UnitTest.Helper;
 using Xunit;
 
