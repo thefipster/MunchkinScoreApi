@@ -23,24 +23,23 @@ namespace TheFipster.Munchkin.GameApi.Binders
             _eventInventory = eventInventory;
         }
 
-        public Task BindModelAsync(ModelBindingContext bindingContext)
+        public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            var jArray = readJsonFromBody(bindingContext);
+            var jArray = await readJsonFromBodyAsync(bindingContext);
             tryParseMessagesToContext(bindingContext, jArray);
-            return Task.CompletedTask;
         }
 
-        private JArray readJsonFromBody(ModelBindingContext bindingContext)
+        private async Task<JArray> readJsonFromBodyAsync(ModelBindingContext bindingContext)
         {
             var body = bindingContext.ActionContext.HttpContext.Request.Body;
             using (var stream = new StreamReader(body))
             {
-                var json = stream.ReadToEnd();
+                var json = await stream.ReadToEndAsync();
                 return JArray.Parse(json);
             }
         }
 
-        private ModelBindingContext tryParseMessagesToContext(ModelBindingContext bindingContext, JArray jArray)
+        private void tryParseMessagesToContext(ModelBindingContext bindingContext, JArray jArray)
         {
             try
             {
@@ -51,8 +50,6 @@ namespace TheFipster.Munchkin.GameApi.Binders
             {
                 bindingContext.Result = ModelBindingResult.Failed();
             }
-
-            return bindingContext;
         }
 
         private IEnumerable<GameMessage> parseMessages(JArray jArray)
