@@ -11,6 +11,7 @@ namespace TheFipster.Munchkin.GameAbstractions
 
         Game AddMessage(Guid gameId, GameMessage message);
         Game AddMessages(Guid gameId, IEnumerable<GameMessage> messages);
+        Game Undo(Guid gameId);
 
         Game GetState(Guid gameId);
 

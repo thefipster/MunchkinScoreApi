@@ -1,4 +1,6 @@
-﻿using TheFipster.Munchkin.GameDomain.Exceptions;
+﻿using System;
+using TheFipster.Munchkin.GameDomain.Exceptions;
+using TheFipster.Munchkin.GameEngine;
 using TheFipster.Munchkin.TestFactory;
 using Xunit;
 
@@ -6,15 +8,24 @@ namespace TheFipster.Munchkin.GameEvents.UnitTest.Actions
 {
     public class StartActionTest
     {
+        private Quest _quest;
+        private Guid _gameId;
+
+        public StartActionTest()
+        {
+            _quest = QuestFactory.CreateStored(
+                out _, 
+                out _gameId);
+        }
+
         [Fact]
         public void StartGame_ResultsInBeginTimestampBeginSet_Test()
         {
             // Arrange
-            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var start = StartMessage.Create(1);
 
             // Act
-            var game = quest.AddMessage(gameId, start);
+            var game = _quest.AddMessage(_gameId, start);
 
             // Assert
             Assert.NotNull(game.Score.Begin);
@@ -25,12 +36,11 @@ namespace TheFipster.Munchkin.GameEvents.UnitTest.Actions
         public void StartGame_ThenUndoIt_ResultsInTimestampBeingSetToNull_Test()
         {
             // Arrange
-            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var start = StartMessage.Create(1);
 
             // Act
-            quest.AddMessage(gameId, start);
-            var game = quest.Undo(gameId);
+            _quest.AddMessage(_gameId, start);
+            var game = _quest.Undo(_gameId);
 
             // Assert
             Assert.Null(game.Score.Begin);
@@ -40,13 +50,12 @@ namespace TheFipster.Munchkin.GameEvents.UnitTest.Actions
         public void StartGameTwice_ThrowsException_Test()
         {
             // Arrange
-            var quest = QuestFactory.CreateStored(out var gameStore, out var gameId);
             var start = StartMessage.Create(1);
             var secondStart = StartMessage.Create(2);
 
             // Act & Assert
-            quest.AddMessage(gameId, start);
-            Assert.Throws<InvalidActionException>(() => quest.AddMessage(gameId, secondStart));
+            _quest.AddMessage(_gameId, start);
+            Assert.Throws<InvalidActionException>(() => _quest.AddMessage(_gameId, secondStart));
         }
     }
 }
