@@ -4,12 +4,14 @@ namespace TheFipster.Munchkin.GameStorage.LiteDb
 {
     public class Repository<T> : IRepository<T>
     {
-        private const string Filename = "games.litedb";
+        public const string Filename = "games.litedb";
 
         private readonly LiteDatabase _db;
 
         public Repository() =>
             _db = new LiteDatabase(Filename);
+
+        public void Dispose() => _db.Dispose();
 
         public LiteCollection<T> GetCollection() =>
             _db.GetCollection<T>();

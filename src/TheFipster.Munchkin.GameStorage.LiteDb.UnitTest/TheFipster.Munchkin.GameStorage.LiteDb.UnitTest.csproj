@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.GameEvents\TheFipster.Munchkin.GameEvents.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.TestFactory\TheFipster.Munchkin.TestFactory.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj" />
   </ItemGroup>
 
 </Project>

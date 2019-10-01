@@ -18,7 +18,6 @@ namespace TheFipster.Munchkin.GameApi.UnitTest.Controllers
         private PlayerController _controller;
         private Guid _userId;
         private string _userName;
-        private ControllerContext _context;
         private Player _jekyll;
         private Player _hyde;
 
