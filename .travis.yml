@@ -2,7 +2,7 @@ language: csharp
 mono: none
 sudo: required
 dist: xenial
-dotnet: 2.2
+dotnet: 3.0
 env:
   global:
     CC_TEST_REPORTER_ID=0ba4bd607bc05a1af3e1affef396cd876af2df5fc9a672c4afdb4e9a6a7795cc
