@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameStorage;
 
@@ -10,7 +11,7 @@ namespace TheFipster.Munchkin.GameApi.Extensions
     public static class SeedExtensions
     {
         public static void SynchronizeSeedData(
-            this IHostingEnvironment env, 
+            this IHostEnvironment env, 
             IConfiguration config, 
             ICardStore cardStore, 
             IMonsterStore monsterStore)

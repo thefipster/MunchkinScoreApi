@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Hosting;
+using TheFipster.Munchkin.GameApi.Binders;
 using TheFipster.Munchkin.GameApi.Extensions;
 using TheFipster.Munchkin.GameApi.Middlewares;
+using TheFipster.Munchkin.GameEvents;
 using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.GameApi
@@ -21,13 +23,17 @@ namespace TheFipster.Munchkin.GameApi
         {
             services.AddCorsPolicy(Configuration);
             services.AddOAuth();
-            services.AddMvcWithCustomBinders();
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+                options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
+            });
             services.AddDependecies();
         }
 
         public void Configure(
             IApplicationBuilder app, 
-            IHostingEnvironment env, 
+            IHostEnvironment env, 
             ICardStore cardStore, 
             IMonsterStore monsterStore)
         {
