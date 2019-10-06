@@ -43,13 +43,19 @@ namespace TheFipster.Munchkin.AuthApi
                 {
                     ClientId = "client-web",
                     ClientName = "Munchkin MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    AllowOfflineAccess = true,
                     RedirectUris = { "https://localhost:4001/signin-oidc" },
                     PostLogoutRedirectUris = { "https://localhost:4001/signout-callback-oidc" },
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "sample-api"
+                    },
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
                     }
                 }
             };
