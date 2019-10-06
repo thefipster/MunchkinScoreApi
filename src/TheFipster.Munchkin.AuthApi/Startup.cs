@@ -21,8 +21,8 @@ namespace TheFipster.Munchkin.AuthApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // uncomment, if you want to add an MVC-based UI
-            //services.AddControllersWithViews();
+            services.AddControllersWithViews();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
@@ -41,16 +41,10 @@ namespace TheFipster.Munchkin.AuthApi
             if (Environment.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            // uncomment if you want to support static files
-            //app.UseStaticFiles();
-
+            app.UseStaticFiles();
             app.UseIdentityServer();
+            app.UseMvcWithDefaultRoute();
 
-            // uncomment, if you want to add an MVC-based UI
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapDefaultControllerRoute();
-            //});
         }
     }
 }

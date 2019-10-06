@@ -58,7 +58,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleContext", "SampleCont
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientConsole", "ClientConsole", "{CC7CC3A9-795D-4E39-B5A8-860BD5A64D36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.ClientConsole", "src\TheFipster.Munchkin.ClientConsole\TheFipster.Munchkin.ClientConsole.csproj", "{D9F9A9E2-C2E3-438D-9F87-C10E9AED3E65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.ClientConsole", "src\TheFipster.Munchkin.ClientConsole\TheFipster.Munchkin.ClientConsole.csproj", "{D9F9A9E2-C2E3-438D-9F87-C10E9AED3E65}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{92A5972D-ABBD-4102-BAD9-A2888F1E157D}"
 EndProject
@@ -67,6 +67,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.SampleApi", "src\TheFipster.Munchkin.SampleApi\TheFipster.Munchkin.SampleApi.csproj", "{9C9F48EF-20FE-489B-8B23-90180D1200CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameAbstractions", "src\TheFipster.Munchkin.GameAbstractions\TheFipster.Munchkin.GameAbstractions.csproj", "{3474D4D6-31CE-4BBF-9FE9-756860D9E662}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientWeb", "ClientWeb", "{6E7AD5FA-3238-4CC8-90A3-70CA7C62EBA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.ClientWeb", "src\TheFipster.Munchkin.ClientWeb\TheFipster.Munchkin.ClientWeb.csproj", "{55445FFD-0978-4AFC-90D1-1E038D8E2929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,6 +158,10 @@ Global
 		{3474D4D6-31CE-4BBF-9FE9-756860D9E662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3474D4D6-31CE-4BBF-9FE9-756860D9E662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3474D4D6-31CE-4BBF-9FE9-756860D9E662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55445FFD-0978-4AFC-90D1-1E038D8E2929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55445FFD-0978-4AFC-90D1-1E038D8E2929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55445FFD-0978-4AFC-90D1-1E038D8E2929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55445FFD-0978-4AFC-90D1-1E038D8E2929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +194,8 @@ Global
 		{D9F9A9E2-C2E3-438D-9F87-C10E9AED3E65} = {CC7CC3A9-795D-4E39-B5A8-860BD5A64D36}
 		{9C9F48EF-20FE-489B-8B23-90180D1200CE} = {0EA969C8-C0F3-48D8-AAAC-483FF5300236}
 		{3474D4D6-31CE-4BBF-9FE9-756860D9E662} = {E8C1BCE8-4A9D-4229-B953-06991E99462C}
+		{6E7AD5FA-3238-4CC8-90A3-70CA7C62EBA8} = {8DA97AC8-F5B1-41D8-91D1-0AC767A94B89}
+		{55445FFD-0978-4AFC-90D1-1E038D8E2929} = {6E7AD5FA-3238-4CC8-90A3-70CA7C62EBA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}
