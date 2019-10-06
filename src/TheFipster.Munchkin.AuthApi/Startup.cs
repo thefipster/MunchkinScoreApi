@@ -11,11 +11,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
 namespace TheFipster.Munchkin.AuthApi
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public IWebHostEnvironment Environment { get; }
