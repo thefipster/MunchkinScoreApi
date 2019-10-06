@@ -1,4 +1,0 @@
-2019-10-07 01:11:12.594 +02:00 [INF] Seeding database...
-2019-10-07 01:11:13.977 +02:00 [DBG] alice created
-2019-10-07 01:11:14.012 +02:00 [DBG] bob created
-2019-10-07 01:11:14.014 +02:00 [INF] Done seeding database.
