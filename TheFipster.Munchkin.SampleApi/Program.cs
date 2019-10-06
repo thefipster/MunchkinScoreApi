@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System.IO;
 
-namespace TheFipster.Munchkin.AuthApi
+namespace TheFipster.Munchkin.SampleApi
 {
     public class Program
     {

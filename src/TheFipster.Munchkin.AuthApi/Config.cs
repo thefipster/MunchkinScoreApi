@@ -20,7 +20,8 @@ namespace TheFipster.Munchkin.AuthApi
         public static IEnumerable<ApiResource> GetApis()
         {
             return new ApiResource[] {
-                new ApiResource("game-api", "Munchking Game API")
+                new ApiResource("game-api", "Munchking Game API"),
+                new ApiResource("sample-api", "Munchking Sample API")
             };
         }
 
@@ -29,9 +30,9 @@ namespace TheFipster.Munchkin.AuthApi
             return new Client[] {
                 new Client
                 {
-                    AllowedScopes = { "game-api" },
+                    AllowedScopes = { "sample-api" },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientId = "client",
+                    ClientId = "console-client",
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())

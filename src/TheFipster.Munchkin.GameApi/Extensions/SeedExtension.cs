@@ -1,7 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameStorage;
 
@@ -11,9 +10,9 @@ namespace TheFipster.Munchkin.GameApi.Extensions
     public static class SeedExtensions
     {
         public static void SynchronizeSeedData(
-            this IHostEnvironment env, 
-            IConfiguration config, 
-            ICardStore cardStore, 
+            this IHostEnvironment env,
+            IConfiguration config,
+            ICardStore cardStore,
             IMonsterStore monsterStore)
         {
             sync(config, cardStore, CardCollection.Classes);
@@ -30,7 +29,7 @@ namespace TheFipster.Munchkin.GameApi.Extensions
         }
 
         private static void syncMonsters(
-            IConfiguration config, 
+            IConfiguration config,
             IMonsterStore monsterStore)
         {
             var MonsterNames = config.GetArray(Monster.Collection);
@@ -42,8 +41,8 @@ namespace TheFipster.Munchkin.GameApi.Extensions
         }
 
         private static void sync(
-            IConfiguration config, 
-            ICardStore cardStore, 
+            IConfiguration config,
+            ICardStore cardStore,
             string collectionName)
         {
             var cards = config.GetArray(collectionName);

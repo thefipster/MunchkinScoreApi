@@ -2,11 +2,11 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace TheFipster.Munchkin.AuthApi
 {
@@ -30,21 +30,15 @@ namespace TheFipster.Munchkin.AuthApi
                 .AddInMemoryClients(Config.GetClients());
 
             if (Environment.IsDevelopment())
-            {
                 builder.AddDeveloperSigningCredential();
-            }
             else
-            {
                 throw new Exception("need to configure key material");
-            }
         }
 
         public void Configure(IApplicationBuilder app)
         {
             if (Environment.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
             // uncomment if you want to support static files
             //app.UseStaticFiles();
