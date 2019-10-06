@@ -33,12 +33,14 @@ namespace TheFipster.Munchkin.ClientConsole
 
         private static async Task<TokenResponse> requestAuthToken()
         {
-            var tokenResponse = await client.RequestClientCredentialsTokenAsync(
-                new ClientCredentialsTokenRequest
+            var tokenResponse = await client.RequestPasswordTokenAsync(
+                new PasswordTokenRequest
                 {
                     Address = disco.TokenEndpoint,
                     ClientId = "console-client",
                     ClientSecret = "secret",
+                    UserName = "Alice",
+                    Password = "password",
                     Scope = "sample-api"
                 });
 
