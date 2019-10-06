@@ -9,8 +9,13 @@ namespace TheFipster.Munchkin.AuthApi
 {
     public class Program
     {
-        public static void Main(string[] args) => WebHost
-            .CreateDefaultBuilder(args)
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
                 config
                     .SetBasePath(Directory.GetCurrentDirectory())
@@ -22,7 +27,6 @@ namespace TheFipster.Munchkin.AuthApi
                     .ReadFrom
                     .Configuration(hostingContext.Configuration))
             .UseStartup<Startup>()
-            .Build()
-            .Run();
+            .Build();
     }
 }
