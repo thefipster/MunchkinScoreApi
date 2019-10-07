@@ -32,12 +32,6 @@ namespace TheFipster.Munchkin.IdentityApi
         {
             services.AddControllersWithViews();
 
-            services.Configure<IISOptions>(iis =>
-            {
-                iis.AuthenticationDisplayName = "Windows";
-                iis.AutomaticAuthentication = false;
-            });
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -69,20 +63,23 @@ namespace TheFipster.Munchkin.IdentityApi
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    // register your IdentityServer with Google at https://console.developers.google.com
-                    // enable the Google+ API
-                    // set the redirect URI to http://localhost:5000/signin-google
-                    options.ClientId = "copy client ID from Google here";
-                    options.ClientSecret = "copy client secret from Google here";
+                    options.ClientId = "390759120229-s7elaibviimip01p8kgsbee4i4td8inh.apps.googleusercontent.com";
+                    options.ClientSecret = "-ux0M7KqDRAP05ASIwfx5jt3";
                 });
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
-            if (Environment.IsDevelopment())
+            app.UseHttpsRedirection();
+
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             app.UseStaticFiles();

@@ -72,13 +72,16 @@ namespace TheFipster.Munchkin.AuthApi
                 throw new Exception("need to configure key material");
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             InitializeDatabase(app);
 
-            if (Environment.IsDevelopment())
+            if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
+            else
+                app.UseHsts();
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseIdentityServer();
             app.UseMvcWithDefaultRoute();
