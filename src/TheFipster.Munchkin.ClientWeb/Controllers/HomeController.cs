@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Net.Http;
@@ -40,6 +41,15 @@ namespace TheFipster.Munchkin.ClientWeb.Controllers
             var content = await client.GetStringAsync("https://localhost:5999/api/identity");
 
             var json = JArray.Parse(content).ToString();
+            return Content(json);
+        }
+
+        public async Task<IActionResult> IsAuthenticated()
+        {
+            var client = new HttpClient();
+            var content = await client.GetStringAsync("https://localhost:5999/api/identity/authenticated");
+
+            var json = JsonConvert.DeserializeObject(content).ToString();
             return Content(json);
         }
 

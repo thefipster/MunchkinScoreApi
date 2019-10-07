@@ -39,6 +39,17 @@ namespace TheFipster.Munchkin.IdentityApi
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod().AllowCredentials();
+                });
+            });
+
             var builder = services.AddIdentityServer(options =>
                 {
                     options.Events.RaiseErrorEvents = true;
@@ -71,6 +82,7 @@ namespace TheFipster.Munchkin.IdentityApi
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             app.UseHttpsRedirection();
+            app.UseCors("default");
 
             if (env.IsDevelopment())
             {

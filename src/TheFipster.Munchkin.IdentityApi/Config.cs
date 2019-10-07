@@ -56,6 +56,24 @@ namespace TheFipster.Munchkin.IdentityApi
                     {
                         new Secret("secret".Sha256())
                     }
+                },
+                new Client
+                {
+                    ClientId = "game-spa",
+                    ClientName = "Gaming Angular Frontend",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    RedirectUris =           { "http://localhost:4200" },
+                    PostLogoutRedirectUris = { "http://localhost:4200" },
+                    AllowedCorsOrigins =     { "http://localhost:4200" },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "sample-api",
+                        "game-api",
+                    }
                 }
             };
     }

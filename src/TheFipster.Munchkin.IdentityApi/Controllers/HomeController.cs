@@ -39,6 +39,8 @@ namespace IdentityServer4.Quickstart.UI
             return NotFound();
         }
 
+        public IActionResult IsAuthenticated() => new ObjectResult(User.Identity.IsAuthenticated);
+
         /// <summary>
         /// Shows the error page
         /// </summary>
