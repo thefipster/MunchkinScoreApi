@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.GameEvents.Abstractions\TheFipster.Munchkin.GameAbstractions.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.GameAbstractions\TheFipster.Munchkin.GameAbstractions.csproj" />
   </ItemGroup>
 
 </Project>
