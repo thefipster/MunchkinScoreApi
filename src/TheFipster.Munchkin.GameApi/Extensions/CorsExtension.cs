@@ -1,8 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TheFipster.Munchkin.GameApi.Extensions
 {
@@ -13,19 +12,13 @@ namespace TheFipster.Munchkin.GameApi.Extensions
 
         public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration configuration)
         {
-            var origins = configuration
-                .GetSection("AllowedOrigins")
-                .AsEnumerable()
-                .Where(x => !string.IsNullOrWhiteSpace(x.Value))
-                .Select(x => x.Value)
-                .ToArray();
-
+            var origins = configuration.GetArray("AllowedOrigins");
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicyName, policy => policy
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .WithOrigins(origins)
+                    .WithOrigins(origins.ToArray())
                     .AllowCredentials());
             });
 
