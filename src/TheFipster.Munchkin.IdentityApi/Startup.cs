@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
+using IdentityServer4;
 using TheFipster.Munchkin.IdentityApi.Config;
 using TheFipster.Munchkin.IdentityApi.Data;
 using TheFipster.Munchkin.IdentityApi.Models;
@@ -28,14 +29,19 @@ namespace TheFipster.Munchkin.IdentityApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizeFolder("/Account/Manage");
+                    options.Conventions.AuthorizePage("/Account/Logout");
+                });
 
             var corsOrigins = Clients
                 .Get()
@@ -54,17 +60,22 @@ namespace TheFipster.Munchkin.IdentityApi
                 });
             });
 
-            var builder = services.AddIdentityServer(options =>
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddConfigurationStore(options =>
                 {
-                    options.Events.RaiseErrorEvents = true;
-                    options.Events.RaiseInformationEvents = true;
-                    options.Events.RaiseFailureEvents = true;
-                    options.Events.RaiseSuccessEvents = true;
+                    options.ConfigureDbContext = builder =>
+                        builder.UseSqlite(Configuration.GetConnectionString("IdentityConnection"),
+                            db => db.MigrationsAssembly(migrationsAssembly));
                 })
-                .AddInMemoryIdentityResources(Resources.Get())
-                .AddInMemoryApiResources(Apis.Get())
-                .AddInMemoryClients(Clients.Get())
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                        builder.UseSqlite(Configuration.GetConnectionString("IdentityConnection"),
+                            db => db.MigrationsAssembly(migrationsAssembly));
+                });
 
             services.AddAuthentication()
                 .AddGoogle(options =>
@@ -72,11 +83,6 @@ namespace TheFipster.Munchkin.IdentityApi
                     options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
                     options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
                 });
-
-            if (Environment.IsDevelopment())
-                builder.AddDeveloperSigningCredential();
-            else
-                throw new Exception("need to configure key material");
         }
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
@@ -96,6 +102,7 @@ namespace TheFipster.Munchkin.IdentityApi
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseIdentityServer();
             app.UseEndpoints(endpoints =>
             {

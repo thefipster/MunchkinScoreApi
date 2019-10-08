@@ -47,6 +47,36 @@ namespace TheFipster.Munchkin.IdentityApi.Config
             },
             new Client
             {
+                ClientId = "client-spa",
+                ClientName = "Munchkin Angular Frontend",
+                AccessTokenType = AccessTokenType.Jwt,
+                AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
+                RequireClientSecret = false,
+                RedirectUris = 
+                { 
+                    "http://localhost:4200",
+                    "http://localhost:4200/silent-renew.html"
+                },
+                PostLogoutRedirectUris =
+                {
+                    "http://localhost:4200",
+                    "http://localhost:4200/unauthorized"
+                },
+                AllowedCorsOrigins =
+                {
+                    "http://localhost:4200"
+                },
+                AllowedScopes =
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email,
+                    "sample-api"
+                }
+            },
+            new Client
+            {
                 ClientId = "game-spa",
                 ClientName = "Gaming Angular Frontend",
                 AllowedGrantTypes = GrantTypes.Code,

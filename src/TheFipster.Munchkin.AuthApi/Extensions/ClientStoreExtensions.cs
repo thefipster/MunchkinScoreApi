@@ -3,7 +3,7 @@ using IdentityServer4.Stores;
 
 namespace TheFipster.Munchkin.AuthApi
 {
-    public static class Extensions
+    public static class ClientStoreExtensions
     {
         /// <summary>
         /// Determines whether the client is configured to use PKCE.
