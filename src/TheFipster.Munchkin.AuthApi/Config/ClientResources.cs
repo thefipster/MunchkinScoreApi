@@ -1,37 +1,24 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
+﻿using System.Collections.Generic;
 using IdentityServer4;
 using IdentityServer4.Models;
-using System.Collections.Generic;
 
-namespace TheFipster.Munchkin.IdentityApi
+namespace TheFipster.Munchkin.AuthApi.Config
 {
-    public static class Config
+    public static class ClientResources
     {
-        public static IEnumerable<IdentityResource> GetIdentityResources() =>
-            new IdentityResource[]
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
-            };
-
-        public static IEnumerable<ApiResource> GetApis() =>
-            new ApiResource[]
-            {
-                new ApiResource("game-api", "Munchking Game API"),
-                new ApiResource("sample-api", "Munchking Sample API")
-            };
-
-        public static IEnumerable<Client> GetClients() =>
-            new Client[]
+        public static IEnumerable<Client> Get() => new []
             {
                 new Client
                 {
                     ClientId = "console-client",
                     ClientName = "Munchkin Console Client",
-                    AllowedScopes = { "sample-api" },
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        "sample-api"
+                    },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets =
                     {
@@ -50,6 +37,7 @@ namespace TheFipster.Munchkin.IdentityApi
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
                         "sample-api"
                     },
                     ClientSecrets =
@@ -59,20 +47,32 @@ namespace TheFipster.Munchkin.IdentityApi
                 },
                 new Client
                 {
-                    ClientId = "game-spa",
-                    ClientName = "Gaming Angular Frontend",
+                    ClientId = "client-spa",
+                    ClientName = "Munchkin Angular Frontend",
+                    AccessTokenType = AccessTokenType.Jwt,
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
                     RequireClientSecret = false,
-                    RedirectUris =           { "http://localhost:4200" },
-                    PostLogoutRedirectUris = { "http://localhost:4200" },
-                    AllowedCorsOrigins =     { "http://localhost:4200" },
+                    RedirectUris = 
+                    { 
+                        "http://localhost:4200",
+                        "http://localhost:4200/silent-renew.html"
+                    },
+                    PostLogoutRedirectUris =
+                    {
+                        "http://localhost:4200",
+                        "http://localhost:4200/unauthorized"
+                    },
+                    AllowedCorsOrigins =
+                    {
+                        "http://localhost:4200"
+                    },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "sample-api",
-                        "game-api",
+                        IdentityServerConstants.StandardScopes.Email,
+                        "sample-api"
                     }
                 }
             };

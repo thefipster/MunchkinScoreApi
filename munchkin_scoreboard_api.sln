@@ -70,7 +70,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameAbs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientWeb", "ClientWeb", "{6E7AD5FA-3238-4CC8-90A3-70CA7C62EBA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.ClientWeb", "src\TheFipster.Munchkin.ClientWeb\TheFipster.Munchkin.ClientWeb.csproj", "{55445FFD-0978-4AFC-90D1-1E038D8E2929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.ClientWeb", "src\TheFipster.Munchkin.ClientWeb\TheFipster.Munchkin.ClientWeb.csproj", "{55445FFD-0978-4AFC-90D1-1E038D8E2929}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityContext", "IdentityContext", "{DA15C805-B2BC-4DE0-8990-BE23C3D2A027}"
 EndProject

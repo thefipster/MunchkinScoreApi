@@ -1,10 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using IdentityServer4;
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Mappers;
+﻿using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,24 +6,28 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using TheFipster.Munchkin.AuthApi.Config;
+using TheFipster.Munchkin.AuthApi.Data;
 
 namespace TheFipster.Munchkin.AuthApi
 {
     [ExcludeFromCodeCoverage]
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public IWebHostEnvironment Environment { get; }
 
-        public Startup(IWebHostEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
+            Configuration = configuration;
             Environment = environment;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            const string connectionString = "Data Source=identity.sqlite";
+            var connectionString = Configuration.GetConnectionString("IdentityConnection");
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddControllersWithViews();
@@ -43,7 +41,7 @@ namespace TheFipster.Munchkin.AuthApi
                     options.Events.RaiseFailureEvents = true;
                     options.Events.RaiseSuccessEvents = true;
                 })
-                .AddTestUsers(Config.GetUsers())
+                .AddTestUsers(UserResources.Get())
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = builder => builder.UseSqlite(
@@ -62,8 +60,8 @@ namespace TheFipster.Munchkin.AuthApi
                 .AddGoogle("Google", options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                    options.ClientId = "390759120229-s7elaibviimip01p8kgsbee4i4td8inh.apps.googleusercontent.com";
-                    options.ClientSecret = "-ux0M7KqDRAP05ASIwfx5jt3";
+                    options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
+                    options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
                 });
 
             if (Environment.IsDevelopment())
@@ -74,55 +72,16 @@ namespace TheFipster.Munchkin.AuthApi
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
-            InitializeDatabase(app);
-
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
                 app.UseHsts();
 
+            app.InitializeDatabase();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseIdentityServer();
             app.UseMvcWithDefaultRoute();
-
-        }
-
-        private void InitializeDatabase(IApplicationBuilder app)
-        {
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-
-                var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-                context.Database.Migrate();
-                if (!context.Clients.Any())
-                {
-                    foreach (var client in Config.GetClients())
-                    {
-                        context.Clients.Add(client.ToEntity());
-                    }
-                    context.SaveChanges();
-                }
-
-                if (!context.IdentityResources.Any())
-                {
-                    foreach (var resource in Config.GetIdentityResources())
-                    {
-                        context.IdentityResources.Add(resource.ToEntity());
-                    }
-                    context.SaveChanges();
-                }
-
-                if (!context.ApiResources.Any())
-                {
-                    foreach (var resource in Config.GetApis())
-                    {
-                        context.ApiResources.Add(resource.ToEntity());
-                    }
-                    context.SaveChanges();
-                }
-            }
         }
     }
 }

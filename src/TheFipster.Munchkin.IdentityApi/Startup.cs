@@ -1,16 +1,15 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Reflection;
+using IdentityServer4;
+using TheFipster.Munchkin.IdentityApi.Config;
 using TheFipster.Munchkin.IdentityApi.Data;
 using TheFipster.Munchkin.IdentityApi.Models;
 
@@ -30,52 +29,59 @@ namespace TheFipster.Munchkin.IdentityApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizeFolder("/Account/Manage");
+                    options.Conventions.AuthorizePage("/Account/Logout");
+                });
+
+            var corsOrigins = Clients
+                .Get()
+                .Where(x => x.AllowedCorsOrigins != null)
+                .SelectMany(x => x.AllowedCorsOrigins)
+                .ToArray();
 
             services.AddCors(options =>
             {
                 // this defines a CORS policy called "default"
                 options.AddPolicy("default", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200")
+                    policy.WithOrigins(corsOrigins)
                         .AllowAnyHeader()
                         .AllowAnyMethod().AllowCredentials();
                 });
             });
 
-            var builder = services.AddIdentityServer(options =>
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddConfigurationStore(options =>
                 {
-                    options.Events.RaiseErrorEvents = true;
-                    options.Events.RaiseInformationEvents = true;
-                    options.Events.RaiseFailureEvents = true;
-                    options.Events.RaiseSuccessEvents = true;
+                    options.ConfigureDbContext = builder =>
+                        builder.UseSqlite(Configuration.GetConnectionString("IdentityConnection"),
+                            db => db.MigrationsAssembly(migrationsAssembly));
                 })
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients())
-                .AddAspNetIdentity<ApplicationUser>();
-
-            if (Environment.IsDevelopment())
-            {
-                builder.AddDeveloperSigningCredential();
-            }
-            else
-            {
-                throw new Exception("need to configure key material");
-            }
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                        builder.UseSqlite(Configuration.GetConnectionString("IdentityConnection"),
+                            db => db.MigrationsAssembly(migrationsAssembly));
+                });
 
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "390759120229-s7elaibviimip01p8kgsbee4i4td8inh.apps.googleusercontent.com";
-                    options.ClientSecret = "-ux0M7KqDRAP05ASIwfx5jt3";
+                    options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
+                    options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
                 });
         }
 
@@ -95,10 +101,9 @@ namespace TheFipster.Munchkin.IdentityApi
             }
 
             app.UseStaticFiles();
-
             app.UseRouting();
-            app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseIdentityServer();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
