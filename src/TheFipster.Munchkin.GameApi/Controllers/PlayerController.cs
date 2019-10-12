@@ -1,7 +1,8 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Security.Claims;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameStorage;
 
@@ -63,7 +64,7 @@ namespace TheFipster.Munchkin.GameApi.Controllers
 
         private GameMaster getLoggedInUser()
         {
-            var idClaim = User.FindFirst("userId");
+            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             var userId = Guid.Parse(idClaim.Value);
             return _playerStore.Get(userId);
         }

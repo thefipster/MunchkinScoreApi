@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
-using System.Linq;
-using IdentityServer4.EntityFramework.DbContexts;
+﻿using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TheFipster.Munchkin.AuthApi.Config;
+using System.Linq;
+using TheFipster.Munchkin.IdentityApi.Config;
 
-namespace TheFipster.Munchkin.AuthApi.Data
+namespace TheFipster.Munchkin.IdentityApi.Data
 {
     public static class ApplicationBuilderExtensions
     {
@@ -20,7 +20,7 @@ namespace TheFipster.Munchkin.AuthApi.Data
                 context.Database.Migrate();
                 if (!context.Clients.Any())
                 {
-                    foreach (var client in ClientResources.Get())
+                    foreach (var client in Clients.Get())
                     {
                         context.Clients.Add(client.ToEntity());
                     }
@@ -29,7 +29,7 @@ namespace TheFipster.Munchkin.AuthApi.Data
 
                 if (!context.IdentityResources.Any())
                 {
-                    foreach (var resource in OpenIdResources.Get())
+                    foreach (var resource in Resources.Get())
                     {
                         context.IdentityResources.Add(resource.ToEntity());
                     }
@@ -38,7 +38,7 @@ namespace TheFipster.Munchkin.AuthApi.Data
 
                 if (!context.ApiResources.Any())
                 {
-                    foreach (var resource in ApiResources.Get())
+                    foreach (var resource in Apis.Get())
                     {
                         context.ApiResources.Add(resource.ToEntity());
                     }

@@ -22,16 +22,15 @@ namespace TheFipster.Munchkin.GameApi
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddCorsPolicy(Configuration)
-                .AddDependecies()
-                .AddControllers(options =>
-                {
-                    options.EnableEndpointRouting = false;
-                    options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
-                });
+                .AddMvcCore()
+                .AddAuthorization();
+
+            services.AddControllers(options =>
+            {
+                options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
+            });
 
             services
-                .AddAuthorization()
                 .AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -39,6 +38,10 @@ namespace TheFipster.Munchkin.GameApi
                     options.RequireHttpsMetadata = true;
                     options.Audience = "game-api";
                 });
+
+            services
+                .AddCorsPolicy(Configuration)
+                .AddDependecies();
         }
 
         public void Configure(
@@ -52,12 +55,17 @@ namespace TheFipster.Munchkin.GameApi
             else
                 app.UseHsts();
 
-            app.UseCorsPolicy()
-               .UseMiddleware<ExceptionMiddleware>()
-               .UseHttpsRedirection()
-               .UseAuthentication()
-               .UseAuthorization()
-               .UseMvcWithDefaultRoute();
+            app
+                .UseHttpsRedirection()
+                .UseCorsPolicy()
+                .UseMiddleware<ExceptionMiddleware>()
+                .UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
 
             env.SynchronizeSeedData(Configuration, cardStore, monsterStore);
         }

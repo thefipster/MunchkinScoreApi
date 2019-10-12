@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServer4.Models;
+using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.IdentityApi.Config
 {
     public static class Clients
     {
-        public static IEnumerable<Client> Get() => new []
+        public static IEnumerable<Client> Get() => new[]
         {
             new Client
             {
@@ -53,8 +53,8 @@ namespace TheFipster.Munchkin.IdentityApi.Config
                 AllowedGrantTypes = GrantTypes.Code,
                 RequirePkce = true,
                 RequireClientSecret = false,
-                RedirectUris = 
-                { 
+                RedirectUris =
+                {
                     "http://localhost:4200",
                     "http://localhost:4200/silent-renew.html"
                 },
@@ -80,9 +80,10 @@ namespace TheFipster.Munchkin.IdentityApi.Config
                 ClientId = "game-spa",
                 ClientName = "Gaming Angular Frontend",
                 AllowedGrantTypes = GrantTypes.Code,
+                RequireConsent = false,
                 RequirePkce = true,
                 RequireClientSecret = false,
-                RedirectUris = { "http://localhost:4200" },
+                RedirectUris = { "http://localhost:4200/callback" },
                 PostLogoutRedirectUris = { "http://localhost:4200" },
                 AllowedCorsOrigins = { "http://localhost:4200" },
                 AllowedScopes =
