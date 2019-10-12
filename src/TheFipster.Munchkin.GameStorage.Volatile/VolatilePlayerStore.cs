@@ -16,8 +16,8 @@ namespace TheFipster.Munchkin.GameStorage.Volatile
 
         public void Add(GameMaster gameMaster) => _players.Add(gameMaster);
 
-        public GameMaster Get(string email) => _players.FirstOrDefault(player => player.Email == email);
-
         public GameMaster Get(Guid gameMasterId) => _players.FirstOrDefault(player => player.Id == gameMasterId);
+
+        public GameMaster GetByExternalId(string externalId) => _players.FirstOrDefault(player => player.ExternalId == externalId);
     }
 }

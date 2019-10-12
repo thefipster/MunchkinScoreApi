@@ -19,12 +19,19 @@ namespace TheFipster.Munchkin.GameStorage.LiteDb
         public void Add(GameMaster gameMaster) =>
             _collection.Upsert(gameMaster);
 
-        public GameMaster Get(string email) =>
-            _collection.Find(x => x.Email == email).FirstOrDefault() 
-            ?? throw new UnknownPlayerException();
-
         public GameMaster Get(Guid playerId) =>
             _collection.Find(x => x.Id == playerId).FirstOrDefault()
             ?? throw new UnknownPlayerException();
+
+        public GameMaster GetByExternalId(string externalId) =>
+            _collection.Find(x => x.ExternalId == externalId).FirstOrDefault()
+            ?? throw new UnknownPlayerException();
+
+        public GameMaster Register(string name, string externalId, string email = null)
+        {
+            var gameMaster = new GameMaster(name, externalId, email);
+            _collection.Insert(gameMaster);
+            return gameMaster;
+        }
     }
 }

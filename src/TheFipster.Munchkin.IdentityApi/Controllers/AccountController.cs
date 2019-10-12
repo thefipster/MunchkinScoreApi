@@ -50,6 +50,7 @@ namespace IdentityServer4.Quickstart.UI
         {
             // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
+            vm.EnableLocalLogin = false;
 
             if (vm.IsExternalLoginOnly)
             {

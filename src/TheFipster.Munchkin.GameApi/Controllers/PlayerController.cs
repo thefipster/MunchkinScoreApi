@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using TheFipster.Munchkin.GameDomain;
+using TheFipster.Munchkin.GameDomain.Exceptions;
 using TheFipster.Munchkin.GameStorage;
 
 namespace TheFipster.Munchkin.GameApi.Controllers
@@ -14,6 +15,10 @@ namespace TheFipster.Munchkin.GameApi.Controllers
     {
         private readonly IPlayerStore _playerStore;
 
+        private string ExternalId => User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        private string Name => User.FindFirst("name")?.Value;
+        private string Email => User.FindFirst(ClaimTypes.Email)?.Value;
+
         public PlayerController(IPlayerStore playerStore)
         {
             _playerStore = playerStore;
@@ -21,28 +26,37 @@ namespace TheFipster.Munchkin.GameApi.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetOrCreate()
         {
-            var player = getLoggedInUser();
-            return Ok(player);
+            try
+            {
+                var gameMaster = _playerStore.GetByExternalId(ExternalId);
+                return Ok(gameMaster);
+            }
+            catch (UnknownPlayerException)
+            {
+                var gameMaster = _playerStore.Register(Name, ExternalId, Email);
+                var url = Url.Action(nameof(GetOrCreate));
+                return Created(url, gameMaster);
+            }
         }
 
         [Authorize]
         [HttpGet("pool")]
         public IActionResult GetPool()
         {
-            var player = getLoggedInUser();
-            return Ok(player.PlayerPool);
+            var gameMaster = _playerStore.GetByExternalId(ExternalId);
+            return Ok(gameMaster.PlayerPool);
         }
 
         [Authorize]
-        [HttpPut]
-        public IActionResult Put(GameMaster gameMaster)
+        [HttpPost("update")]
+        public IActionResult PostProfile(GameMaster gameMaster)
         {
             var storedGameMaster = _playerStore.Get(gameMaster.Id);
             gameMaster.PlayerPool = storedGameMaster.PlayerPool;
             _playerStore.Add(gameMaster);
-            var url = Url.Action(nameof(Get));
+            var url = Url.Action(nameof(GetOrCreate));
             return Created(url, gameMaster);
         }
 
@@ -50,7 +64,7 @@ namespace TheFipster.Munchkin.GameApi.Controllers
         [HttpPost("friend")]
         public IActionResult PostNewFriend(Player friend)
         {
-            var gameMaster = getLoggedInUser();
+            var gameMaster = _playerStore.GetByExternalId(ExternalId);
             if (gameMaster.PlayerPool.Any(x => x.Name == friend.Name))
                 return BadRequest("You already have a friend with that name.");
 
@@ -58,15 +72,8 @@ namespace TheFipster.Munchkin.GameApi.Controllers
             gameMaster.PlayerPool.Add(friend);
             _playerStore.Add(gameMaster);
 
-            var url = Url.Action(nameof(Get));
+            var url = Url.Action(nameof(GetOrCreate));
             return Created(url, gameMaster);
-        }
-
-        private GameMaster getLoggedInUser()
-        {
-            var idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            var userId = Guid.Parse(idClaim.Value);
-            return _playerStore.Get(userId);
         }
     }
 }

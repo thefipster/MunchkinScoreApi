@@ -6,7 +6,8 @@ namespace TheFipster.Munchkin.GameStorage
     public interface IPlayerStore
     {
         void Add(GameMaster gameMaster);
-        GameMaster Get(string email);
+        GameMaster GetByExternalId(string externalId);
         GameMaster Get(Guid gameMasterId);
+        GameMaster Register(string name, string externalId, string email = null);
     }
 }
