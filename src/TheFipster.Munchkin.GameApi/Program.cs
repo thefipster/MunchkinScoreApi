@@ -8,12 +8,14 @@ namespace TheFipster.Munchkin.GameApi
     [ExcludeFromCodeCoverage]
     public class Program
     {
-        public static void Main(string[] args) => WebHost
+        public static void Main(string[] args) =>
+            BuildWebHost(args).Run();
+
+        public static IWebHost BuildWebHost(string[] args) => WebHost
             .CreateDefaultBuilder(args)
             .UseConfig(args)
             .UseSerilog()
             .UseStartup<Startup>()
-            .Build()
-            .Run();
+            .Build();
     }
 }

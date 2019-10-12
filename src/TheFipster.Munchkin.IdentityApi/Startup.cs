@@ -1,8 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using TheFipster.Munchkin.IdentityApi.Config;
 using TheFipster.Munchkin.IdentityApi.Data;
 using TheFipster.Munchkin.IdentityApi.Models;
 
@@ -30,47 +28,61 @@ namespace TheFipster.Munchkin.IdentityApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            var builder = services.AddIdentityServer(options =>
-                {
-                    options.Events.RaiseErrorEvents = true;
-                    options.Events.RaiseInformationEvents = true;
-                    options.Events.RaiseFailureEvents = true;
-                    options.Events.RaiseSuccessEvents = true;
-                })
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients())
-                .AddAspNetIdentity<ApplicationUser>();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
-            if (Environment.IsDevelopment())
+            var corsOrigins = Clients
+                .Get()
+                .Where(x => x.AllowedCorsOrigins != null)
+                .SelectMany(x => x.AllowedCorsOrigins)
+                .ToArray();
+
+            services.AddCors(options =>
             {
-                builder.AddDeveloperSigningCredential();
-            }
-            else
+                // this defines a CORS policy called "default"
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins(corsOrigins)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod().AllowCredentials();
+                });
+            });
+
+            var builder = services.AddIdentityServer(options =>
             {
-                throw new Exception("need to configure key material");
-            }
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+            })
+                .AddInMemoryIdentityResources(Resources.Get())
+                .AddInMemoryApiResources(Apis.Get())
+                .AddInMemoryClients(Clients.Get())
+                .AddAspNetIdentity<ApplicationUser>();
 
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "390759120229-s7elaibviimip01p8kgsbee4i4td8inh.apps.googleusercontent.com";
-                    options.ClientSecret = "-ux0M7KqDRAP05ASIwfx5jt3";
+                    options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
+                    options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
                 });
+
+            if (Environment.IsDevelopment())
+                builder.AddDeveloperSigningCredential();
+            else
+                throw new Exception("need to configure key material");
         }
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             app.UseHttpsRedirection();
+            app.UseCors("default");
 
             if (env.IsDevelopment())
             {
@@ -83,14 +95,8 @@ namespace TheFipster.Munchkin.IdentityApi
             }
 
             app.UseStaticFiles();
-
-            app.UseRouting();
             app.UseIdentityServer();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 using TheFipster.Munchkin.GameApi.Binders;
 using TheFipster.Munchkin.GameApi.Extensions;
 using TheFipster.Munchkin.GameApi.Middlewares;
@@ -21,20 +21,33 @@ namespace TheFipster.Munchkin.GameApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCorsPolicy(Configuration);
-            services.AddOAuth();
-            services.AddMvc(options =>
+            services
+                .AddMvcCore()
+                .AddAuthorization();
+
+            services.AddControllers(options =>
             {
-                options.EnableEndpointRouting = false;
                 options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
             });
-            services.AddDependecies();
+
+            services
+                .AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:5001";
+                    options.RequireHttpsMetadata = true;
+                    options.Audience = "game-api";
+                });
+
+            services
+                .AddCorsPolicy(Configuration)
+                .AddDependecies();
         }
 
         public void Configure(
-            IApplicationBuilder app, 
-            IHostEnvironment env, 
-            ICardStore cardStore, 
+            IApplicationBuilder app,
+            IHostEnvironment env,
+            ICardStore cardStore,
             IMonsterStore monsterStore)
         {
             if (env.IsDevelopment())
@@ -42,11 +55,18 @@ namespace TheFipster.Munchkin.GameApi
             else
                 app.UseHsts();
 
-            app.UseCorsPolicy();
-            app.UseMiddleware<ExceptionMiddleware>();
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseMvcWithDefaultRoute();
+            app
+                .UseHttpsRedirection()
+                .UseCorsPolicy()
+                .UseMiddleware<ExceptionMiddleware>()
+                .UseRouting()
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
+
             env.SynchronizeSeedData(Configuration, cardStore, monsterStore);
         }
     }
