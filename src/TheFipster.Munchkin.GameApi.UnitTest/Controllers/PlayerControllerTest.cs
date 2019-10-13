@@ -50,7 +50,7 @@ namespace TheFipster.Munchkin.GameApi.UnitTest.Controllers
         [Fact]
         public void CallGetAction_ResultsInBonnieBeingReturned_Test()
         {
-            var result = _controller.Get() as OkObjectResult;
+            var result = _controller.GetOrCreate() as OkObjectResult;
 
             result.Should().NotBeNull();
             result.Value.Should().NotBeNull();

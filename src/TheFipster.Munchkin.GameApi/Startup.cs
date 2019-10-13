@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,13 +23,20 @@ namespace TheFipster.Munchkin.GameApi
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddMvcCore()
-                .AddAuthorization();
+                .AddAuthorization()
+                .AddMvc(options =>
+                {
+                    options.EnableEndpointRouting = false;
+                    options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            services.AddControllers(options =>
-            {
-                options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
-            });
+
+            services
+                .AddControllers(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
+                });
 
             services
                 .AddAuthentication("Bearer")
@@ -66,8 +74,6 @@ namespace TheFipster.Munchkin.GameApi
                 {
                     endpoints.MapControllers();
                 });
-
-            env.SynchronizeSeedData(Configuration, cardStore, monsterStore);
         }
     }
 }

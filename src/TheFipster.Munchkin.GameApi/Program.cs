@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Serilog;
 using System.Diagnostics.CodeAnalysis;
-using TheFipster.Munchkin.GameApi.Extensions;
+using System.IO;
 
 namespace TheFipster.Munchkin.GameApi
 {
@@ -9,12 +11,20 @@ namespace TheFipster.Munchkin.GameApi
     public class Program
     {
         public static void Main(string[] args) =>
-            BuildWebHost(args).Run();
+            CreateHostBuilder(args).Run();
 
-        public static IWebHost BuildWebHost(string[] args) => WebHost
+        public static IWebHost CreateHostBuilder(string[] args) => WebHost
             .CreateDefaultBuilder(args)
-            .UseConfig(args)
-            .UseSerilog()
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.SetBasePath(Directory.GetCurrentDirectory());
+                config.AddJsonFile("appsettings.json");
+                config.AddEnvironmentVariables();
+                config.AddCommandLine(args);
+            })
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom
+                .Configuration(hostingContext.Configuration))
             .UseStartup<Startup>()
             .Build();
     }

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.GameAbstractions;
 using TheFipster.Munchkin.GameDomain;
 using TheFipster.Munchkin.GameEngine;
@@ -11,8 +10,7 @@ using TheFipster.Munchkin.GameStorage.LiteDb;
 
 namespace TheFipster.Munchkin.GameApi.Extensions
 {
-    [ExcludeFromCodeCoverage]
-    public static class InjectionExtension
+    public static class DependencyExtension
     {
         public static IServiceCollection AddDependecies(this IServiceCollection services)
         {
@@ -39,4 +37,3 @@ namespace TheFipster.Munchkin.GameApi.Extensions
         }
     }
 }
-    
