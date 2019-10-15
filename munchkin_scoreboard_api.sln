@@ -66,6 +66,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StashContext", "StashContex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashApi", "src\TheFipster.Munchkin.StashApi\TheFipster.Munchkin.StashApi.csproj", "{671466D5-39FC-4B8B-8A61-764CE901C59A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.StashRepository", "src\TheFipster.Munchkin.StashRepository\TheFipster.Munchkin.StashRepository.csproj", "{D08FC791-4128-4485-82C5-F1C5F2B919A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.StashConsole", "src\TheFipster.Munchkin.StashConsole\TheFipster.Munchkin.StashConsole.csproj", "{BB79D507-FD51-4220-A762-D50875C13912}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +156,14 @@ Global
 		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB79D507-FD51-4220-A762-D50875C13912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB79D507-FD51-4220-A762-D50875C13912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB79D507-FD51-4220-A762-D50875C13912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB79D507-FD51-4220-A762-D50875C13912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,6 +196,8 @@ Global
 		{67498789-6096-48E5-A093-6B9D4227DD39} = {DA15C805-B2BC-4DE0-8990-BE23C3D2A027}
 		{A2FAE9B4-31EF-43DF-B265-4EB34240B73C} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{671466D5-39FC-4B8B-8A61-764CE901C59A} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
+		{BB79D507-FD51-4220-A762-D50875C13912} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}
