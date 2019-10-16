@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using TheFipster.Munchkin.GameApi.Controllers;
 using TheFipster.Munchkin.GameDomain;
@@ -16,7 +15,7 @@ namespace TheFipster.Munchkin.GameApi.UnitTest.Controllers
         private GameMaster _clyde;
         private VolatilePlayerStore _playerStore;
         private PlayerController _controller;
-        private Guid _userId;
+        private string _externalId;
         private string _userName;
         private Player _jekyll;
         private Player _hyde;
@@ -39,12 +38,12 @@ namespace TheFipster.Munchkin.GameApi.UnitTest.Controllers
             _playerStore.Add(_clyde);
 
 
-            _userId = _bonnie.Id;
+            _externalId = _bonnie.ExternalId;
             _userName = _bonnie.Name;
 
             _controller = new PlayerController(_playerStore);
-            _controller.ControllerContext = 
-                ControllerContextFactory.CreateWithUserContext(_userId, _userName);
+            _controller.ControllerContext =
+                ControllerContextFactory.CreateWithUserContext(_externalId, _userName);
         }
 
         [Fact]

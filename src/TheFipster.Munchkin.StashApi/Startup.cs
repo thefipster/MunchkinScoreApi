@@ -1,13 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TheFipster.Munchkin.StashDatabase;
+using TheFipster.Munchkin.StashDomain;
+using TheFipster.Munchkin.StashRepository.Abstractions;
+using TheFipster.Munchkin.StashRepository.Components;
 
 namespace StashApi
 {
@@ -22,7 +21,15 @@ namespace StashApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
+
+            services.AddSingleton<IContext>((_) => new Context(Configuration.GetConnectionString("StashContext")));
+            services.AddTransient<IRead<Monster>, LiteReader<Monster>>();
+            services.AddTransient<IRead<Curse>, LiteReader<Curse>>();
+            services.AddTransient<IRead<Dungeon>, LiteReader<Dungeon>>();
+            services.AddTransient<ISave<Monster>, LiteWriter<Monster>>();
+            services.AddTransient<ISave<Curse>, LiteWriter<Curse>>();
+            services.AddTransient<ISave<Dungeon>, LiteWriter<Dungeon>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,9 +49,7 @@ namespace StashApi
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

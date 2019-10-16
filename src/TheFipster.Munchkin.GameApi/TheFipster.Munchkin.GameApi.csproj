@@ -25,10 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

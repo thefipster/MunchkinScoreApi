@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.StashRepository\TheFipster.Munchkin.StashRepository.csproj" />
+  </ItemGroup>
+
 </Project>

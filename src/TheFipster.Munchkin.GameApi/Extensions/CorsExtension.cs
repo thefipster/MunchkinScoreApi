@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TheFipster.Munchkin.Configuration;
 
 namespace TheFipster.Munchkin.GameApi.Extensions
 {

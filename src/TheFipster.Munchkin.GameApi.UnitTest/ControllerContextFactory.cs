@@ -7,13 +7,13 @@ namespace TheFipster.Munchkin.GameApi.UnitTest
 {
     public class ControllerContextFactory
     {
-        public static ControllerContext CreateWithUserContext(Guid userId, string userName)
+        public static ControllerContext CreateWithUserContext(string externalId, string userName)
         {
             var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Name, userName),
-                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                new Claim("userId", userId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, externalId),
+                new Claim("userId", externalId.ToString()),
             }, "mock"));
 
             return new ControllerContext()
