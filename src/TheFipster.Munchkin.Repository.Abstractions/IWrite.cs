@@ -1,7 +1,7 @@
 ﻿namespace TheFipster.Munchkin.StashRepository.Abstractions
 {
-    public interface ISave<TEntity>
+    public interface IWrite<TEntity>
     {
-        void Save(TEntity entity);
+        void Write(TEntity entity);
     }
 }

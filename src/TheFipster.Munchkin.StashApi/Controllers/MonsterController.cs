@@ -11,10 +11,10 @@ namespace TheFipster.Munchkin.StashApi.Controllers
     public class MonsterController : ControllerBase
     {
         private readonly IRead<Monster> _monsterReader;
-        private readonly ISave<Monster> _monsterWriter;
+        private readonly IWrite<Monster> _monsterWriter;
         private readonly ILogger<MonsterController> _logger;
 
-        public MonsterController(IRead<Monster> monsterReader, ISave<Monster> monsterSaver, ILogger<MonsterController> logger)
+        public MonsterController(IRead<Monster> monsterReader, IWrite<Monster> monsterSaver, ILogger<MonsterController> logger)
         {
 
             _monsterReader = monsterReader;
@@ -25,14 +25,14 @@ namespace TheFipster.Munchkin.StashApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Monster>> Get()
         {
-            var monsters = _monsterReader.GetAll();
+            var monsters = _monsterReader.FindAll();
             return Ok(monsters);
         }
 
         [HttpGet("{name}")]
         public ActionResult<Monster> Get(string name)
         {
-            var monster = _monsterReader.GetOne(name);
+            var monster = _monsterReader.FindOne(name);
 
             if (monster == null)
                 return NotFound();
@@ -43,7 +43,7 @@ namespace TheFipster.Munchkin.StashApi.Controllers
         [HttpPost]
         public IActionResult Post(Monster monster)
         {
-            _monsterWriter.Save(monster);
+            _monsterWriter.Write(monster);
             var url = Url.Action(nameof(Get), new { name = monster.Name });
             return Created(url, monster);
         }

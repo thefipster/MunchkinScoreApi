@@ -70,13 +70,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashRe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Repository.Abstractions", "src\TheFipster.Munchkin.Repository.Abstractions\TheFipster.Munchkin.Repository.Abstractions.csproj", "{149563DE-9FC3-4983-8D9D-278A5019330E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.StashDomain", "src\TheFipster.Munchkin.StashDomain\TheFipster.Munchkin.StashDomain.csproj", "{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashDomain", "src\TheFipster.Munchkin.StashDomain\TheFipster.Munchkin.StashDomain.csproj", "{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Logging.Api", "src\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj", "{AE6DC68A-E167-4244-B5B8-928FAB395292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Logging.Api", "src\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj", "{AE6DC68A-E167-4244-B5B8-928FAB395292}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashDatabase", "src\TheFipster.Munchkin.StashDatabase\TheFipster.Munchkin.StashDatabase.csproj", "{48A90661-0299-4888-90CA-0AC274CE271B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Configuration", "src\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj", "{1BFBED14-164D-4311-BBCA-3218269D1E30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.DependencyInjection", "src\TheFipster.Munchkin.DependencyInjection\TheFipster.Munchkin.DependencyInjection.csproj", "{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -188,6 +190,10 @@ Global
 		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -212,7 +218,6 @@ Global
 		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 		{E8C1BCE8-4A9D-4229-B953-06991E99462C} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{5A20D622-FB1F-49AC-BBBD-585D42669AC0} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
-		{7D3D7832-2924-43F6-BA05-054CC58EC5C2} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{0EA969C8-C0F3-48D8-AAAC-483FF5300236} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{9C9F48EF-20FE-489B-8B23-90180D1200CE} = {0EA969C8-C0F3-48D8-AAAC-483FF5300236}
 		{3474D4D6-31CE-4BBF-9FE9-756860D9E662} = {E8C1BCE8-4A9D-4229-B953-06991E99462C}
@@ -226,6 +231,7 @@ Global
 		{AE6DC68A-E167-4244-B5B8-928FAB395292} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
 		{48A90661-0299-4888-90CA-0AC274CE271B} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
 		{1BFBED14-164D-4311-BBCA-3218269D1E30} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}

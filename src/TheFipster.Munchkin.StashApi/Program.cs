@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using TheFipster.Munchkin.Configuration;
 using TheFipster.Munchkin.Logging.Api;
 
 namespace StashApi
@@ -13,6 +14,7 @@ namespace StashApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseAppSettings();
                     webBuilder.UseLogging();
                     webBuilder.UseStartup<Startup>();
                 });

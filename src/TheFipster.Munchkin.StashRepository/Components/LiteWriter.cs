@@ -1,25 +1,17 @@
 ﻿using LiteDB;
-using Microsoft.Extensions.Logging;
 using TheFipster.Munchkin.StashDatabase;
 using TheFipster.Munchkin.StashRepository.Abstractions;
 
 namespace TheFipster.Munchkin.StashRepository.Components
 {
-    public class LiteWriter<TEntity> : ISave<TEntity>
+    public class LiteWriter<TEntity> : IWrite<TEntity>
     {
-        private readonly ILogger<LiteWriter<TEntity>> _logger;
-        private readonly LiteCollection<TEntity> _collection;
+        private readonly LiteCollection<TEntity> collection;
 
-        public LiteWriter(IContext context, ILogger<LiteWriter<TEntity>> logger)
-        {
-            _logger = logger;
-            _collection = context.GetCollection<TEntity>();
-        }
+        public LiteWriter(IContext context) =>
+            collection = context.GetCollection<TEntity>();
 
-        public void Save(TEntity entity)
-        {
-            _collection.Upsert(entity);
-            _logger.LogInformation("Save {EntityName} completed", entity.GetType().Name);
-        }
+        public void Write(TEntity entity) =>
+            collection.Upsert(entity);
     }
 }
