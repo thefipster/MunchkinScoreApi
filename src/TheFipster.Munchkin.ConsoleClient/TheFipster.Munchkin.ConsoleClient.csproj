@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>munchkin</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheFipster.Munchkin.Cli.HealthPlugin\TheFipster.Munchkin.Cli.HealthPlugin.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Console.StashPlugin\TheFipster.Munchkin.Console.StashPlugin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data\monsters.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

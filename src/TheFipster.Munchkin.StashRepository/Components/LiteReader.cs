@@ -7,20 +7,20 @@ using TheFipster.Munchkin.StashRepository.Abstractions;
 
 namespace TheFipster.Munchkin.StashRepository.Components
 {
-    public class LiteReader<TEntity> : IRead<TEntity>
+    public class LiteReader<Card> : IRead<Card>
     {
-        private readonly LiteCollection<TEntity> collection;
+        private readonly LiteCollection<Card> collection;
 
         public LiteReader(IContext context) =>
-            collection = context.GetCollection<TEntity>();
+            collection = context.GetCollection<Card>();
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filter) =>
+        public IEnumerable<Card> Find(Expression<Func<Card, bool>> filter) =>
             collection.Find(filter);
 
-        public IEnumerable<TEntity> FindAll() =>
+        public IEnumerable<Card> FindAll() =>
             collection.FindAll();
 
-        public TEntity FindOne(string identifier) =>
+        public Card FindOne(string identifier) =>
             collection.FindById(new BsonValue(identifier));
     }
 }

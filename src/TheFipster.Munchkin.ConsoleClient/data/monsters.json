@@ -1,0 +1,9 @@
+{
+    "Monsters": [
+        {
+            "name": "Zerschmetterling",
+            "level": 7,
+            "treasures": 2
+        }
+    ]
+}

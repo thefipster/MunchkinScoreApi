@@ -33,8 +33,4 @@
     <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Seed\" />
-  </ItemGroup>
-
 </Project>

@@ -6,6 +6,6 @@ namespace TheFipster.Munchkin.GameApi.Controllers
     public class HomeController : ControllerBase
     {
         [Route("")]
-        public IActionResult Index() => Content("Running...");
+        public IActionResult Index() => Content("Game API at your service.");
     }
 }

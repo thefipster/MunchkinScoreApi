@@ -1,6 +1,6 @@
 ﻿namespace TheFipster.Munchkin.StashDomain
 {
-    public class Monster
+    public class Monster : Card
     {
         public Monster()
         {
@@ -20,7 +20,6 @@
             Treasures = treasures;
         }
 
-        public string Name { get; set; }
         public int Level { get; set; }
         public int Treasures { get; set; }
     }

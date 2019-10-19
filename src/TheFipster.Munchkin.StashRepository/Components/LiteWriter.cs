@@ -4,14 +4,14 @@ using TheFipster.Munchkin.StashRepository.Abstractions;
 
 namespace TheFipster.Munchkin.StashRepository.Components
 {
-    public class LiteWriter<TEntity> : IWrite<TEntity>
+    public class LiteWriter<Card> : IWrite<Card>
     {
-        private readonly LiteCollection<TEntity> collection;
+        private readonly LiteCollection<Card> collection;
 
         public LiteWriter(IContext context) =>
-            collection = context.GetCollection<TEntity>();
+            collection = context.GetCollection<Card>();
 
-        public void Write(TEntity entity) =>
+        public void Write(Card entity) =>
             collection.Upsert(entity);
     }
 }

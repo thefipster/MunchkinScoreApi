@@ -2,10 +2,8 @@
 
 namespace TheFipster.Munchkin.StashDomain
 {
-    public class Dungeon
+    public class Dungeon : Card
     {
-        public string Name { get; set; }
-
         public ICollection<string> Effects { get; set; }
     }
 }

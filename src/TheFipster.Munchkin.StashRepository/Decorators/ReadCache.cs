@@ -8,21 +8,21 @@ namespace TheFipster.Munchkin.StashRepository.Decorators
     /// <summary>
     /// Decorator for a Repository Reader Component.
     /// </summary>
-    /// <typeparam name="TEntity">Repository Data Model</typeparam>
-    public class ReadCache<TEntity> : IRead<TEntity>
+    /// <typeparam name="Card">Repository Data Model</typeparam>
+    public class ReadCache<Card> : IRead<Card>
     {
-        private readonly IRead<TEntity> component;
+        private readonly IRead<Card> component;
 
-        private static IEnumerable<TEntity> allCache;
-        private static Dictionary<string, TEntity> oneCache;
+        private static IEnumerable<Card> allCache;
+        private static Dictionary<string, Card> oneCache;
 
-        public ReadCache(IRead<TEntity> reader)
+        public ReadCache(IRead<Card> reader)
         {
             component = reader;
-            oneCache = new Dictionary<string, TEntity>();
+            oneCache = new Dictionary<string, Card>();
         }
 
-        public IEnumerable<TEntity> FindAll()
+        public IEnumerable<Card> FindAll()
         {
             if (allCache == null)
                 allCache = component.FindAll();
@@ -30,7 +30,7 @@ namespace TheFipster.Munchkin.StashRepository.Decorators
             return allCache;
         }
 
-        public TEntity FindOne(string identifier)
+        public Card FindOne(string identifier)
         {
             if (oneCache.ContainsKey(identifier))
                 return fromCache(identifier);
@@ -38,17 +38,17 @@ namespace TheFipster.Munchkin.StashRepository.Decorators
             return fromReader(identifier);
         }
 
-        private TEntity fromReader(string identifier)
+        private Card fromReader(string identifier)
         {
             var entity = component.FindOne(identifier);
             oneCache.Add(identifier, entity);
             return entity;
         }
 
-        private TEntity fromCache(string identifier) =>
+        private Card fromCache(string identifier) =>
             oneCache[identifier];
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filter) =>
+        public IEnumerable<Card> Find(Expression<Func<Card, bool>> filter) =>
             component.Find(filter);
     }
 }
