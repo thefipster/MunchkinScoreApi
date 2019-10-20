@@ -1,8 +1,8 @@
 ﻿using LiteDB;
-using TheFipster.Munchkin.StashDatabase;
-using TheFipster.Munchkin.StashRepository.Abstractions;
+using TheFipster.Munchkin.CardStash.Database;
+using TheFipster.Munchkin.CardStash.Repository.Abstractions;
 
-namespace TheFipster.Munchkin.StashRepository.Components
+namespace TheFipster.Munchkin.CardStash.Repository.Components
 {
     public class LiteWriter<Card> : IWrite<Card>
     {

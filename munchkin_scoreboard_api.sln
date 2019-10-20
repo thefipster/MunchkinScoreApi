@@ -44,13 +44,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.TestFac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.LiteDb.UnitTest", "src\TheFipster.Munchkin.GameStorage.LiteDb.UnitTest\TheFipster.Munchkin.GameStorage.LiteDb.UnitTest.csproj", "{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameContext", "GameContext", "{E8C1BCE8-4A9D-4229-B953-06991E99462C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gaming", "Gaming", "{E8C1BCE8-4A9D-4229-B953-06991E99462C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5A20D622-FB1F-49AC-BBBD-585D42669AC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{7D3D7832-2924-43F6-BA05-054CC58EC5C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleContext", "SampleContext", "{0EA969C8-C0F3-48D8-AAAC-483FF5300236}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{0EA969C8-C0F3-48D8-AAAC-483FF5300236}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{92A5972D-ABBD-4102-BAD9-A2888F1E157D}"
 EndProject
@@ -58,23 +58,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Sample.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameAbstractions", "src\TheFipster.Munchkin.GameAbstractions\TheFipster.Munchkin.GameAbstractions.csproj", "{3474D4D6-31CE-4BBF-9FE9-756860D9E662}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityContext", "IdentityContext", "{DA15C805-B2BC-4DE0-8990-BE23C3D2A027}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{DA15C805-B2BC-4DE0-8990-BE23C3D2A027}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Identity.Api", "src\TheFipster.Munchkin.Identity.Api\TheFipster.Munchkin.Identity.Api.csproj", "{67498789-6096-48E5-A093-6B9D4227DD39}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StashContext", "StashContext", "{A2FAE9B4-31EF-43DF-B265-4EB34240B73C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CardStash", "CardStash", "{A2FAE9B4-31EF-43DF-B265-4EB34240B73C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashApi", "src\TheFipster.Munchkin.StashApi\TheFipster.Munchkin.StashApi.csproj", "{671466D5-39FC-4B8B-8A61-764CE901C59A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Api", "src\TheFipster.Munchkin.CardStash.Api\TheFipster.Munchkin.CardStash.Api.csproj", "{671466D5-39FC-4B8B-8A61-764CE901C59A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashRepository", "src\TheFipster.Munchkin.StashRepository\TheFipster.Munchkin.StashRepository.csproj", "{D08FC791-4128-4485-82C5-F1C5F2B919A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Repository", "src\TheFipster.Munchkin.CardStash.Repository\TheFipster.Munchkin.CardStash.Repository.csproj", "{D08FC791-4128-4485-82C5-F1C5F2B919A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Repository.Abstractions", "src\TheFipster.Munchkin.Repository.Abstractions\TheFipster.Munchkin.Repository.Abstractions.csproj", "{149563DE-9FC3-4983-8D9D-278A5019330E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashDomain", "src\TheFipster.Munchkin.StashDomain\TheFipster.Munchkin.StashDomain.csproj", "{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Domain", "src\TheFipster.Munchkin.CardStash.Domain\TheFipster.Munchkin.CardStash.Domain.csproj", "{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Logging.Api", "src\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj", "{AE6DC68A-E167-4244-B5B8-928FAB395292}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.StashDatabase", "src\TheFipster.Munchkin.StashDatabase\TheFipster.Munchkin.StashDatabase.csproj", "{48A90661-0299-4888-90CA-0AC274CE271B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Database", "src\TheFipster.Munchkin.CardStash.Database\TheFipster.Munchkin.CardStash.Database.csproj", "{48A90661-0299-4888-90CA-0AC274CE271B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Configuration", "src\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj", "{1BFBED14-164D-4311-BBCA-3218269D1E30}"
 EndProject

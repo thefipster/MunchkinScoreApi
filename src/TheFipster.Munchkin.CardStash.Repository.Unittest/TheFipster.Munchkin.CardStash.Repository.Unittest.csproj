@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.StashRepository\TheFipster.Munchkin.StashRepository.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.CardStash.Repository\TheFipster.Munchkin.CardStash.Repository.csproj" />
   </ItemGroup>
 
 </Project>

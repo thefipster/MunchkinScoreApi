@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using TheFipster.Munchkin.StashDomain;
-using TheFipster.Munchkin.StashRepository.Abstractions;
+using TheFipster.Munchkin.CardStash.Domain;
+using TheFipster.Munchkin.CardStash.Repository.Abstractions;
 
-namespace TheFipster.Munchkin.StashApi.Controllers
+namespace TheFipster.Munchkin.CardStash.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

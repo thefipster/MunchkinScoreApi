@@ -1,8 +1,8 @@
 ﻿using LiteDB;
 using Microsoft.Extensions.Logging;
-using TheFipster.Munchkin.StashRepository.Abstractions;
+using TheFipster.Munchkin.CardStash.Repository.Abstractions;
 
-namespace TheFipster.Munchkin.StashRepository
+namespace TheFipster.Munchkin.CardStash.Repository
 {
     public class Writer<TEntity> : ISave<TEntity>
     {

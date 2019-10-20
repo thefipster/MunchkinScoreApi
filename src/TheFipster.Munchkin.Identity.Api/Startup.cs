@@ -29,7 +29,7 @@ namespace TheFipster.Munchkin.Identity.Api
         public void ConfigureServices(IServiceCollection services)
         {
             addIdentityStorage(services);
-            addMvc(services);
+            services.AddMvc(options => options.EnableEndpointRouting = false);
             addCorsPolicy(services);
             var identityServerBuilder = addIdentityServer(services);
             addAuthenticationProviders(services);
@@ -123,11 +123,6 @@ namespace TheFipster.Munchkin.Identity.Api
                         .AllowAnyMethod().AllowCredentials();
                 });
             });
-        }
-
-        private static void addMvc(IServiceCollection services)
-        {
-            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         private void addIdentityStorage(IServiceCollection services)

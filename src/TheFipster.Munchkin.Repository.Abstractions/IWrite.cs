@@ -1,4 +1,4 @@
-﻿namespace TheFipster.Munchkin.StashRepository.Abstractions
+﻿namespace TheFipster.Munchkin.CardStash.Repository.Abstractions
 {
     public interface IWrite<TEntity>
     {

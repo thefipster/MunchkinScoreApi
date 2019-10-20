@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace TheFipster.Munchkin.StashDatabase
+namespace TheFipster.Munchkin.CardStash.Database
 {
     public interface IContext
     {

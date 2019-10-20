@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TheFipster.Munchkin.Repository.Abstractions\TheFipster.Munchkin.Repository.Abstractions.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.StashDatabase\TheFipster.Munchkin.StashDatabase.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.StashDomain\TheFipster.Munchkin.StashDomain.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.CardStash.Database\TheFipster.Munchkin.CardStash.Database.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.CardStash.Domain\TheFipster.Munchkin.CardStash.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 ﻿using LiteDB;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using TheFipster.Munchkin.StashRepository.Abstractions;
-using TheFipster.Munchkin.StashRepository.Context;
+using TheFipster.Munchkin.CardStash.Repository.Abstractions;
+using TheFipster.Munchkin.CardStash.Repository.Context;
 
-namespace TheFipster.Munchkin.StashRepository
+namespace TheFipster.Munchkin.CardStash.Repository
 {
     public class Reader<TEntity> : IRead<TEntity>
     {

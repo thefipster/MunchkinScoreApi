@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheFipster.Munchkin.DependencyInjection;
-using TheFipster.Munchkin.StashDatabase;
-using TheFipster.Munchkin.StashDomain;
-using TheFipster.Munchkin.StashRepository.Abstractions;
-using TheFipster.Munchkin.StashRepository.Components;
-using TheFipster.Munchkin.StashRepository.Decorators;
+using TheFipster.Munchkin.CardStash.Database;
+using TheFipster.Munchkin.CardStash.Domain;
+using TheFipster.Munchkin.CardStash.Repository.Abstractions;
+using TheFipster.Munchkin.CardStash.Repository.Components;
+using TheFipster.Munchkin.CardStash.Repository.Decorators;
 
-namespace TheFipster.Munchkin.StashApi
+namespace TheFipster.Munchkin.CardStash.Api
 {
     public static class Dependencies
     {

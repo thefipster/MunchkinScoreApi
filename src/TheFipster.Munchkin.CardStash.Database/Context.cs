@@ -1,7 +1,7 @@
 ﻿using LiteDB;
-using TheFipster.Munchkin.StashDomain;
+using TheFipster.Munchkin.CardStash.Domain;
 
-namespace TheFipster.Munchkin.StashDatabase
+namespace TheFipster.Munchkin.CardStash.Database
 {
     public class Context : IContext
     {

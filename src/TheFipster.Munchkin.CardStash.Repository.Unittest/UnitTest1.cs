@@ -1,9 +1,9 @@
-using TheFipster.Munchkin.StashRepository.Implementations;
-using TheFipster.Munchkin.StashRepository.Models;
-using TheFipster.Munchkin.StashRepository.Persistance;
+using TheFipster.Munchkin.CardStash.Repository.Implementations;
+using TheFipster.Munchkin.CardStash.Repository.Models;
+using TheFipster.Munchkin.CardStash.Repository.Persistance;
 using Xunit;
 
-namespace TheFipster.Munchkin.StashRepository.Unittest
+namespace TheFipster.Munchkin.CardStash.Repository.Unittest
 {
     public class UnitTest1
     {

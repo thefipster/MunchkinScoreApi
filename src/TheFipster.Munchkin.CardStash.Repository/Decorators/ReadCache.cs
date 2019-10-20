@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using TheFipster.Munchkin.StashRepository.Abstractions;
+using TheFipster.Munchkin.CardStash.Repository.Abstractions;
 
-namespace TheFipster.Munchkin.StashRepository.Decorators
+namespace TheFipster.Munchkin.CardStash.Repository.Decorators
 {
     /// <summary>
     /// Decorator for a Repository Reader Component.

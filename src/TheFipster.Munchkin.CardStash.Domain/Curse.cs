@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheFipster.Munchkin.StashDomain
+namespace TheFipster.Munchkin.CardStash.Domain
 {
     public class Curse : Card
     {

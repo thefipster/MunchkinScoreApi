@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace TheFipster.Munchkin.StashRepository.Abstractions
+namespace TheFipster.Munchkin.CardStash.Repository.Abstractions
 {
     public interface IRead<TEntity>
     {
