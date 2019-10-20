@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Diagnostics.CodeAnalysis;
-using TheFipster.Munchkin.GameApi.Binders;
-using TheFipster.Munchkin.GameApi.Extensions;
-using TheFipster.Munchkin.GameApi.Middlewares;
-using TheFipster.Munchkin.GameEvents;
-using TheFipster.Munchkin.GameStorage;
 
-namespace TheFipster.Munchkin.GameApi
+namespace TheFipster.Munchkin.Sample.Api
 {
-    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration) =>
@@ -21,32 +15,19 @@ namespace TheFipster.Munchkin.GameApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
             services
                 .AddAuthorization()
-                .AddControllers(options =>
-                {
-                    options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
-                });
-
-            services
                 .AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "https://localhost:5001";
                     options.RequireHttpsMetadata = true;
-                    options.Audience = "game-api";
+                    options.Audience = "sample-api";
                 });
-
-            services
-                .AddCorsPolicy(Configuration)
-                .AddDependecies();
         }
 
-        public void Configure(
-            IApplicationBuilder app,
-            IHostEnvironment env,
-            ICardStore cardStore,
-            IMonsterStore monsterStore)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -55,8 +36,6 @@ namespace TheFipster.Munchkin.GameApi
 
             app
                 .UseHttpsRedirection()
-                .UseCorsPolicy()
-                .UseMiddleware<ExceptionMiddleware>()
                 .UseRouting()
                 .UseAuthentication()
                 .UseAuthorization()

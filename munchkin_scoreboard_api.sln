@@ -54,13 +54,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleContext", "SampleCont
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{92A5972D-ABBD-4102-BAD9-A2888F1E157D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.SampleApi", "src\TheFipster.Munchkin.SampleApi\TheFipster.Munchkin.SampleApi.csproj", "{9C9F48EF-20FE-489B-8B23-90180D1200CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Sample.Api", "src\TheFipster.Munchkin.Sample.Api\TheFipster.Munchkin.Sample.Api.csproj", "{9C9F48EF-20FE-489B-8B23-90180D1200CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameAbstractions", "src\TheFipster.Munchkin.GameAbstractions\TheFipster.Munchkin.GameAbstractions.csproj", "{3474D4D6-31CE-4BBF-9FE9-756860D9E662}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityContext", "IdentityContext", "{DA15C805-B2BC-4DE0-8990-BE23C3D2A027}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.IdentityApi", "src\TheFipster.Munchkin.IdentityApi\TheFipster.Munchkin.IdentityApi.csproj", "{67498789-6096-48E5-A093-6B9D4227DD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Identity.Api", "src\TheFipster.Munchkin.Identity.Api\TheFipster.Munchkin.Identity.Api.csproj", "{67498789-6096-48E5-A093-6B9D4227DD39}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StashContext", "StashContext", "{A2FAE9B4-31EF-43DF-B265-4EB34240B73C}"
 EndProject
@@ -82,15 +82,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Depende
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{ED424B84-4FBC-460A-A813-AE5FCC15CDA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.ConsoleClient", "src\TheFipster.Munchkin.ConsoleClient\TheFipster.Munchkin.ConsoleClient.csproj", "{C7AC7922-73E8-4098-A85D-BC61392686E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Client", "src\TheFipster.Munchkin.Cli.Client\TheFipster.Munchkin.Cli.Client.csproj", "{C7AC7922-73E8-4098-A85D-BC61392686E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{6A6BDC21-4699-4EFF-BF03-917957CC6B2E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Console.StashPlugin", "src\TheFipster.Munchkin.Console.StashPlugin\TheFipster.Munchkin.Console.StashPlugin.csproj", "{B3943C2F-FCF7-47D4-BB83-185096714CEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.CardStash", "src\TheFipster.Munchkin.Cli.Plugins.CardStash\TheFipster.Munchkin.Cli.Plugins.CardStash.csproj", "{B3943C2F-FCF7-47D4-BB83-185096714CEB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Abstractions", "src\TheFipster.Munchkin.Cli.Plugins.Abstractions\TheFipster.Munchkin.Cli.Plugins.Abstractions.csproj", "{D6E61C8B-2F8C-424D-A0E6-C98354F29D32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Cli.HealthPlugin", "src\TheFipster.Munchkin.Cli.HealthPlugin\TheFipster.Munchkin.Cli.HealthPlugin.csproj", "{396377C9-31AB-4494-BF5E-A77835EE8F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Health", "src\TheFipster.Munchkin.Cli.Plugins.Health\TheFipster.Munchkin.Cli.Plugins.Health.csproj", "{396377C9-31AB-4494-BF5E-A77835EE8F85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
