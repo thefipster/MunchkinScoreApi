@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.GameEvents\TheFipster.Munchkin.GameEvents.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage.Volatile\TheFipster.Munchkin.GameStorage.Volatile.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Engine\TheFipster.Munchkin.Gaming.Engine.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Events\TheFipster.Munchkin.Gaming.Events.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Storage.Volatile\TheFipster.Munchkin.Gaming.Storage.Volatile.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Storage\TheFipster.Munchkin.Gaming.Storage.csproj" />
   </ItemGroup>
 
 </Project>

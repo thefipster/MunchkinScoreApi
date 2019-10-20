@@ -1,4 +1,4 @@
-﻿using TheFipster.Munchkin.GameDomain;
+﻿using TheFipster.Munchkin.Gaming.Domain;
 
 namespace TheFipster.Munchkin.TestFactory
 {

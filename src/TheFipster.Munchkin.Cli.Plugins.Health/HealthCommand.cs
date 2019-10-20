@@ -6,7 +6,7 @@ using TheFipster.Munchkin.Cli.Plugins.Health.Verbs;
 
 namespace TheFipster.Munchkin.Cli.Plugins.Health
 {
-    public class HealthCommand : IPluginEntrypoint
+    public class HealthCommand : IPluginEntrypoint<HealthVerb>
     {
         public int Execute(IEnumerable<string> args) => Parser.Default
             .ParseArguments<

@@ -1,8 +1,8 @@
 ﻿using System;
-using TheFipster.Munchkin.GameEngine;
-using TheFipster.Munchkin.GameEvents;
-using TheFipster.Munchkin.GameStorage;
-using TheFipster.Munchkin.GameStorage.Volatile;
+using TheFipster.Munchkin.Gaming.Engine;
+using TheFipster.Munchkin.Gaming.Events;
+using TheFipster.Munchkin.Gaming.Storage;
+using TheFipster.Munchkin.Gaming.Storage.Volatile;
 
 namespace TheFipster.Munchkin.TestFactory
 {

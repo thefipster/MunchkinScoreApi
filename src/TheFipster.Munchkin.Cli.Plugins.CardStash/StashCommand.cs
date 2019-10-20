@@ -6,7 +6,7 @@ using TheFipster.Munchkin.Cli.Plugins.CardStash.Verbs;
 
 namespace TheFipster.Munchkin.Cli.Plugins.CardStash
 {
-    public class StashCommand : IPluginEntrypoint
+    public class StashCommand : IPluginEntrypoint<StashVerb>
     {
         public int Execute(IEnumerable<string> args) => Parser.Default
             .ParseArguments<
