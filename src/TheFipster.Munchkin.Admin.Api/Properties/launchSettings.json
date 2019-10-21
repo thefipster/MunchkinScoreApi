@@ -1,8 +1,8 @@
 ﻿{
     "$schema": "http://json.schemastore.org/launchsettings.json",
     "profiles": {
-        "TheFipster.Munchkin.Sample.Api": {
-            "applicationUrl": "https://localhost:5999;http://localhost:5998",
+        "TheFipster.Munchkin.Admin.Api": {
+            "applicationUrl": "https://localhost:5007;http://localhost:5006",
             "commandName": "Project",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"

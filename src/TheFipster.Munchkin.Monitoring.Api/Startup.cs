@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Diagnostics.CodeAnalysis;
-using TheFipster.Munchkin.Gaming.Api.Binders;
-using TheFipster.Munchkin.Gaming.Api.Extensions;
-using TheFipster.Munchkin.Gaming.Api.Middlewares;
-using TheFipster.Munchkin.Gaming.Events;
 
-namespace TheFipster.Munchkin.Gaming.Api
+namespace TheFipster.Munchkin.Monitoring.Api
 {
-    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration) =>
@@ -20,30 +15,19 @@ namespace TheFipster.Munchkin.Gaming.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
             services
                 .AddAuthorization()
-                .AddControllers(options =>
-                {
-                    options.ModelBinderProviders.Insert(0, new GameMessageModelBinderProvider(new Inventory()));
-                });
-
-            services
                 .AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "https://localhost:5001";
                     options.RequireHttpsMetadata = true;
-                    options.Audience = "game-api";
+                    options.Audience = "monitoring-api";
                 });
-
-            services
-                .AddCorsPolicy(Configuration)
-                .AddDependecies();
         }
 
-        public void Configure(
-            IApplicationBuilder app,
-            IHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -51,8 +35,6 @@ namespace TheFipster.Munchkin.Gaming.Api
                 app.UseHsts();
 
             app.UseHttpsRedirection();
-            app.UseCorsPolicy();
-            app.UseMiddleware<ExceptionMiddleware>();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -20,23 +20,27 @@ namespace StashApi
         {
             services.AddControllers();
             services.AddDependencies(Configuration);
+            services
+                .AddAuthorization()
+                .AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:5001";
+                    options.RequireHttpsMetadata = true;
+                    options.Audience = "stash-api";
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
-                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
-            }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

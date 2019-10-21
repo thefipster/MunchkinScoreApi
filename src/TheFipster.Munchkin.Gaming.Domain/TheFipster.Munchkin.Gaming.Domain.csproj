@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TheFipster.Munchkin.CardStash.Domain\TheFipster.Munchkin.CardStash.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

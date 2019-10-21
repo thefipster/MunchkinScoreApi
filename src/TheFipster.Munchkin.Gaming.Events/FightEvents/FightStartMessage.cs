@@ -1,5 +1,5 @@
 ﻿using System;
-using TheFipster.Munchkin.Gaming.Domain;
+using TheFipster.Munchkin.CardStash.Domain;
 using TheFipster.Munchkin.Gaming.Domain.Events;
 
 namespace TheFipster.Munchkin.Gaming.Events
