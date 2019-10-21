@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TheFipster.Munchkin.CardStash.Domain;
 
-namespace TheFipster.Munchkin.Cli.Domain
+namespace TheFipster.Munchkin.Cli.Plugins.CardStash.Models
 {
     public class ImportFile
     {

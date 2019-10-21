@@ -11,18 +11,20 @@ namespace TheFipster.Munchkin.Cli.Client
 {
     public class ArgumentCommander
     {
-        private Container container;
+        private Container depsInjector;
         private string[] arguments;
 
-        public ArgumentCommander(Container container)
+        private IEnumerable<string> mainArgument => arguments.Take(1);
+        private IEnumerable<string> pluginArguments => arguments.Skip(1);
+
+        public ArgumentCommander(string[] arguments, Container depsInjector)
         {
-            this.container = container;
+            this.depsInjector = depsInjector;
+            this.arguments = arguments;
         }
 
-        public int ExecuteMappedCommand(string[] args)
+        public int ExecuteMappedCommand()
         {
-            arguments = args;
-
             return Parser.Default
             .ParseArguments<
                 StashVerb,
@@ -30,13 +32,10 @@ namespace TheFipster.Munchkin.Cli.Client
                 LoginVerb
             >(mainArgument)
             .MapResult(
-                (StashVerb verb) => container.GetInstance<IPluginEntrypoint<StashVerb>>().Execute(pluginArguments),
-                (HealthVerb verb) => container.GetInstance<IPluginEntrypoint<HealthVerb>>().Execute(pluginArguments),
-                (LoginVerb verb) => container.GetInstance<IPluginEntrypoint<LoginVerb>>().Execute(pluginArguments),
+                (StashVerb verb) => depsInjector.GetInstance<IPluginEntrypoint<StashVerb>>().Execute(pluginArguments),
+                (HealthVerb verb) => depsInjector.GetInstance<IPluginEntrypoint<HealthVerb>>().Execute(pluginArguments),
+                (LoginVerb verb) => depsInjector.GetInstance<IPluginEntrypoint<LoginVerb>>().Execute(pluginArguments),
                 noMatch => 1);
         }
-
-        private IEnumerable<string> mainArgument => arguments.Take(1);
-        private IEnumerable<string> pluginArguments => arguments.Skip(1);
     }
 }

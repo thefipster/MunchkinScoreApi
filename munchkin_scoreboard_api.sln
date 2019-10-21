@@ -92,9 +92,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Health", "src\TheFipster.Munchkin.Cli.Plugins.Health\TheFipster.Munchkin.Cli.Plugins.Health.csproj", "{396377C9-31AB-4494-BF5E-A77835EE8F85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Cli.Domain", "src\TheFipster.Munchkin.Cli.Domain\TheFipster.Munchkin.Cli.Domain.csproj", "{8928774C-5E5B-44C6-9C2E-132B918AE8B2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFipster.Munchkin.Cli.Plugins.Login", "src\TheFipster.Munchkin.Cli.Plugins.Login\TheFipster.Munchkin.Cli.Plugins.Login.csproj", "{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Login", "src\TheFipster.Munchkin.Cli.Plugins.Login\TheFipster.Munchkin.Cli.Plugins.Login.csproj", "{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -226,10 +224,6 @@ Global
 		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8928774C-5E5B-44C6-9C2E-132B918AE8B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8928774C-5E5B-44C6-9C2E-132B918AE8B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8928774C-5E5B-44C6-9C2E-132B918AE8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8928774C-5E5B-44C6-9C2E-132B918AE8B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -277,7 +271,6 @@ Global
 		{B3943C2F-FCF7-47D4-BB83-185096714CEB} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
 		{D6E61C8B-2F8C-424D-A0E6-C98354F29D32} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
 		{396377C9-31AB-4494-BF5E-A77835EE8F85} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
-		{8928774C-5E5B-44C6-9C2E-132B918AE8B2} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
 		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

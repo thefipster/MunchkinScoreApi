@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheFipster.Munchkin.CardStash.Domain;
-using TheFipster.Munchkin.Cli.Domain;
 using TheFipster.Munchkin.Cli.Plugins.Abstractions;
 using TheFipster.Munchkin.Cli.Plugins.CardStash.Logic;
+using TheFipster.Munchkin.Cli.Plugins.CardStash.Models;
 using TheFipster.Munchkin.Cli.Plugins.CardStash.Verbs;
 
 namespace TheFipster.Munchkin.Cli.Plugins.CardStash.Commands

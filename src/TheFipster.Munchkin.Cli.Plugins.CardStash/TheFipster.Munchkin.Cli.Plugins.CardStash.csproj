@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.Cli.Domain\TheFipster.Munchkin.Cli.Domain.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.CardStash.Domain\TheFipster.Munchkin.CardStash.Domain.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Cli.Plugins.Abstractions\TheFipster.Munchkin.Cli.Plugins.Abstractions.csproj" />
   </ItemGroup>
 

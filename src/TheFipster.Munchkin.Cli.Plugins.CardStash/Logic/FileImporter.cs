@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
-using TheFipster.Munchkin.Cli.Domain;
 using TheFipster.Munchkin.Cli.Plugins.Abstractions;
+using TheFipster.Munchkin.Cli.Plugins.CardStash.Models;
 
 namespace TheFipster.Munchkin.Cli.Plugins.CardStash.Logic
 {

@@ -5,8 +5,8 @@
         static int Main(string[] args)
         {
             var container = new DependencyInjection().Container;
-            var commander = new ArgumentCommander(container);
-            return commander.ExecuteMappedCommand(args);
+            var commander = new ArgumentCommander(args, container);
+            return commander.ExecuteMappedCommand();
         }
     }
 }
