@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>munchkin</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.6.0" />
+    <PackageReference Include="SimpleInjector" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheFipster.Munchkin.Cli.Plugins.Abstractions\TheFipster.Munchkin.Cli.Plugins.Abstractions.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Cli.Plugins.Health\TheFipster.Munchkin.Cli.Plugins.Health.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Cli.Plugins.CardStash\TheFipster.Munchkin.Cli.Plugins.CardStash.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Cli.Plugins.Login\TheFipster.Munchkin.Cli.Plugins.Login.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\dungeons.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\curses.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\monsters.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

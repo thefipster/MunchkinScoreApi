@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameApi", "src\TheFipster.Munchkin.GameApi\TheFipster.Munchkin.GameApi.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Api", "src\TheFipster.Munchkin.Gaming.Api\TheFipster.Munchkin.Gaming.Api.csproj", "{A4799B9E-741A-4C35-B5E2-546182AA8B1A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameApi.UnitTest", "src\TheFipster.Munchkin.GameApi.UnitTest\TheFipster.Munchkin.GameApi.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Api.UnitTest", "src\TheFipster.Munchkin.Gaming.Api.UnitTest\TheFipster.Munchkin.Gaming.Api.UnitTest.csproj", "{F8075974-55AF-47A2-A9D4-C751A94E3D6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain", "src\TheFipster.Munchkin.GameDomain\TheFipster.Munchkin.GameDomain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Domain", "src\TheFipster.Munchkin.Gaming.Domain\TheFipster.Munchkin.Gaming.Domain.csproj", "{D462C383-28D2-4818-9B81-C5C85BC44EFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFFE2E29-F8FF-47FC-B58C-78FE06F5565F}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,51 +16,83 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameDomain.UnitTest", "src\TheFipster.Munchkin.GameDomain.UnitTest\TheFipster.Munchkin.GameDomain.UnitTest.csproj", "{D00B7C80-7F79-4224-8741-C1C70EEE21BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Domain.UnitTest", "src\TheFipster.Munchkin.Gaming.Domain.UnitTest\TheFipster.Munchkin.Gaming.Domain.UnitTest.csproj", "{D00B7C80-7F79-4224-8741-C1C70EEE21BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine", "src\TheFipster.Munchkin.GameEngine\TheFipster.Munchkin.GameEngine.csproj", "{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Engine", "src\TheFipster.Munchkin.Gaming.Engine\TheFipster.Munchkin.Gaming.Engine.csproj", "{39A7CB29-E20D-4C5F-9C52-01727FF6E3D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEngine.UnitTest", "src\TheFipster.Munchkin.GameEngine.UnitTest\TheFipster.Munchkin.GameEngine.UnitTest.csproj", "{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Engine.UnitTest", "src\TheFipster.Munchkin.Gaming.Engine.UnitTest\TheFipster.Munchkin.Gaming.Engine.UnitTest.csproj", "{310B0E3C-76D7-4F96-9B4D-3D17ADDCD08B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage", "src\TheFipster.Munchkin.GameStorage\TheFipster.Munchkin.GameStorage.csproj", "{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Storage", "src\TheFipster.Munchkin.Gaming.Storage\TheFipster.Munchkin.Gaming.Storage.csproj", "{FAC2FE19-7AC6-407A-AF2A-D60D2AAABF1A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.Volatile", "src\TheFipster.Munchkin.GameStorage.Volatile\TheFipster.Munchkin.GameStorage.Volatile.csproj", "{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Storage.Volatile", "src\TheFipster.Munchkin.Gaming.Storage.Volatile\TheFipster.Munchkin.Gaming.Storage.Volatile.csproj", "{F7A1D3CC-1463-43B9-A80C-2AC0F08E947C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A6760F24-9036-4D6D-AF9E-A529B43DB6F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Polling", "src\TheFipster.Munchkin.Polling\TheFipster.Munchkin.Polling.csproj", "{A372DBA6-466A-444B-934B-DDF54AD81EC9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GamePolling", "src\TheFipster.Munchkin.GamePolling\TheFipster.Munchkin.GamePolling.csproj", "{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Polling", "src\TheFipster.Munchkin.Gaming.Polling\TheFipster.Munchkin.Gaming.Polling.csproj", "{D845C5A9-3B89-46CF-BFE9-54FB51CCB742}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Polling.UnitTest", "src\TheFipster.Munchkin.Polling.UnitTest\TheFipster.Munchkin.Polling.UnitTest.csproj", "{73ECA6D7-33C8-48C7-9613-14A14F2D4827}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.LiteDb", "src\TheFipster.Munchkin.GameStorage.LiteDb\TheFipster.Munchkin.GameStorage.LiteDb.csproj", "{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Storage.LiteDb", "src\TheFipster.Munchkin.Gaming.Storage.LiteDb\TheFipster.Munchkin.Gaming.Storage.LiteDb.csproj", "{48EE1A89-21FD-4BC4-9D7D-BEE0CC1F595B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEvents", "src\TheFipster.Munchkin.GameEvents\TheFipster.Munchkin.GameEvents.csproj", "{D4415D13-4020-4498-B222-065303809D2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Events", "src\TheFipster.Munchkin.Gaming.Events\TheFipster.Munchkin.Gaming.Events.csproj", "{D4415D13-4020-4498-B222-065303809D2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameEvents.UnitTest", "src\TheFipster.Munchkin.GameEvents.UnitTest\TheFipster.Munchkin.GameEvents.UnitTest.csproj", "{71743841-B5E9-4C61-B81B-C247D3FFFC14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Events.UnitTest", "src\TheFipster.Munchkin.Gaming.Events.UnitTest\TheFipster.Munchkin.Gaming.Events.UnitTest.csproj", "{71743841-B5E9-4C61-B81B-C247D3FFFC14}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.TestFactory", "src\TheFipster.Munchkin.TestFactory\TheFipster.Munchkin.TestFactory.csproj", "{76F842D2-286E-42CE-9579-1673296E6284}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameStorage.LiteDb.UnitTest", "src\TheFipster.Munchkin.GameStorage.LiteDb.UnitTest\TheFipster.Munchkin.GameStorage.LiteDb.UnitTest.csproj", "{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Storage.LiteDb.UnitTest", "src\TheFipster.Munchkin.Gaming.Storage.LiteDb.UnitTest\TheFipster.Munchkin.Gaming.Storage.LiteDb.UnitTest.csproj", "{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameContext", "GameContext", "{E8C1BCE8-4A9D-4229-B953-06991E99462C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gaming", "Gaming", "{E8C1BCE8-4A9D-4229-B953-06991E99462C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5A20D622-FB1F-49AC-BBBD-585D42669AC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{7D3D7832-2924-43F6-BA05-054CC58EC5C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleContext", "SampleContext", "{0EA969C8-C0F3-48D8-AAAC-483FF5300236}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{0EA969C8-C0F3-48D8-AAAC-483FF5300236}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{92A5972D-ABBD-4102-BAD9-A2888F1E157D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.SampleApi", "src\TheFipster.Munchkin.SampleApi\TheFipster.Munchkin.SampleApi.csproj", "{9C9F48EF-20FE-489B-8B23-90180D1200CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Sample.Api", "src\TheFipster.Munchkin.Sample.Api\TheFipster.Munchkin.Sample.Api.csproj", "{9C9F48EF-20FE-489B-8B23-90180D1200CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.GameAbstractions", "src\TheFipster.Munchkin.GameAbstractions\TheFipster.Munchkin.GameAbstractions.csproj", "{3474D4D6-31CE-4BBF-9FE9-756860D9E662}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Gaming.Abstractions", "src\TheFipster.Munchkin.Gaming.Abstractions\TheFipster.Munchkin.Gaming.Abstractions.csproj", "{3474D4D6-31CE-4BBF-9FE9-756860D9E662}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityContext", "IdentityContext", "{DA15C805-B2BC-4DE0-8990-BE23C3D2A027}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{DA15C805-B2BC-4DE0-8990-BE23C3D2A027}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.IdentityApi", "src\TheFipster.Munchkin.IdentityApi\TheFipster.Munchkin.IdentityApi.csproj", "{67498789-6096-48E5-A093-6B9D4227DD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Identity.Api", "src\TheFipster.Munchkin.Identity.Api\TheFipster.Munchkin.Identity.Api.csproj", "{67498789-6096-48E5-A093-6B9D4227DD39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CardStash", "CardStash", "{A2FAE9B4-31EF-43DF-B265-4EB34240B73C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Api", "src\TheFipster.Munchkin.CardStash.Api\TheFipster.Munchkin.CardStash.Api.csproj", "{671466D5-39FC-4B8B-8A61-764CE901C59A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Repository", "src\TheFipster.Munchkin.CardStash.Repository\TheFipster.Munchkin.CardStash.Repository.csproj", "{D08FC791-4128-4485-82C5-F1C5F2B919A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Repository.Abstractions", "src\TheFipster.Munchkin.Repository.Abstractions\TheFipster.Munchkin.Repository.Abstractions.csproj", "{149563DE-9FC3-4983-8D9D-278A5019330E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Domain", "src\TheFipster.Munchkin.CardStash.Domain\TheFipster.Munchkin.CardStash.Domain.csproj", "{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Logging.Api", "src\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj", "{AE6DC68A-E167-4244-B5B8-928FAB395292}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.CardStash.Database", "src\TheFipster.Munchkin.CardStash.Database\TheFipster.Munchkin.CardStash.Database.csproj", "{48A90661-0299-4888-90CA-0AC274CE271B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Configuration", "src\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj", "{1BFBED14-164D-4311-BBCA-3218269D1E30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.DependencyInjection", "src\TheFipster.Munchkin.DependencyInjection\TheFipster.Munchkin.DependencyInjection.csproj", "{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{ED424B84-4FBC-460A-A813-AE5FCC15CDA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Client", "src\TheFipster.Munchkin.Cli.Client\TheFipster.Munchkin.Cli.Client.csproj", "{C7AC7922-73E8-4098-A85D-BC61392686E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{6A6BDC21-4699-4EFF-BF03-917957CC6B2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.CardStash", "src\TheFipster.Munchkin.Cli.Plugins.CardStash\TheFipster.Munchkin.Cli.Plugins.CardStash.csproj", "{B3943C2F-FCF7-47D4-BB83-185096714CEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Abstractions", "src\TheFipster.Munchkin.Cli.Plugins.Abstractions\TheFipster.Munchkin.Cli.Plugins.Abstractions.csproj", "{D6E61C8B-2F8C-424D-A0E6-C98354F29D32}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Health", "src\TheFipster.Munchkin.Cli.Plugins.Health\TheFipster.Munchkin.Cli.Plugins.Health.csproj", "{396377C9-31AB-4494-BF5E-A77835EE8F85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Cli.Plugins.Login", "src\TheFipster.Munchkin.Cli.Plugins.Login\TheFipster.Munchkin.Cli.Plugins.Login.csproj", "{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,6 +176,58 @@ Global
 		{67498789-6096-48E5-A093-6B9D4227DD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67498789-6096-48E5-A093-6B9D4227DD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67498789-6096-48E5-A093-6B9D4227DD39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{671466D5-39FC-4B8B-8A61-764CE901C59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149563DE-9FC3-4983-8D9D-278A5019330E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149563DE-9FC3-4983-8D9D-278A5019330E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149563DE-9FC3-4983-8D9D-278A5019330E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149563DE-9FC3-4983-8D9D-278A5019330E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC45648-72A7-462A-A24F-1EE8BDB7CF33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE6DC68A-E167-4244-B5B8-928FAB395292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE6DC68A-E167-4244-B5B8-928FAB395292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE6DC68A-E167-4244-B5B8-928FAB395292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE6DC68A-E167-4244-B5B8-928FAB395292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48A90661-0299-4888-90CA-0AC274CE271B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A90661-0299-4888-90CA-0AC274CE271B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A90661-0299-4888-90CA-0AC274CE271B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A90661-0299-4888-90CA-0AC274CE271B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BFBED14-164D-4311-BBCA-3218269D1E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7AC7922-73E8-4098-A85D-BC61392686E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7AC7922-73E8-4098-A85D-BC61392686E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7AC7922-73E8-4098-A85D-BC61392686E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7AC7922-73E8-4098-A85D-BC61392686E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3943C2F-FCF7-47D4-BB83-185096714CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3943C2F-FCF7-47D4-BB83-185096714CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3943C2F-FCF7-47D4-BB83-185096714CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3943C2F-FCF7-47D4-BB83-185096714CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E61C8B-2F8C-424D-A0E6-C98354F29D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E61C8B-2F8C-424D-A0E6-C98354F29D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E61C8B-2F8C-424D-A0E6-C98354F29D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E61C8B-2F8C-424D-A0E6-C98354F29D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396377C9-31AB-4494-BF5E-A77835EE8F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,12 +252,26 @@ Global
 		{CF90C3A7-F0A2-45F5-8337-C3B7BDDAF6A5} = {A6760F24-9036-4D6D-AF9E-A529B43DB6F7}
 		{E8C1BCE8-4A9D-4229-B953-06991E99462C} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{5A20D622-FB1F-49AC-BBBD-585D42669AC0} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
-		{7D3D7832-2924-43F6-BA05-054CC58EC5C2} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{0EA969C8-C0F3-48D8-AAAC-483FF5300236} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{9C9F48EF-20FE-489B-8B23-90180D1200CE} = {0EA969C8-C0F3-48D8-AAAC-483FF5300236}
 		{3474D4D6-31CE-4BBF-9FE9-756860D9E662} = {E8C1BCE8-4A9D-4229-B953-06991E99462C}
 		{DA15C805-B2BC-4DE0-8990-BE23C3D2A027} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
 		{67498789-6096-48E5-A093-6B9D4227DD39} = {DA15C805-B2BC-4DE0-8990-BE23C3D2A027}
+		{A2FAE9B4-31EF-43DF-B265-4EB34240B73C} = {92A5972D-ABBD-4102-BAD9-A2888F1E157D}
+		{671466D5-39FC-4B8B-8A61-764CE901C59A} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
+		{D08FC791-4128-4485-82C5-F1C5F2B919A3} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
+		{149563DE-9FC3-4983-8D9D-278A5019330E} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
+		{AAC45648-72A7-462A-A24F-1EE8BDB7CF33} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
+		{AE6DC68A-E167-4244-B5B8-928FAB395292} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
+		{48A90661-0299-4888-90CA-0AC274CE271B} = {A2FAE9B4-31EF-43DF-B265-4EB34240B73C}
+		{1BFBED14-164D-4311-BBCA-3218269D1E30} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
+		{5CFBB0A0-9FF4-42C4-8EC6-343C1EA92A03} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
+		{C7AC7922-73E8-4098-A85D-BC61392686E6} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
+		{6A6BDC21-4699-4EFF-BF03-917957CC6B2E} = {ED424B84-4FBC-460A-A813-AE5FCC15CDA8}
+		{B3943C2F-FCF7-47D4-BB83-185096714CEB} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
+		{D6E61C8B-2F8C-424D-A0E6-C98354F29D32} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
+		{396377C9-31AB-4494-BF5E-A77835EE8F85} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
+		{1EF19BDE-EFAA-46B7-AC8B-16AF6694B1A3} = {6A6BDC21-4699-4EFF-BF03-917957CC6B2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}

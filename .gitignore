@@ -20,7 +20,7 @@ Cobertura.xml
 coverage.cobertura.xml
 
 # Exception due to *.litedb entry
-!TheFipster.Munchkin.GameStorage.LiteDb/
+!TheFipster.Munchkin.Gaming.Storage.LiteDb/
 
 # Security related files
 *.rsa

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Domain\TheFipster.Munchkin.Gaming.Domain.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Events\TheFipster.Munchkin.Gaming.Events.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Polling\TheFipster.Munchkin.Gaming.Polling.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Storage\TheFipster.Munchkin.Gaming.Storage.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Abstractions\TheFipster.Munchkin.Gaming.Abstractions.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Polling\TheFipster.Munchkin.Polling.csproj" />
+  </ItemGroup>
+
+</Project>
