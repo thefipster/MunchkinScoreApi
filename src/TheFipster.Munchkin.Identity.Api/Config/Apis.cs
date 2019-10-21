@@ -8,6 +8,7 @@ namespace TheFipster.Munchkin.Identity.Api.Config
     {
         public static IEnumerable<ApiResource> Get() => new[]
         {
+            new ApiResource("admin-api", "Munchkin Administration API"),
             new ApiResource("game-api", "Munchkin Game API")
             {
                 UserClaims =
@@ -19,7 +20,10 @@ namespace TheFipster.Munchkin.Identity.Api.Config
                     JwtClaimTypes.PreferredUserName
                 }
             },
-            new ApiResource("sample-api", "Munchkin Sample API")
+            new ApiResource("monitoring-api", "Munchkin System Monitoring API"),
+            new ApiResource("sample-api", "Munchkin Sample API"),
+            new ApiResource("stash-api", "Munchkin Card Stash API"),
+            new ApiResource("statistics-api", "Munchkin Game Statistics API")
         };
     }
 }

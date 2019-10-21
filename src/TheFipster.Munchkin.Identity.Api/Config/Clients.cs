@@ -17,62 +17,12 @@ namespace TheFipster.Munchkin.Identity.Api.Config
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     IdentityServerConstants.StandardScopes.Email,
-                    "sample-api"
+                    "stash-api"
                 },
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 ClientSecrets =
                 {
                     new Secret("secret".Sha256())
-                }
-            },
-            new Client
-            {
-                ClientId = "client-web",
-                ClientName = "Munchkin MVC Client",
-                AllowedGrantTypes = GrantTypes.Hybrid,
-                AllowOfflineAccess = true,
-                RedirectUris = { "https://localhost:4001/signin-oidc" },
-                PostLogoutRedirectUris = { "https://localhost:4001/signout-callback-oidc" },
-                AllowedScopes = new List<string>
-                {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    IdentityServerConstants.StandardScopes.Email,
-                    "sample-api"
-                },
-                ClientSecrets =
-                {
-                    new Secret("secret".Sha256())
-                }
-            },
-            new Client
-            {
-                ClientId = "client-spa",
-                ClientName = "Munchkin Angular Frontend",
-                AccessTokenType = AccessTokenType.Jwt,
-                AllowedGrantTypes = GrantTypes.Code,
-                RequirePkce = true,
-                RequireClientSecret = false,
-                RedirectUris =
-                {
-                    "http://localhost:4200",
-                    "http://localhost:4200/silent-renew.html"
-                },
-                PostLogoutRedirectUris =
-                {
-                    "http://localhost:4200",
-                    "http://localhost:4200/unauthorized"
-                },
-                AllowedCorsOrigins =
-                {
-                    "http://localhost:4200"
-                },
-                AllowedScopes =
-                {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    IdentityServerConstants.StandardScopes.Email,
-                    "sample-api"
                 }
             },
             new Client
