@@ -3,6 +3,7 @@ using TheFipster.Munchkin.Gaming.Domain;
 using TheFipster.Munchkin.Gaming.Domain.Events;
 using Xunit;
 using TheFipster.Munchkin.TestFactory;
+using TheFipster.Munchkin.CardStash.Domain;
 
 namespace TheFipster.Munchkin.Gaming.Events.UnitTest.Moves
 {

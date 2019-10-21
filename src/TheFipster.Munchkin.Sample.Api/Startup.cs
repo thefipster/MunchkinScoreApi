@@ -34,15 +34,14 @@ namespace TheFipster.Munchkin.Sample.Api
             else
                 app.UseHsts();
 
-            app
-                .UseHttpsRedirection()
-                .UseRouting()
-                .UseAuthentication()
-                .UseAuthorization()
-                .UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                });
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

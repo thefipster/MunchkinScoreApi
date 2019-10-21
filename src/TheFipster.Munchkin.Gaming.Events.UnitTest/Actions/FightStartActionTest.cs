@@ -1,4 +1,5 @@
-﻿using TheFipster.Munchkin.Gaming.Domain;
+﻿using TheFipster.Munchkin.CardStash.Domain;
+using TheFipster.Munchkin.Gaming.Domain;
 using TheFipster.Munchkin.Gaming.Domain.Exceptions;
 using TheFipster.Munchkin.TestFactory;
 using Xunit;
