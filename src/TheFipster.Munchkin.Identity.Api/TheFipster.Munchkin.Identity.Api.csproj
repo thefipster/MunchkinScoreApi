@@ -23,8 +23,4 @@
     <ProjectReference Include="..\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Home\" />
-  </ItemGroup>
 </Project>
