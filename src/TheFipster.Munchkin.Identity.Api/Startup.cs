@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using TheFipster.Munchkin.AppInsights.Core;
 using TheFipster.Munchkin.Identity.Api.Config;
 using TheFipster.Munchkin.Identity.Api.Data;
 using TheFipster.Munchkin.Identity.Api.Models;
@@ -28,6 +29,7 @@ namespace TheFipster.Munchkin.Identity.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMunchkinInsights();
             addIdentityStorage(services);
             services.AddMvc(options => options.EnableEndpointRouting = false);
             addCorsPolicy(services);
@@ -64,31 +66,28 @@ namespace TheFipster.Munchkin.Identity.Api
                 throw new Exception("need to configure key material");
         }
 
-        private void addAuthenticationProviders(IServiceCollection services)
-        {
-            services
-                .AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
-                    options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
-                })
-                .AddFacebook(options =>
-                {
-                    options.ClientId = Configuration["ExternalProviders:Facebook:ClientId"];
-                    options.ClientSecret = Configuration["ExternalProviders:Facebook:ClientSecret"];
-                })
-                .AddMicrosoftAccount(options =>
-                {
-                    options.ClientId = Configuration["ExternalProviders:Microsoft:ClientId"];
-                    options.ClientSecret = Configuration["ExternalProviders:Microsoft:ClientSecret"];
-                })
-                .AddTwitter(options =>
-                {
-                    options.ConsumerKey = Configuration["ExternalProviders:Twitter:ConsumerKey"];
-                    options.ConsumerSecret = Configuration["ExternalProviders:Twitter:ConsumerSecret"];
-                });
-        }
+        private void addAuthenticationProviders(IServiceCollection services) => services
+            .AddAuthentication()
+            .AddGoogle(options =>
+            {
+                options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
+                options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
+            })
+            .AddFacebook(options =>
+            {
+                options.ClientId = Configuration["ExternalProviders:Facebook:ClientId"];
+                options.ClientSecret = Configuration["ExternalProviders:Facebook:ClientSecret"];
+            })
+            .AddMicrosoftAccount(options =>
+            {
+                options.ClientId = Configuration["ExternalProviders:Microsoft:ClientId"];
+                options.ClientSecret = Configuration["ExternalProviders:Microsoft:ClientSecret"];
+            })
+            .AddTwitter(options =>
+            {
+                options.ConsumerKey = Configuration["ExternalProviders:Twitter:ConsumerKey"];
+                options.ConsumerSecret = Configuration["ExternalProviders:Twitter:ConsumerSecret"];
+            });
 
         private static IIdentityServerBuilder addIdentityServer(IServiceCollection services)
         {
