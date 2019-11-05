@@ -38,3 +38,9 @@ steps:
     publishWebProjects: True
     arguments: '--self-contained --runtime ubuntu.18.04-x64 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'munchkin-scoreboard.zip'
+    publishLocation: 'Container'
