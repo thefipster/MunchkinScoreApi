@@ -27,6 +27,12 @@ namespace TheFipster.Munchkin.Identity.Api
             Configuration = configuration;
         }
 
+        private string[] corsOrigins => Clients
+            .Get(Configuration)
+            .Where(x => x.AllowedCorsOrigins != null)
+            .SelectMany(x => x.AllowedCorsOrigins)
+            .ToArray();
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMunchkinInsights();
@@ -41,7 +47,7 @@ namespace TheFipster.Munchkin.Identity.Api
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             app.UseHttpsRedirection();
-            app.UseCors("default");
+            app.UseCors(ConfigKeys.CorsOriginPolicyName);
 
             if (env.IsDevelopment())
             {
@@ -70,68 +76,52 @@ namespace TheFipster.Munchkin.Identity.Api
             .AddAuthentication()
             .AddGoogle(options =>
             {
-                options.ClientId = Configuration["ExternalProviders:Google:ClientId"];
-                options.ClientSecret = Configuration["ExternalProviders:Google:ClientSecret"];
+                options.ClientId = Configuration[ConfigKeys.LoginProvider.Google.ClientId];
+                options.ClientSecret = Configuration[ConfigKeys.LoginProvider.Google.ClientSecret];
             })
             .AddFacebook(options =>
             {
-                options.ClientId = Configuration["ExternalProviders:Facebook:ClientId"];
-                options.ClientSecret = Configuration["ExternalProviders:Facebook:ClientSecret"];
+                options.ClientId = Configuration[ConfigKeys.LoginProvider.Facebook.ClientId];
+                options.ClientSecret = Configuration[ConfigKeys.LoginProvider.Facebook.ClientSecret];
             })
             .AddMicrosoftAccount(options =>
             {
-                options.ClientId = Configuration["ExternalProviders:Microsoft:ClientId"];
-                options.ClientSecret = Configuration["ExternalProviders:Microsoft:ClientSecret"];
+                options.ClientId = Configuration[ConfigKeys.LoginProvider.Microsoft.ClientId];
+                options.ClientSecret = Configuration[ConfigKeys.LoginProvider.Microsoft.ClientSecret];
             })
             .AddTwitter(options =>
             {
-                options.ConsumerKey = Configuration["ExternalProviders:Twitter:ConsumerKey"];
-                options.ConsumerSecret = Configuration["ExternalProviders:Twitter:ConsumerSecret"];
+                options.ConsumerKey = Configuration[ConfigKeys.LoginProvider.Twitter.ConsumerKey];
+                options.ConsumerSecret = Configuration[ConfigKeys.LoginProvider.Twitter.ConsumerSecret];
             });
 
-        private static IIdentityServerBuilder addIdentityServer(IServiceCollection services)
-        {
-            return services
-                .AddIdentityServer(options =>
-                {
-                    options.Events.RaiseErrorEvents = true;
-                    options.Events.RaiseInformationEvents = true;
-                    options.Events.RaiseFailureEvents = true;
-                    options.Events.RaiseSuccessEvents = true;
-                })
-                .AddInMemoryIdentityResources(Resources.Get())
-                .AddInMemoryApiResources(Apis.Get())
-                .AddInMemoryClients(Clients.Get())
-                .AddAspNetIdentity<ApplicationUser>();
-        }
-
-        private static void addCorsPolicy(IServiceCollection services)
-        {
-            var corsOrigins = Clients
-                .Get()
-                .Where(x => x.AllowedCorsOrigins != null)
-                .SelectMany(x => x.AllowedCorsOrigins)
-                .ToArray();
-
-            services.AddCors(options =>
+        private IIdentityServerBuilder addIdentityServer(IServiceCollection services) => services
+            .AddIdentityServer(options =>
             {
-                options.AddPolicy("default", policy =>
-                {
-                    policy.WithOrigins(corsOrigins)
-                        .AllowAnyHeader()
-                        .AllowAnyMethod().AllowCredentials();
-                });
-            });
-        }
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+            })
+            .AddInMemoryIdentityResources(Resources.Get())
+            .AddInMemoryApiResources(Apis.Get())
+            .AddInMemoryClients(Clients.Get(Configuration))
+            .AddAspNetIdentity<ApplicationUser>();
 
-        private void addIdentityStorage(IServiceCollection services)
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
+        private void addCorsPolicy(IServiceCollection services) => services
+            .AddCors(options => options
+                .AddPolicy(ConfigKeys.CorsOriginPolicyName, policy => policy
+                    .WithOrigins(corsOrigins)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-        }
+        private void addIdentityStorage(IServiceCollection services) => services
+            .AddDbContext<ApplicationDbContext>(options => options
+                .UseSqlite(Configuration
+                    .GetConnectionString(ConfigKeys.IdentityContextConfigName)))
+            .AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
     }
 }
