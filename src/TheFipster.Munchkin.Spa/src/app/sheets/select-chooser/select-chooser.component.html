@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutAlign="space-between" >
+        <span class="title">{{ title }}</span>
+        <button mat-mini-fab class="save-btn" aria-label="Bestätige auswahl" (click)="save(values.selectedOptions.selected)">
+            <mat-icon>save</mat-icon>
+        </button>
+</div>
+
+
+<mat-selection-list #values>
+    <mat-divider></mat-divider>
+    <mat-list-option *ngFor="let item of options" [selected]="item.selected" [value]="item.value">
+        {{ item.value }}
+    </mat-list-option>
+</mat-selection-list>

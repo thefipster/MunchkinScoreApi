@@ -1,0 +1,3 @@
+<button *ngIf="!initCode" mat-stroked-button (click)="init()">Let's go into the dungeon and kill each other... for fun.</button>
+
+<app-qr-code *ngIf="initCode" [initCode]="initCode"></app-qr-code>

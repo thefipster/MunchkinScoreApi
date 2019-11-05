@@ -1,0 +1,40 @@
+<mat-card class="hero-card">
+    <mat-action-list>
+        <button mat-list-item (click)="changeStrength()">
+            <span class="hero-name">
+                <strong>{{ hero.player.name }}</strong>
+            </span>
+            <span class="hero-property">
+                <i class="material-icons">
+                    accessibility
+                </i>
+                {{ hero.level }}
+            </span>
+            <span class="hero-property">
+                <i class="material-icons">
+                    toys
+                </i>
+                {{ hero.bonus }}
+            </span>
+            <span class="hero-property">
+                <i class="material-icons">
+                    arrow_right
+                </i>
+                {{ hero.level + hero.bonus }}
+            </span>
+        </button>
+        <mat-divider></mat-divider>
+        <button class="property-btn" mat-list-item (click)="changeGender()">
+            Geschlecht
+            <strong>{{ hero.player.gender }}</strong>
+        </button>
+        <button class="property-btn" mat-list-item (click)="changeRace()">
+            Rassen
+            <strong> {{ hero.races | race }} </strong>
+        </button>
+        <button class="property-btn" mat-list-item (click)="changeClass()">
+            Klassen
+            <strong> {{ hero.classes | class }} </strong>
+        </button>
+    </mat-action-list>
+</mat-card>

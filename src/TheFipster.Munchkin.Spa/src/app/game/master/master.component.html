@@ -1,0 +1,3 @@
+<app-setup *ngIf="gameState === gameStates.Setup"></app-setup>
+<app-play *ngIf="gameState === gameStates.Running"></app-play>
+<app-end *ngIf="gameState === gameStates.End"></app-end>

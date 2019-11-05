@@ -1,0 +1,5 @@
+<app-dungeon class="dungeon-panel" [dungeons]="score.dungeons"></app-dungeon>
+
+<div class="hero-panel" fxLayout="row wrap" fxLayoutAlign="space-around center">
+    <app-hero *ngFor="let hero of score.heroes" [hero]="hero"></app-hero>
+</div>
