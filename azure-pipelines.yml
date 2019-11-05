@@ -1,13 +1,9 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
 - master
+- feature/*
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-18.04'
 
 variables:
   solution: '**/*.sln'
@@ -15,20 +11,30 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'Build solution'
   inputs:
-    restoreSolution: '$(solution)'
+    command: build
+    arguments: '--configuration $(buildConfiguration)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
+  displayName: 'Run tests'
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--filter FullyQualifiedName~UnitTest --configuration $(buildConfiguration) --collect "Code coverage"'
 
-- task: VSTest@2
+- script: dotnet test --filter FullyQualifiedName~UnitTest --logger trx --collect "Code coverage"
+- task: PublishTestResults@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish web'
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--self-contained --runtime ubuntu.18.04-x64 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
