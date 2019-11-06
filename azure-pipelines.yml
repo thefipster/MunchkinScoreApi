@@ -30,7 +30,7 @@ steps:
     command: install -g @angular/cli
 
 - script: ng build --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
-  workingDir: src/TheFipster.Munchkin.Spa
+  workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Build angular'
 
 - task: Npm@1
