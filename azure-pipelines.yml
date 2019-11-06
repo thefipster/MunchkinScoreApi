@@ -25,10 +25,19 @@ steps:
     workingDir: src/TheFipster.Munchkin.Spa
 
 - task: Npm@1
+  displayName: 'Install angular cli'
+  inputs:
+    command: install -g @angular/cli
+
+- script: ng build --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
+  workingDir: src/TheFipster.Munchkin.Spa
+  displayName: 'Build angular'
+
+- task: Npm@1
   displayName: 'Build angular'
   inputs:
     command: custom
-    customCommand: run build -- --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
+    customCommand: run build --prod 
     workingDir: src/TheFipster.Munchkin.Spa
 
 - task: DotNetCoreCLI@2
