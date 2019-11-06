@@ -28,6 +28,7 @@ steps:
   displayName: 'Install angular cli'
   inputs:
     command: install -g @angular/cli
+    workingDir: src/TheFipster.Munchkin.Spa
 
 - script: ng build --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
   workingDirectory: src/TheFipster.Munchkin.Spa
