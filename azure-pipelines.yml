@@ -12,6 +12,10 @@ variables:
 
 steps:
 
+- task: NodeTool@0 
+  inputs:
+    versionSpec: '10.x'
+
 - task: DotNetCoreCLI@2
   displayName: 'Build solution'
   inputs:
@@ -24,13 +28,11 @@ steps:
     command: install
     workingDir: src/TheFipster.Munchkin.Spa
 
-- task: Npm@1
+- script: sudo npm install -g @angular/cli
+  workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Install angular cli'
-  inputs:
-    command: install -g @angular/cli
-    workingDir: src/TheFipster.Munchkin.Spa
 
-- script: ng build --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
+- script: sudo ng build --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
   workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Build angular'
 
