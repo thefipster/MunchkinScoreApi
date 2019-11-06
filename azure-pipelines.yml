@@ -36,13 +36,6 @@ steps:
   workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Build angular'
 
-- task: Npm@1
-  displayName: 'Build angular'
-  inputs:
-    command: custom
-    customCommand: run build --prod 
-    workingDir: src/TheFipster.Munchkin.Spa
-
 - task: DotNetCoreCLI@2
   displayName: 'Run tests'
   inputs:
