@@ -12,9 +12,9 @@ variables:
 
 steps:
 
-# - task: NodeTool@0 
-#   inputs:
-#     versionSpec: '10.x'
+- task: NodeTool@0 
+  inputs:
+    versionSpec: '10.x'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build solution'
@@ -22,102 +22,101 @@ steps:
     command: build
     arguments: '--configuration $(buildConfiguration)'
 
-# - task: Npm@1
-#   displayName: 'Npm install'
-#   inputs:
-#     command: install
-#     workingDir: src/TheFipster.Munchkin.Spa
+- task: Npm@1
+  displayName: 'Npm install'
+  inputs:
+    command: install
+    workingDir: src/TheFipster.Munchkin.Spa
 
-# - script: sudo npm install -g @angular/cli
-#   workingDirectory: src/TheFipster.Munchkin.Spa
-#   displayName: 'Install angular cli'
+- script: sudo npm install -g @angular/cli
+  workingDirectory: src/TheFipster.Munchkin.Spa
+  displayName: 'Install angular cli'
 
-# - script: sudo ng build --outputPath $(Build.ArtifactStagingDirectory)/spa-client
-#   workingDirectory: src/TheFipster.Munchkin.Spa
-#   displayName: 'Build angular'
+- script: sudo ng build --outputPath $(Build.ArtifactStagingDirectory)/spa-client
+  workingDirectory: src/TheFipster.Munchkin.Spa
+  displayName: 'Build angular'
 
-# - script: dotnet test --filter FullyQualifiedName~UnitTest --logger trx --collect "Code coverage"
-#   displayName: 'Run tests'
+- script: dotnet test --filter FullyQualifiedName~UnitTest --logger trx --collect "Code coverage"
+  displayName: 'Run tests'
 
-# - task: PublishTestResults@2
-#   displayName: 'Report test results'
-#   inputs:
-#     testRunner: VSTest
-#     testResultsFiles: '**/*.trx'
-#     mergeTestResults: true
+- task: PublishTestResults@2
+  displayName: 'Report test results'
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+    mergeTestResults: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish identity api'
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Identity.Api/TheFipster.Munchkin.Identity.Api.csproj
-    packDirectory: $(Build.ArtifactStagingDirectory)/identity-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
     arguments: '--output $(Build.ArtifactStagingDirectory)/identity-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish gaming api'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/gaming-api
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish gaming api'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/gaming-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish admin api'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.Admin.Api/TheFipster.Munchkin.Admin.Api.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/admin-api
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish admin api'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.Admin.Api/TheFipster.Munchkin.Admin.Api.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/admin-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish cardstash api'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.CardStash.Api/TheFipster.Munchkin.CardStash.Api.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/cardstash-api
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish cardstash api'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.CardStash.Api/TheFipster.Munchkin.CardStash.Api.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/cardstash-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish statistics api'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.Statistics.Api/TheFipster.Munchkin.Statistics.Api.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/statistics-api
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish statistics api'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.Statistics.Api/TheFipster.Munchkin.Statistics.Api.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/statistics-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish sample api'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.Sample.Api/TheFipster.Munchkin.Sample.Api.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/sample-api
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish sample api'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.Sample.Api/TheFipster.Munchkin.Sample.Api.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/sample-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish monitoring api'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.Monitoring.Api/TheFipster.Munchkin.Monitoring.Api.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/monitoring-api
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish monitoring api'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.Monitoring.Api/TheFipster.Munchkin.Monitoring.Api.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/monitoring-api'
 
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish cli client'
-#   inputs:
-#     command: publish
-#     projects: src/TheFipster.Munchkin.Cli.Client/TheFipster.Munchkin.Cli.Client.csproj
-#     packDirectory: $(Build.ArtifactStagingDirectory)/cli-client
-#     configuration: $(BuildConfiguration)
-#     zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  displayName: 'Publish cli client'
+  inputs:
+    command: publish
+    projects: src/TheFipster.Munchkin.Cli.Client/TheFipster.Munchkin.Cli.Client.csproj
+    configuration: $(BuildConfiguration)
+    zipAfterPublish: True
+    arguments: '--output $(Build.ArtifactStagingDirectory)/cli-client'
 
 - task: PublishBuildArtifacts@1
   inputs:
