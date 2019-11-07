@@ -58,28 +58,34 @@ steps:
     command: publish
     projects: src/TheFipster.Munchkin.Identity.Api/TheFipster.Munchkin.Identity.Api.csproj
     outputDir: $(Build.ArtifactStagingDirectory)/identity-api
-    arguments: '--configuration $(BuildConfiguration)'
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish gaming api'
   inputs:
     command: publish
-    arguments: 'src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/gaming-api'
+    projects: src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj
+    outputDir: $(Build.ArtifactStagingDirectory)/gaming-api
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish admin api'
   inputs:
     command: publish
-    arguments: 'src/TheFipster.Munchkin.Admin.Api/TheFipster.Munchkin.Admin.Api.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/admin-api'
+    projects: src/TheFipster.Munchkin.Admin.Api/TheFipster.Munchkin.Admin.Api.csproj
+    outputDir: $(Build.ArtifactStagingDirectory)/admin-api
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish cardstash api'
   inputs:
     command: publish
-    arguments: 'src/TheFipster.Munchkin.CardStash.Api/TheFipster.Munchkin.CardStash.Api.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/cardstash-api'
+    projects: src/TheFipster.Munchkin.CardStash.Api/TheFipster.Munchkin.CardStash.Api.csproj
+    outputDir: $(Build.ArtifactStagingDirectory)/cardstash-api
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
@@ -88,28 +94,34 @@ steps:
     command: publish
     projects: src/TheFipster.Munchkin.Statistics.Api/TheFipster.Munchkin.Statistics.Api.csproj
     outputDir: $(Build.ArtifactStagingDirectory)/statistics-api
-    arguments: '--configuration $(BuildConfiguration)'
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish sample api'
   inputs:
     command: publish
-    arguments: 'src/TheFipster.Munchkin.Sample.Api/TheFipster.Munchkin.Sample.Api.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/sample-api'
+    projects: src/TheFipster.Munchkin.Sample.Api/TheFipster.Munchkin.Sample.Api.csproj
+    outputDir: $(Build.ArtifactStagingDirectory)/sample-api
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish monitoring api'
   inputs:
     command: publish
-    arguments: 'src/TheFipster.Munchkin.Monitoring.Api/TheFipster.Munchkin.Monitoring.Api.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/monitoring-api'
+    projects: src/TheFipster.Munchkin.Monitoring.Api/TheFipster.Munchkin.Monitoring.Api.csproj
+    outputDir: $(Build.ArtifactStagingDirectory)/monitoring-api
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish cli client'
   inputs:
     command: publish
-    arguments: 'src/TheFipster.Munchkin.Cli.Client/TheFipster.Munchkin.Cli.Client.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/cli-client'
+    projects: src/TheFipster.Munchkin.Cli.Client/TheFipster.Munchkin.Cli.Client.csproj
+    outputDir: $(Build.ArtifactStagingDirectory)/cli-client
+    configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
