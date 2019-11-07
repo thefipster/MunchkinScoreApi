@@ -5,7 +5,6 @@ import { Player } from 'src/app/interfaces/player';
 import { ProfileService } from 'src/app/services/profile.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { GameMaster } from 'src/app/interfaces/game-master';
-import { throwMatDuplicatedDrawerError } from '@angular/material/sidenav';
 import { GameMsg } from 'src/app/msgs/game-msg';
 import { PlayerMsg } from 'src/app/msgs/player-msg';
 import { DungeonMsg } from 'src/app/msgs/dungeon-msg';

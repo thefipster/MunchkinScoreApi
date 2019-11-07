@@ -32,7 +32,7 @@ steps:
   workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Install angular cli'
 
-- script: sudo ng build --prod --outputPath $(Build.ArtifactStagingDirectory)\spa-client
+- script: sudo ng build --outputPath $(Build.ArtifactStagingDirectory)\spa-client
   workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Build angular'
 
