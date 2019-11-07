@@ -62,6 +62,7 @@ steps:
     projects: 'src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj'
     configuration: '$(BuildConfiguration)'
     zipAfterPublish: true
+    publishWebProjects: false
     arguments: '--output $(Build.ArtifactStagingDirectory)/gaming-api'
 
 # - task: DotNetCoreCLI@2
