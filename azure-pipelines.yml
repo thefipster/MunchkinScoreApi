@@ -36,15 +36,8 @@ steps:
   workingDirectory: src/TheFipster.Munchkin.Spa
   displayName: 'Build angular'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Run tests'
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--filter FullyQualifiedName~UnitTest --configuration $(buildConfiguration) --collect "Code coverage"'
-
 - script: dotnet test --filter FullyQualifiedName~UnitTest --logger trx --collect "Code coverage"
-  displayName: 'Collect test results'
+  displayName: 'Run tests'
 
 - task: PublishTestResults@2
   displayName: 'Report test results'
@@ -57,7 +50,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Identity.Api/TheFipster.Munchkin.Identity.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/identity-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/identity-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -66,7 +59,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/gaming-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/gaming-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -75,7 +68,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Admin.Api/TheFipster.Munchkin.Admin.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/admin-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/admin-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -84,7 +77,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.CardStash.Api/TheFipster.Munchkin.CardStash.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/cardstash-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/cardstash-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -93,7 +86,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Statistics.Api/TheFipster.Munchkin.Statistics.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/statistics-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/statistics-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -102,7 +95,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Sample.Api/TheFipster.Munchkin.Sample.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/sample-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/sample-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -111,7 +104,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Monitoring.Api/TheFipster.Munchkin.Monitoring.Api.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/monitoring-api
+    packDirectory: $(Build.ArtifactStagingDirectory)/monitoring-api
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
@@ -120,7 +113,7 @@ steps:
   inputs:
     command: publish
     projects: src/TheFipster.Munchkin.Cli.Client/TheFipster.Munchkin.Cli.Client.csproj
-    outputDir: $(Build.ArtifactStagingDirectory)/cli-client
+    packDirectory: $(Build.ArtifactStagingDirectory)/cli-client
     configuration: $(BuildConfiguration)
     zipAfterPublish: True
 
