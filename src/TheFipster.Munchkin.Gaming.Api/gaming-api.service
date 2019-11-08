@@ -2,8 +2,8 @@
 Description=Munchkin Gaming API
 
 [Service]
-WorkingDirectory=/home/felix/approot/identity-api
-ExecStart=/usr/bin/dotnet /home/felix/approot/identity-api/TheFipster.Munchkin.Gaming.Api.dll
+WorkingDirectory=/home/felix/approot/gaming-api
+ExecStart=/usr/bin/dotnet /home/felix/approot/gaming-api/TheFipster.Munchkin.Gaming.Api.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
