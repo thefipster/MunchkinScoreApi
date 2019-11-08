@@ -13,10 +13,12 @@ namespace TheFipster.Munchkin.Gaming.Api
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseAppSettings();
-                    webBuilder.UseLogging();
-                    webBuilder.UseStartup<Startup>();
-                });
+                 {
+                     webBuilder.UseKestrel();
+                     webBuilder.UseUrls("https://localhost:5003", "http://localhost:5002");
+                     webBuilder.UseAppSettings();
+                     webBuilder.UseLogging();
+                     webBuilder.UseStartup<Startup>();
+                 });
     }
 }

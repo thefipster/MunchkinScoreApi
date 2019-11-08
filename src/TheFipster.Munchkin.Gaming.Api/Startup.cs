@@ -10,6 +10,8 @@ using TheFipster.Munchkin.Gaming.Events;
 
 namespace TheFipster.Munchkin.Gaming.Api
 {
+    using Microsoft.AspNetCore.HttpOverrides;
+
     [ExcludeFromCodeCoverage]
     public class Startup
     {
@@ -53,6 +55,10 @@ namespace TheFipster.Munchkin.Gaming.Api
             app.UseHttpsRedirection();
             app.UseCorsPolicy();
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

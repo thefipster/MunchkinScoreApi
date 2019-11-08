@@ -21,4 +21,13 @@
     <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="gaming-api.service">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="nginx.conf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
