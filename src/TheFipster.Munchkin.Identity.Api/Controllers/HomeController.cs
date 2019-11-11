@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TheFipster.Munchkin.Gaming.Api.Controllers
+namespace TheFipster.Munchkin.Identity.Api.Controllers
 {
     [ApiController]
     public class HomeController : ControllerBase

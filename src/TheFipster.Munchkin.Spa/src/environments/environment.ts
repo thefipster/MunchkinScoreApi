@@ -1,10 +1,10 @@
 export const environment = {
   production: false,
-  authServiceUri: 'https://localhost:5001/',
-  gameServiceUri: 'https://localhost:5003/',
-  gameApiUrl: 'https://localhost:5003/api/',
+  authServiceUri: 'http://localhost:5000/',
+  gameServiceUri: 'http://localhost:5001/',
+  gameApiUrl: 'http://localhost:5001/api/',
   identity: {
-    authority: 'https://localhost:5001',
+    authority: 'http://localhost:5000',
     client_id: 'game-spa',
     redirect_uri: 'http://localhost:4200/callback',
     response_type: 'code',

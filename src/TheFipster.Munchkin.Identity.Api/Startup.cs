@@ -46,17 +46,12 @@ namespace TheFipster.Munchkin.Identity.Api
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
-            app.UseHttpsRedirection();
             app.UseCors(ConfigKeys.CorsOriginPolicyName);
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseHsts();
             }
 
             app.UseStaticFiles();

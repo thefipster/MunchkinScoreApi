@@ -12,5 +12,8 @@ namespace TheFipster.Munchkin.Configuration
             .Where(section => !string.IsNullOrWhiteSpace(section.Value))
             .Select(section => section.Value)
             .ToList();
+
+        public static string GetAudience(this IConfiguration config) => config["ApiAudience"];
+        public static string GetAuthority(this IConfiguration config) => config["AuthorityUrl"];
     }
 }

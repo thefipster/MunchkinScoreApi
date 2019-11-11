@@ -106,6 +106,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Statist
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.AppInsights.Core", "src\TheFipster.Munchkin.AppInsights.Core\TheFipster.Munchkin.AppInsights.Core.csproj", "{D76412FA-95EE-4564-9434-026738C5272B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spa", "Spa", "{497B94DB-0F80-4262-B34E-10C91D7C09DE}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TheFipster.Munchkin.Spa", "src\TheFipster.Munchkin.Spa\", "{52C810D2-CB29-4D2A-9461-B41765FBC9CB}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53939"
+		Debug.AspNetCompiler.PhysicalPath = "src\TheFipster.Munchkin.Spa\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53939\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53939"
+		Release.AspNetCompiler.PhysicalPath = "src\TheFipster.Munchkin.Spa\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53939\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53939"
+		SlnRelativePath = "src\TheFipster.Munchkin.Spa\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -252,6 +275,9 @@ Global
 		{D76412FA-95EE-4564-9434-026738C5272B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76412FA-95EE-4564-9434-026738C5272B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D76412FA-95EE-4564-9434-026738C5272B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C810D2-CB29-4D2A-9461-B41765FBC9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C810D2-CB29-4D2A-9461-B41765FBC9CB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C810D2-CB29-4D2A-9461-B41765FBC9CB}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -302,6 +328,8 @@ Global
 		{EF7E80C0-E110-43DD-B453-41FB89A07901} = {50B870AB-30C9-4577-BAF0-86E186C514B7}
 		{BB2C3F89-C82F-478E-BDBE-28C72954ABA5} = {25316586-A797-4205-A1B0-8204C092C89D}
 		{D76412FA-95EE-4564-9434-026738C5272B} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
+		{497B94DB-0F80-4262-B34E-10C91D7C09DE} = {ED424B84-4FBC-460A-A813-AE5FCC15CDA8}
+		{52C810D2-CB29-4D2A-9461-B41765FBC9CB} = {497B94DB-0F80-4262-B34E-10C91D7C09DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}

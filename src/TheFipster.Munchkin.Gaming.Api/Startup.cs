@@ -11,6 +11,7 @@ using TheFipster.Munchkin.Gaming.Events;
 namespace TheFipster.Munchkin.Gaming.Api
 {
     using Microsoft.AspNetCore.HttpOverrides;
+    using TheFipster.Munchkin.Configuration;
 
     [ExcludeFromCodeCoverage]
     public class Startup
@@ -33,9 +34,8 @@ namespace TheFipster.Munchkin.Gaming.Api
                 .AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:5001";
-                    options.RequireHttpsMetadata = true;
-                    options.Audience = "game-api";
+                    options.Authority = Configuration.GetAuthority();
+                    options.Audience = Configuration.GetAudience();
                 });
 
             services
@@ -49,10 +49,7 @@ namespace TheFipster.Munchkin.Gaming.Api
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-            else
-                app.UseHsts();
 
-            app.UseHttpsRedirection();
             app.UseCorsPolicy();
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
