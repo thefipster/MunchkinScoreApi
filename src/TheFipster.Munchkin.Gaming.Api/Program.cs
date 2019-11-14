@@ -15,7 +15,6 @@ namespace TheFipster.Munchkin.Gaming.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel();
-                    webBuilder.UseUrls("http://localhost:5001");
                     webBuilder.UseAppSettings();
                     webBuilder.UseLogging();
                     webBuilder.UseStartup<Startup>();

@@ -1,12 +1,15 @@
 {
     "$schema": "http://json.schemastore.org/launchsettings.json",
     "profiles": {
-        "TheFipster.Munchkin.Gaming.Api": {
-            "applicationUrl": "http://localhost:5001",
+        "Munchkin Gaming API - Development": {
             "commandName": "Project",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
+        },
+        "Munchkin Gaming API - Production": {
+            "commandName": "Project",
+            "environmentVariables": { }
         }
     }
 }
