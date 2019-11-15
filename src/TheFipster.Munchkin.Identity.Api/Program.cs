@@ -15,7 +15,6 @@ namespace TheFipster.Munchkin.Identity.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel();
-                    webBuilder.UseUrls("http://localhost:5000");
                     webBuilder.UseAppSettings();
                     webBuilder.UseLogging();
                     webBuilder.UseStartup<Startup>();

@@ -7,9 +7,9 @@ using TheFipster.Munchkin.CardStash.Repository.Abstractions;
 using TheFipster.Munchkin.CardStash.Repository.Components;
 using TheFipster.Munchkin.CardStash.Repository.Decorators;
 
-namespace TheFipster.Munchkin.CardStash.Api
+namespace TheFipster.Munchkin.CardStash.Api.Extensions
 {
-    public static class Dependencies
+    public static class DependencyInjection
     {
         public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {

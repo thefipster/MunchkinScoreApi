@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using TheFipster.Munchkin.Configuration;
 using TheFipster.Munchkin.Logging.Api;
 
-namespace StashApi
+namespace TheFipster.Munchkin.CardStash.Api
 {
     public class Program
     {
@@ -14,6 +14,7 @@ namespace StashApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseKestrel();
                     webBuilder.UseAppSettings();
                     webBuilder.UseLogging();
                     webBuilder.UseStartup<Startup>();

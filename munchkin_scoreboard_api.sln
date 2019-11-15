@@ -129,6 +129,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TheFipster.Munchkin.Spa", "
 		SlnRelativePath = "src\TheFipster.Munchkin.Spa\"
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFipster.Munchkin.Api.Common", "src\TheFipster.Munchkin.Api.Common\TheFipster.Munchkin.Api.Common.csproj", "{551CD0EE-4E44-4538-9065-C61E2E489E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -277,6 +279,10 @@ Global
 		{D76412FA-95EE-4564-9434-026738C5272B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{52C810D2-CB29-4D2A-9461-B41765FBC9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52C810D2-CB29-4D2A-9461-B41765FBC9CB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{551CD0EE-4E44-4538-9065-C61E2E489E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551CD0EE-4E44-4538-9065-C61E2E489E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551CD0EE-4E44-4538-9065-C61E2E489E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551CD0EE-4E44-4538-9065-C61E2E489E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -329,6 +335,7 @@ Global
 		{D76412FA-95EE-4564-9434-026738C5272B} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
 		{497B94DB-0F80-4262-B34E-10C91D7C09DE} = {ED424B84-4FBC-460A-A813-AE5FCC15CDA8}
 		{52C810D2-CB29-4D2A-9461-B41765FBC9CB} = {497B94DB-0F80-4262-B34E-10C91D7C09DE}
+		{551CD0EE-4E44-4538-9065-C61E2E489E4D} = {7D3D7832-2924-43F6-BA05-054CC58EC5C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9203B64F-6919-4E2C-B4B4-0752AFCC63EB}

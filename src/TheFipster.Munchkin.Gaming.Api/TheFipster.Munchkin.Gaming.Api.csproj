@@ -5,30 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Api.Common\TheFipster.Munchkin.Api.Common.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Engine\TheFipster.Munchkin.Gaming.Engine.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Domain\TheFipster.Munchkin.Gaming.Domain.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Storage.LiteDb\TheFipster.Munchkin.Gaming.Storage.LiteDb.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.Gaming.Storage\TheFipster.Munchkin.Gaming.Storage.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="gaming-api.service">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="nginx.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

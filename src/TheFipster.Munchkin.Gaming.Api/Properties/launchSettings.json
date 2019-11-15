@@ -1,13 +1,13 @@
 {
     "$schema": "http://json.schemastore.org/launchsettings.json",
     "profiles": {
-        "Munchkin Gaming API - Development": {
+        "Gaming API - Development": {
             "commandName": "Project",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Munchkin Gaming API - Production": {
+        "Gaming API - Production": {
             "commandName": "Project",
             "environmentVariables": { }
         }

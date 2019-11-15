@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace TheFipster.Munchkin.Identity.Api.Controllers.Extensions
 {
-    public static class ClientStoreExtensions
+    public static class ClientStore
     {
         /// <summary>
         /// Determines whether the client is configured to use PKCE.

@@ -10,9 +10,9 @@ using TheFipster.Munchkin.Gaming.Storage.LiteDb;
 
 namespace TheFipster.Munchkin.Gaming.Api.Extensions
 {
-    public static class DependencyExtension
+    public static class DependencyInjection
     {
-        public static IServiceCollection AddDependecies(this IServiceCollection services)
+        public static void AddDependecies(this IServiceCollection services)
         {
             services.AddSingleton<IEventInventory>(new Inventory());
 
@@ -26,8 +26,6 @@ namespace TheFipster.Munchkin.Gaming.Api.Extensions
             services.AddTransient<IPlayerStore, PlayerStore>();
 
             services.AddTransient<IQuest, Quest>();
-
-            return services;
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace TheFipster.Munchkin.Identity.Api.Config
 {
+    using System.Linq;
+
     public static class Clients
     {
         public static IEnumerable<Client> Get(IConfiguration config) => new[]
@@ -46,5 +48,12 @@ namespace TheFipster.Munchkin.Identity.Api.Config
                 }
             }
         };
+
+
+
+        public static string[] GetCorsOrigin(IConfiguration config) => Get(config)
+            .Where(x => x.AllowedCorsOrigins != null)
+            .SelectMany(x => x.AllowedCorsOrigins)
+            .ToArray();
     }
 }
