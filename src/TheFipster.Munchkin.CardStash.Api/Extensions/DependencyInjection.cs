@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TheFipster.Munchkin.DependencyInjection;
+using TheFipster.Munchkin.Api.Common;
 using TheFipster.Munchkin.CardStash.Database;
 using TheFipster.Munchkin.CardStash.Domain;
 using TheFipster.Munchkin.CardStash.Repository.Abstractions;

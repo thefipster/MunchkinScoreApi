@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using TheFipster.Munchkin.Api.Common;
 
 namespace TheFipster.Munchkin.Statistics.Api
 {
@@ -15,33 +15,21 @@ namespace TheFipster.Munchkin.Statistics.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization();
+            services.AddJwtAuth(Configuration);
+            services.AddCorsPolicy(Configuration);
             services.AddControllers();
-            services
-                .AddAuthorization()
-                .AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    options.Authority = "https://localhost:5001";
-                    options.RequireHttpsMetadata = true;
-                    options.Audience = "statistics-api";
-                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
-            else
-                app.UseHsts();
-
-            app.UseHttpsRedirection();
+            app.UseCorsPolicy();
+            app.UseProxy();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseControllers();
+            app.UseDeveloperSettingsBasedOnEnvironment(env);
         }
     }
 }
