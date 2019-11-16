@@ -2,14 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Diagnostics.CodeAnalysis;
-using TheFipster.Munchkin.Gaming.Api.Middlewares;
 using TheFipster.Munchkin.Api.Common;
 using TheFipster.Munchkin.Gaming.Api.Extensions;
+using TheFipster.Munchkin.Gaming.Api.Middlewares;
 
 namespace TheFipster.Munchkin.Gaming.Api
 {
-    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
