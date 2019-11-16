@@ -20,7 +20,7 @@ steps:
   displayName: "Build and push gaming_api container image"
   inputs:
     containerRegistry: 'Treescale'
-    repository: 'thefipter/munchkin/apis/gaming'
+    repository: 'orangecurtain/munchkin_apis_gaming'
     command: 'buildAndPush'
     Dockerfile: 'src/gaming_api.dockerfile'
     buildContext: '.'
