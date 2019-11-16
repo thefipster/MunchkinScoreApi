@@ -11,9 +11,9 @@
             .AddAuthentication(AuthenticationScheme)
             .AddJwtBearer(AuthenticationScheme, options =>
             {
-               options.Authority = config.GetAuthority();
-               options.Audience = config.GetAudience();
+                options.Authority = config.GetAuthority();
+                options.Audience = config.GetAudience();
+                options.RequireHttpsMetadata = false;
             });
-
     }
 }
