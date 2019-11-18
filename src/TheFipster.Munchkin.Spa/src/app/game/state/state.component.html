@@ -1,0 +1,3 @@
+<app-wait *ngIf="gameState === gameStates.Setup"></app-wait>
+<app-watch *ngIf="gameState === gameStates.Running"></app-watch>
+<app-results *ngIf="gameState === gameStates.End"></app-results>

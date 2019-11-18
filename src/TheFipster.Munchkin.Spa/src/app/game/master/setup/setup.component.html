@@ -1,0 +1,50 @@
+<h2>Game setup</h2>
+
+<mat-vertical-stepper #stepper>
+    <mat-step [stepControl]="heroesFormGroup">
+        <ng-template matStepLabel>Heldenwahl</ng-template>
+        <mat-list *ngIf="gameMaster">
+            <mat-list-item>
+                    <mat-slide-toggle [checked]="true" [disabled]="true" (change)="togglePlayer($event, player.id)">
+                            {{ gameMaster.name }}
+                        </mat-slide-toggle>
+            </mat-list-item>
+            <mat-list-item *ngFor="let player of gameMaster.playerPool">
+                <mat-slide-toggle (change)="togglePlayer($event, player.id)">
+                    {{ player.name }}
+                </mat-slide-toggle>
+            </mat-list-item>
+        </mat-list>
+        <button mat-stroked-button matStepperNext>zur Dungeonwahl</button>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Dungeonwahl</ng-template>
+        <div>
+            <mat-form-field>
+                <mat-label>Dungeon</mat-label>
+                <mat-select [(value)]="selectedDungeon">
+                    <mat-option *ngFor="let dungeon of dungeons" [value]="dungeon">
+                        {{dungeon}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <button mat-stroked-button matStepperNext>Auf gehts</button>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Auf ins Abenteuer</ng-template>
+        <p>Die Helden</p>
+        <mat-list>
+            <mat-list-item *ngFor="let player of selectedPlayers">
+                <strong>{{ player.name }}</strong>
+            </mat-list-item>
+        </mat-list>
+        <p>betreten den</p>
+        <mat-list>
+            <mat-list-item>
+                <strong>{{ selectedDungeon }}</strong>
+            </mat-list-item>
+        </mat-list>
+        <button mat-stroked-button color="primary" (click)="startAdventure()">Öffne die erste Tür</button>
+    </mat-step>
+</mat-vertical-stepper>

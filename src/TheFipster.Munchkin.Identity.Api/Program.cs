@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using TheFipster.Munchkin.Configuration;
-using TheFipster.Munchkin.Logging.Api;
+using TheFipster.Munchkin.Api.Common;
 
 namespace TheFipster.Munchkin.Identity.Api
 {
@@ -14,6 +13,7 @@ namespace TheFipster.Munchkin.Identity.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseKestrel();
                     webBuilder.UseAppSettings();
                     webBuilder.UseLogging();
                     webBuilder.UseStartup<Startup>();

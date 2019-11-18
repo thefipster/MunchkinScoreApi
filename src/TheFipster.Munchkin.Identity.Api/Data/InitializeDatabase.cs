@@ -2,6 +2,7 @@
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using TheFipster.Munchkin.Identity.Api.Config;
@@ -16,11 +17,12 @@ namespace TheFipster.Munchkin.Identity.Api.Data
             {
                 serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
+                var config = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
                 var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
                 context.Database.Migrate();
                 if (!context.Clients.Any())
                 {
-                    foreach (var client in Clients.Get())
+                    foreach (var client in Clients.Get(config))
                     {
                         context.Clients.Add(client.ToEntity());
                     }

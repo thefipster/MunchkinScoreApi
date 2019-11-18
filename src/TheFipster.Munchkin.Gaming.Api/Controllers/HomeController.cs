@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TheFipster.Munchkin.Gaming.Api.Controllers
 {
@@ -6,6 +7,7 @@ namespace TheFipster.Munchkin.Gaming.Api.Controllers
     public class HomeController : ControllerBase
     {
         [Route("")]
+        [AllowAnonymous]
         public IActionResult Index() => Content("Game API at your service.");
     }
 }

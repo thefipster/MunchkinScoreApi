@@ -18,9 +18,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\TheFipster.Munchkin.Configuration\TheFipster.Munchkin.Configuration.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.DependencyInjection\TheFipster.Munchkin.DependencyInjection.csproj" />
-    <ProjectReference Include="..\TheFipster.Munchkin.Logging.Api\TheFipster.Munchkin.Logging.Api.csproj" />
+    <ProjectReference Include="..\TheFipster.Munchkin.Api.Common\TheFipster.Munchkin.Api.Common.csproj" />
     <ProjectReference Include="..\TheFipster.Munchkin.CardStash.Repository\TheFipster.Munchkin.CardStash.Repository.csproj" />
   </ItemGroup>
 

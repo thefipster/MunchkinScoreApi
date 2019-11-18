@@ -1,0 +1,37 @@
+<div *ngIf="profile" profile>
+    <h2>Hi {{ profile.name }}, looking sharp today.</h2>
+    <ul>
+        <li>Id: {{ profile.id }}</li>
+        <li>EMail: {{ profile.email }}</li>
+        <li *ngIf="viewGender" (click)="toggleGenderMode()">Gender: {{ profile.gender }} </li>
+        <li *ngIf="!viewGender">
+            <mat-form-field>
+                <mat-label>Gender</mat-label>
+                <mat-select [(value)]="selectedGender" (selectionChange)="setGender()">
+                    <mat-option *ngFor="let gender of genders" [value]="gender">
+                        {{gender}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </li>
+    </ul>
+    <h3>Friends</h3>
+    <button *ngIf="viewFriend" mat-stroked-button (click)="toggleFriendMode()">Add</button>
+    <div *ngIf="!viewFriend">
+        <mat-form-field>
+                <input matInput placeholder="Name" [value]="friendName" (input)="friendName = $event.target.value">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select [(value)]="friendGender">
+                <mat-option *ngFor="let gender of genders" [value]="gender">
+                    {{gender}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-stroked-button (click)="addFriend()">Save</button>
+    </div>
+    <ul>
+        <li *ngFor="let friend of profile.playerPool">{{ friend.id }}: {{ friend.name }} ({{ friend.gender }})</li>
+    </ul>
+</div>
