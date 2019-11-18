@@ -63,6 +63,7 @@ jobs:
 
 # Publish Dotnet Core
 - job: backend_publish
+  dependsOn: backend_build
   pool:
     vmImage: 'ubuntu-18.04'
   steps:
@@ -155,7 +156,8 @@ jobs:
 
 # Build Docker Images
 
-- job: dockerize
+- job: dockerize_backend
+  dependsOn: backend_build
   pool:
     vmImage: 'ubuntu-18.04'
   steps:
@@ -167,8 +169,8 @@ jobs:
   - task: Docker@2
     displayName: "Create image Gaming API"
     inputs:
-      containerRegistry: 'Treescale'
-      repository: 'orangecurtain/munchkin_apis_gaming'
+      containerRegistry: 'Docker Hub'
+      repository: 'thefipster/munchkin_api_gaming'
       command: 'buildAndPush'
       Dockerfile: 'src/gaming_api.dockerfile'
       buildContext: '.'
