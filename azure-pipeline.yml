@@ -1,0 +1,174 @@
+trigger:
+- master
+- feature/*
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+# Build & Test Dotnet Core
+
+jobs:
+- job: Backend Build
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Build solution'
+    inputs:
+      command: build
+      arguments: '--configuration $(buildConfiguration)'
+
+  - script: dotnet test --filter FullyQualifiedName~UnitTest --logger trx --collect "Code coverage"
+    displayName: 'Run tests'
+
+  - task: PublishTestResults@2
+    displayName: 'Report test results'
+    inputs:
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
+      mergeTestResults: true
+
+# Build & Publish Angular
+
+- job: Frontend Build
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - task: NodeTool@0 
+    inputs:
+      versionSpec: '10.x'
+
+  - task: Npm@1
+    displayName: 'Npm install'
+    inputs:
+      command: install
+      workingDir: src/TheFipster.Munchkin.Spa
+
+  - script: sudo npm install -g @angular/cli
+    workingDirectory: src/TheFipster.Munchkin.Spa
+    displayName: 'Install angular cli'
+
+  - script: sudo ng build --outputPath $(Build.ArtifactStagingDirectory)/publish/spa-client
+    workingDirectory: src/TheFipster.Munchkin.Spa
+    displayName: 'Build angular'
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish artifacts"
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'frontend'
+      publishLocation: 'Container'
+
+# Publish Dotnet Core
+- job: Backend Publish
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish identity api'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.Identity.Api/TheFipster.Munchkin.Identity.Api.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish gaming api'
+    inputs:
+      command: 'publish'
+      projects: 'src/TheFipster.Munchkin.Gaming.Api/TheFipster.Munchkin.Gaming.Api.csproj'
+      configuration: '$(BuildConfiguration)'
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish admin api'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.Admin.Api/TheFipster.Munchkin.Admin.Api.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish cardstash api'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.CardStash.Api/TheFipster.Munchkin.CardStash.Api.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish statistics api'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.Statistics.Api/TheFipster.Munchkin.Statistics.Api.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish sample api'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.Sample.Api/TheFipster.Munchkin.Sample.Api.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish monitoring api'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.Monitoring.Api/TheFipster.Munchkin.Monitoring.Api.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish cli client'
+    inputs:
+      command: publish
+      projects: src/TheFipster.Munchkin.Cli.Client/TheFipster.Munchkin.Cli.Client.csproj
+      configuration: $(BuildConfiguration)
+      zipAfterPublish: true
+      publishWebProjects: false
+      arguments: '--output $(Build.ArtifactStagingDirectory)/deploy'
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish artifacts"
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'frontend'
+      publishLocation: 'Container'
+
+# Build Docker Images
+
+- job: Dockerize
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - task: DockerInstaller@0
+    displayName: "Install Docker CLI"
+    inputs:
+      dockerVersion: '19.03.5'
+
+  - task: Docker@2
+    displayName: "Create image Gaming API "
+    inputs:
+      containerRegistry: 'Treescale'
+      repository: 'orangecurtain/munchkin_apis_gaming'
+      command: 'buildAndPush'
+      Dockerfile: 'src/gaming_api.dockerfile'
+      buildContext: '.'
