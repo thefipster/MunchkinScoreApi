@@ -10,7 +10,7 @@ variables:
 # Build & Test Dotnet Core
 
 jobs:
-- job: Backend Build
+- job: backend_build
   pool:
     vmImage: 'ubuntu-18.04'
   steps:
@@ -32,7 +32,7 @@ jobs:
 
 # Build & Publish Angular
 
-- job: Frontend Build
+- job: frontend_build
   pool:
     vmImage: 'ubuntu-18.04'
   steps:
@@ -62,7 +62,7 @@ jobs:
       publishLocation: 'Container'
 
 # Publish Dotnet Core
-- job: Backend Publish
+- job: backend_publish
   pool:
     vmImage: 'ubuntu-18.04'
   steps:
@@ -155,7 +155,7 @@ jobs:
 
 # Build Docker Images
 
-- job: Dockerize
+- job: dockerize
   pool:
     vmImage: 'ubuntu-18.04'
   steps:
@@ -165,7 +165,7 @@ jobs:
       dockerVersion: '19.03.5'
 
   - task: Docker@2
-    displayName: "Create image Gaming API "
+    displayName: "Create image Gaming API"
     inputs:
       containerRegistry: 'Treescale'
       repository: 'orangecurtain/munchkin_apis_gaming'
