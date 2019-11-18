@@ -54,6 +54,15 @@ jobs:
     workingDirectory: src/TheFipster.Munchkin.Spa
     displayName: 'Build angular'
 
+  - task: ArchiveFiles@2
+    displayName: 'Archive client-spa'
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/publish/spa-client'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/deploy/client_spa.zip'
+      replaceExistingArchive: true
+
   - task: PublishBuildArtifacts@1
     displayName: "Publish artifacts"
     inputs:
@@ -151,7 +160,7 @@ jobs:
     displayName: "Publish artifacts"
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      artifactName: 'frontend'
+      artifactName: 'backend'
       publishLocation: 'Container'
 
 # Build Docker Images
